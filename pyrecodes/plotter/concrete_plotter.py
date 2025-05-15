@@ -1,7 +1,6 @@
 import matplotlib.pyplot as plt
 import json
 from pyrecodes.component.component import Component
-from pyrecodes.component.r2d_component import R2DComponent
 from pyrecodes.system.system import System
 from pyrecodes.resilience_calculator.recodes_calculator import ReCoDeSCalculator
 from pyrecodes.constants import LOR_ALPHA, GANTT_BAR_DISTANCE, GANTT_BAR_WIDTH, ALL_RECOVERY_ACTIVITIES_COLORS
@@ -130,23 +129,17 @@ class ConcretePlotter():
     
     def save_supply_demand_consumption(self, system, resource_names: list, resilience_calculator_id=0):
         for resource in resource_names:
-            savename = f'{resource}_supply_demand_consumption_{resilience_calculator_id}.json'
+            savename = f'{resource}_supply_demand_consumption.json'
             supply_demand_consumption = self.get_supply_demand_consumption(system, resource, resilience_calculator_id)
             with open(savename, mode="w") as file:
                 json.dump(supply_demand_consumption, file) 
 
     def save_component_recovery_progress(self, components: list):
-        component_recovery_progress = {}
         for component in components:
-            if isinstance(component, R2DComponent):
-                if component.asset_type not in component_recovery_progress:
-                    component_recovery_progress[component.asset_type] = {}
-                if component.asset_subtype not in component_recovery_progress[component.asset_type]:
-                    component_recovery_progress[component.asset_type][component.asset_subtype] = {}
-                component_recovery_progress[component.asset_type][component.asset_subtype][component.aim_id], _ = self.get_component_recovery_progress(component)
-        savename = f'R2D_component_recovery_progress.json'
-        with open(savename, mode="w") as file:
-            json.dump(component_recovery_progress, file)
+            savename = f'{component.name}_Locality_{component.locality[0]}_ID_{getattr(component, "aim_id", "None")}_recovery_progress.json'
+            component_recovery_progress, _ = self.get_component_recovery_progress(component)
+            with open(savename, mode="w") as file:
+                json.dump(component_recovery_progress, file)
 
             
         

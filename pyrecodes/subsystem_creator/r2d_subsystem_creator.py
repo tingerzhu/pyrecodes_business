@@ -43,13 +43,22 @@ class R2DSubsystemCreator(SubsystemCreator):
         | It is assumed that the names of the components in the component library are in the format 'DS{damage_state}_{component_type}' 
         | Component type is the same string as the asset subtype of the component in the R2D JSON file, e.g., 'Building', 'Bridge', etc.
         """
-        component_type = asset_subtype
+        component_type = self.get_component_type(component_info, asset_subtype)
         component_damage_state = self.get_component_damage_state(damage_info, component_type)
         component = self.get_component_object(f'DS{component_damage_state}_{component_type}')
         component_data = {'Information': component_info, 'Loss': damage_info.get('Loss', {}), 'AssetType':asset_type,
                           'AssetSubtype': asset_subtype}
         component = self.component_configurator[component_type].set_parameters(component, [self.locality['LocalityName']], component_data, component_damage_state)
         return [component]
+    
+    def get_component_type(self, component_info: dict, asset_subtype: str) -> str:
+        """
+        | Method to get the component type from the component information.
+        """
+        if 'BusinessInformation' in component_info.keys():
+            return 'BuildingWithBusiness'
+        else:
+            return asset_subtype
 
     def get_component_geometry(self, component_info: dict) -> list:
         """

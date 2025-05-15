@@ -2,8 +2,8 @@ from pyrecodes.resource_distribution_model.abstract_resource_distribution_model 
 from pyrecodes.resource_distribution_model.residual_demand_traffic_distribution_model_constructor import ResidualDemandTrafficDistributionModelConstructor
 from pyrecodes.resource_distribution_model.spatial_resource_aggregator import SpatialResourceAggregator
 from pyrecodes.component.component import Component
-
-import subprocess
+from pyrecodes.component.r2d_component import R2DBuildingWithBusiness
+import math
 import os
 
 class ResidualDemandTrafficDistributionModel(AbstractResourceDistributionModel):
@@ -14,6 +14,15 @@ class ResidualDemandTrafficDistributionModel(AbstractResourceDistributionModel):
         self.transfer_service_distribution_model = None #consider moving this into the constructor or finding a better solution-the point is to have an initial value for this property
         self.spatial_resource_aggregator = SpatialResourceAggregator()
         self.travel_times = []
+        self.connect_buildings_to_traffic_nodes()
+
+    def connect_buildings_to_traffic_nodes(self) -> None:
+        self.building_to_traffic_node_dict = {}
+        for index, building in self.flow_simulator.building_df.iterrows():
+            for component in self.components:
+                if isinstance(component, R2DBuilding) and component.aim_id == building['AIM_id']:
+                    self.building_to_traffic_node_dict[component.aim_id] = building['closest_node']
+                    break
 
     def distribute(self, time_step: int) -> None:
         """
@@ -23,6 +32,7 @@ class ResidualDemandTrafficDistributionModel(AbstractResourceDistributionModel):
         if self.distribute_at_this_time_step(time_step):
             self.update_r2d_dict()
             self.distribute_traffic()
+            self.update_buildings_traffic_situation()
         else:
             self.travel_times.append([])
 
@@ -46,6 +56,34 @@ class ResidualDemandTrafficDistributionModel(AbstractResourceDistributionModel):
             finally:
                 os.dup2(original_stdout_fd, 1)  
                 os.close(original_stdout_fd) 
+        self.get_travel_time_change()
+
+    def get_travel_time_change(self) -> None:
+        self.travel_time_change = []
+        for agent_pre_disaster, agent_now in zip(self.travel_times[0].iterrows(), self.travel_times[-1].iterrows()):
+            travel_time_change_factor = agent_now[1]['travel_time_used'] / agent_pre_disaster[1]['travel_time_used']
+            self.travel_time_change.append({'agent_id': agent_pre_disaster[1]['agent_id'], 'origin_nid': agent_pre_disaster[1]['origin_nid'], 
+                                            'stop_nid': agent_pre_disaster[1]['stop_nid'], 'travel_time_change': travel_time_change_factor})
+
+    def update_buildings_traffic_situation(self) -> None:
+        """
+        | Update supply of buildings based on their travel times.
+        | At the moment, updates only R2DBuilding components
+        """
+        # TODO: Not used at the moment - not sure how to use it.
+        for component in self.components:        
+            if isinstance(component, R2DBuildingWithBusiness):
+                component.update_traffic_situation(self.building_to_traffic_node_dict, self.travel_times[-1], self.travel_time_change)  
+                # travel_time_change_factors = []
+                # closest_node = self.building_to_traffic_node_dict[component.aim_id]
+                # for travel_time_change_per_agent in self.travel_time_change:
+                #     if  travel_time_change_per_agent['origin_nid'] == closest_node or travel_time_change_per_agent['stop_nid'] == closest_node:
+                #         travel_time_change_factors.append(travel_time_change_per_agent['travel_time_change'])
+                # if len(travel_time_change_factors) > 0:
+                #     average_travel_time_change_factors = sum(travel_time_change_factors) / len(travel_time_change_factors)
+                # else:
+                #     average_travel_time_change_factors = math.inf
+                # component.update_supply_based_on_unmet_demand(average_travel_time_change_factors, self.resource_name)
           
     def get_total_supply(self, scope: str) -> float:
         """
@@ -74,8 +112,8 @@ class ResidualDemandTrafficDistributionModel(AbstractResourceDistributionModel):
         if scope == 'All':
             if len(self.travel_times[-1]) > 0:
                 completed_trips = 0
-                for agent_pre_disaster, agent_now in zip(self.travel_times[0]['travel_time_used'], self.travel_times[-1]['travel_time_used']):
-                    if agent_pre_disaster * self.TRIP_CUTOFF_THRESHOLD >= agent_now:
+                for travel_time_change in self.travel_time_change:
+                    if travel_time_change['travel_time_change'] <= self.TRIP_CUTOFF_THRESHOLD:
                         completed_trips += 1
                 return completed_trips
             else:

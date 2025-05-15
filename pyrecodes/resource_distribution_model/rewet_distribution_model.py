@@ -6,7 +6,6 @@ from pyrecodes.resource_distribution_model.abstract_resource_distribution_model 
 from pyrecodes.resource_distribution_model.rewet_distribution_model_constructor import REWETDistributionModelConstructor
 from pyrecodes.resource_distribution_model.spatial_resource_aggregator import SpatialResourceAggregator
 from pyrecodes.component.component import SupplyOrDemand
-from pyrecodes.utilities import format_locality_id
 
 class REWETDistributionModel(AbstractResourceDistributionModel):
     """
@@ -72,39 +71,22 @@ class REWETDistributionModel(AbstractResourceDistributionModel):
 
     def get_total_demand(self, scope='All') -> float:
         if scope == "All":
-            operation_demand = self.spatial_resource_aggregator.aggregate_total(self.components, self.resource_name)
-            recovery_demand = self.spatial_resource_aggregator.aggregate_total(self.components, self.resource_name, 
-                                                                               supply_or_demand='demand',
-                                                                               supply_or_demand_type=StandardiReCoDeSComponent.DemandTypes.RECOVERY_DEMAND.value)
-            return operation_demand + recovery_demand
+            return self.spatial_resource_aggregator.aggregate_total(self.components, self.resource_name)
         elif "Locality" in scope:
-            locality_id = format_locality_id(scope)
-            operation_demand = self.spatial_resource_aggregator.aggregate_per_locality(self.components, self.resource_name, 
-                                                                       locality_ids=[locality_id],
-                                                                       supply_or_demand='demand', 
-                                                                       supply_or_demand_type=StandardiReCoDeSComponent.DemandTypes.OPERATION_DEMAND.value
-                                                                       )[locality_id]
-            recovery_demand = self.spatial_resource_aggregator.aggregate_per_locality(self.components, self.resource_name, 
-                                                                       locality_ids=[locality_id],
-                                                                       supply_or_demand='demand', 
-                                                                       supply_or_demand_type=StandardiReCoDeSComponent.DemandTypes.RECOVERY_DEMAND.value
-                                                                       )[locality_id]
-            return operation_demand + recovery_demand
+            locality_id = int(scope[-1])
+            return self.water_demand_per_locality[locality_id]
 
     def get_total_consumption(self, scope='All') -> float:
         total_consumption = 0
-        if "Locality" in scope:
-            locality_id = format_locality_id(scope)
-        for component in self.components:
-            if scope == 'All' or component.locality[0] == locality_id:
-                operation_demand = component.get_current_resource_amount(SupplyOrDemand.DEMAND.value, 
-                                                                        StandardiReCoDeSComponent.DemandTypes.OPERATION_DEMAND.value, 
-                                                                        self.resource_name)
-                recovery_demand = component.get_current_resource_amount(SupplyOrDemand.DEMAND.value, 
-                                                                        StandardiReCoDeSComponent.DemandTypes.RECOVERY_DEMAND.value, 
-                                                                        self.resource_name)
-                component_demand = operation_demand + recovery_demand
+        if scope == "All":
+            for component in self.components:
+                component_demand = component.get_current_resource_amount(SupplyOrDemand.DEMAND.value, 
+                                                                         StandardiReCoDeSComponent.DemandTypes.OPERATION_DEMAND.value, 
+                                                                         self.resource_name)
                 if component_demand > 0:
                     total_consumption += self.met_demand_per_building[component.aim_id] * component_demand
+        else:
+            raise ValueError('Scope of the resilience calculator not yet implemented in the REWET Distribution Model.') 
+        
         return total_consumption
 

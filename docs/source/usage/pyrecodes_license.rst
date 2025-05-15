@@ -32,8 +32,11 @@ This software utilizes the following third-party libraries, which are subject to
 
 - Matplotlib
 
+- Pytest
+
 - Imageio
 
 - pyproj
 
+- dill
 

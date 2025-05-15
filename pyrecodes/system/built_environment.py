@@ -3,6 +3,7 @@ from pyrecodes.system_creator.system_creator import SystemCreator
 from pyrecodes.component.component import Component
 from pyrecodes.component.component import SupplyOrDemand
 from pyrecodes.component.standard_irecodes_component import StandardiReCoDeSComponent
+from pyrecodes.component.r2d_component import R2DBuildingWithBusiness
 from pyrecodes.utilities import get_class
 from pyrecodes.system.distribution_list_creator import DistributionListCreator
 from pyrecodes.system.recovery_target_checker import NoDamageRecoveryTargetChecker
@@ -297,3 +298,15 @@ class BuiltEnvironment(System):
         with open(loadname, 'rb') as file:
             system = pickle.load(file) 
         return system 
+    
+
+class BuiltEnvironmentWithBusinesses(BuiltEnvironment):
+
+    def create_system(self):
+        super().create_system()
+        self.map_buildings_to_businesses()
+
+    def map_buildings_to_businesses(self):
+        for component in self.components:
+            if isinstance(component, R2DBuildingWithBusiness):
+                component.map_buildings_to_businesses(self.components)

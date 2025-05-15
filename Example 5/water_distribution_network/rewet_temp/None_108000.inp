@@ -1,6 +1,6 @@
-; Filename: /Users/nikola/pyrecodes/Example 5/water_distribution_network/waterNetwork.inp
+; Filename: C:\Users\zhut\OneDrive - Stanford\Research\02 Work\05 Commercial downtime\Pyrecodes\pyrecodes-main\Example 5\water_distribution_network\waterNetwork.inp
 ; WNTR: 1.1.0.1.2
-; Created: 2025-01-30 10:54:59
+; Created: 2025-03-27 23:42:05
 [TITLE]
 
 [JUNCTIONS]
@@ -1433,12 +1433,16 @@
  node_1428                          0               0                            ;
  node_1429                          0    3.2465677873                            ;
  node_1430                          0    3.2465677873                            ;
+ KINGS_1_breakA_1                   0               0                            ;
+ KINGS_1_breakB_1                   0               0                            ;
 
 [RESERVOIRS]
 ;ID                                   Head                  Pattern
  res_1                            164                            ;
  res_2                   164.04199475                            ;
  res_3                   164.04199475                            ;
+ KINGS_1_breakA_1_nn                0                            ;
+ KINGS_1_breakB_1_nn                0                            ;
 
 [TANKS]
 ;ID                              Elevation           Init Level            Min Level            Max Level             Diameter           Min Volume Volume Curve         Overflow            
@@ -2412,7 +2416,7 @@
  KINGFISHER_1         node_1293            node_1292               118.08321687               6             100               0                 Open   ;
  KINGS                node_1168            node_1169               327.46004547               6             100               0                 Open   ;
  KINGSBURY            node_1286            node_1287               316.36151607               6             100               0                 Open   ;
- KINGS_1              node_1170            node_1168               256.47425185               6             100               0                 Open   ;
+ KINGS_1              node_1170            KINGS_1_breakA_1        64.118562962               6             100               0                 Open   ;
  KINKAID              node_1044            node_1045               112.95215293               6             100               0                 Open   ;
  KINKAID_1            node_1295            node_1044                124.4087374               6             100               0                 Open   ;
  KINKAID_2            node_1294            node_1295               126.11730802               6             100               0                 Open   ;
@@ -3467,6 +3471,9 @@
  from_res_1           res_1                node_1                   32.80839895    944.88188976             100               0                   CV   ;
  from_res_2           res_2                node_685                 32.80839895    472.44094488             100               0                   CV   ;
  from_res_3           res_3                node_8                   32.80839895    629.92125984             100               0                   CV   ;
+ KINGS_1_Break_1      KINGS_1_breakB_1     node_1168               192.35568889               6             100               0                 Open   ;
+ KINGS_1_breakA_1-rlk KINGS_1_breakA_1     KINGS_1_breakA_1_nn      3.280839895               6         1000000               1                   CV   ;
+ KINGS_1_breakB_1-rlk KINGS_1_breakB_1     KINGS_1_breakB_1_nn      3.280839895               6         1000000               1                   CV   ;
 
 [PUMPS]
 ;ID                   Node1                Node2                Properties          
@@ -4989,6 +4996,10 @@ node_1430        -122.244000000         37.775000000
 res_1            -122.273000000         37.788000000
 res_2            -122.234000000         37.771000000
 res_3            -122.231000000         37.769000000
+KINGS_1_breakA_1       -122.280750000         37.769000000
+KINGS_1_breakB_1       -122.280750000         37.769000000
+KINGS_1_breakA_1_nn       -121.280750000         38.769000000
+KINGS_1_breakB_1_nn       -121.280750000         38.769000000
 
 [VERTICES]
 ;Link      X-Coord    Y-Coord   

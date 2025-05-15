@@ -1,6 +1,5 @@
 from pyrecodes.resource_distribution_model.resource_distribution_model import ResourceDistributionModel
 from abc import ABC, abstractmethod
-from pyrecodes.utilities import format_locality_id
 
 class AbstractResourceDistributionModel(ResourceDistributionModel):
     """
@@ -31,7 +30,7 @@ class AbstractResourceDistributionModel(ResourceDistributionModel):
         if scope == 'All':
             return self.components
         elif "Locality" in scope:
-            locality_id = format_locality_id(scope)
+            locality_id = int(scope[-1])
             components_in_scope = []
             for component in self.components:
                 if locality_id in component.locality:

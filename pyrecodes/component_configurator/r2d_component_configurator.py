@@ -3,6 +3,7 @@ from pyrecodes.component.component import Component
 from pyrecodes.component_configurator.r2d_dict_getter import R2DDictGetter, R2DPipeDictGetter
 from pyrecodes.component_configurator.r2d_repair_configurator import R2DBuildingRepairConfigurator, R2DRoadwayRepairConfigurator, R2DPipeRepairConfigurator, R2DBridgeRepairConfigurator, R2DTunnelRepairConfigurator
 from pyrecodes.component.standard_irecodes_component import StandardiReCoDeSComponent
+from pyrecodes.business.business import Business
 import json
 import shapely
 import pyproj
@@ -269,5 +270,19 @@ class R2DTunnelConfigurator(R2DTransportationComponentConfigurator):
         self.repair_configurator = R2DTunnelRepairConfigurator(component, self.system_level_data)  
     
     def set_supply_parameters(self, component: Component, component_data: dict) -> None:
-        pass       
-    
+        pass
+
+class R2DBuildingWithBusinessConfigurator(R2DBuildingConfigurator):
+    """
+    Class that sets parameters of a Building with Businesses as provided in the R2D output files.
+    """
+
+    def set_parameters(self, component: Component, locality: list, component_data: dict, component_DS: int): 
+        super().set_parameters(component, locality, component_data, component_DS)
+        self.set_business_parameters(component, component_data)
+        return component
+
+    def set_business_parameters(self, component: Component, component_data: dict) -> None:
+        component.businesses = []
+        for business_id, business_info_per_id in component_data['Information']['BusinessInformation'].items():
+            component.businesses.append(Business(business_id, business_info_per_id, component))

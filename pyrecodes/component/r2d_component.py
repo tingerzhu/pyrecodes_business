@@ -1,4 +1,5 @@
 from pyrecodes.component.standard_irecodes_component import StandardiReCoDeSComponent
+from pyrecodes.component.component import Component
 
 class R2DComponent(StandardiReCoDeSComponent):
     """
@@ -94,4 +95,51 @@ class R2DBuilding(R2DComponent):
         """
         super().update_r2d_dict()
         self.general_information['PopulationRatio'] = self.functionality_level
-    
+
+class R2DBuildingWithBusiness(R2DBuilding):
+    """
+    Class used to represent buildings with businesses in a system when using the R2D files as inputs.
+    """
+    # def __init__(self) -> None:
+    #     super().__init__()
+
+    # def update_r2d_dict(self):
+    #     super().update_r2d_dict()
+
+    def update(self, time_step: int) -> None:
+        """
+        Extend the parent method to update the R2D dictionary used to interface pyrecodes with SimCenter's infrastructure simulators.
+        """
+        super().update(time_step)
+        self.update_businesses(time_step)
+
+    def update_businesses(self, time_step: int) -> None:
+        for business in self.businesses:
+            business.update(time_step)
+
+    def update_supply_based_on_unmet_demand(self, percent_of_met_demand):
+        super().update_supply_based_on_unmet_demand(percent_of_met_demand)
+        self.update_businesses_based_on_unmet_demand(percent_of_met_demand)
+
+    def update_businesses_based_on_unmet_demand(self, percent_of_met_demand):
+        """
+        Update the businesses based on the unmet demand of the building.
+        """
+        for business in self.businesses:
+            business.update_functionality_based_on_unmet_demand(percent_of_met_demand)
+
+    def map_building_to_businesses(self, components: list[Component]) -> None:
+        """
+        Map a building to a business.
+        """
+        for business in self.businesses:
+            business.set_employee_homes(components)
+
+    def recover(self, time_step):
+        super().recover(time_step)
+        for business in self.businesses:
+            business.recover(time_step)
+
+    def update_access_of_businesses_to_suppliers(self, building_to_traffic_node_dict, latest_travel_times, travel_time_change) -> None:
+        for business in self.businesses:
+            business.update_access_to_suppliers(travel_times)
