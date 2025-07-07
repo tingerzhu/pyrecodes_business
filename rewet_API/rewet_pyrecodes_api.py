@@ -46,7 +46,7 @@ from pathlib import Path
 import pandas as pd
 import rewet
 import wntrfr
-from rewet.api import API
+from rewet.api import API as REWET_API
 from sklearn.cluster import KMeans
 
 # Nikola: moved these constant into the class constructor
@@ -168,10 +168,11 @@ class REWETPyReCoDes:
 
         with rewet_log_path.open('at') as log_file:
             sys.stdout = log_file
-            # load REWET API interface
-            self.rewet = API(self.input_file_path)
 
-            # sets the new demand absed on the new percentage
+            # load REWET API interface
+            self.rewet = REWET_API(self.input_file_path)
+
+            # sets the new demand based on the new percentage
             self.set_new_demand(state)
 
             # apply_damages
@@ -187,7 +188,7 @@ class REWETPyReCoDes:
             building_satisfaction = self.get_building_data_satisfaction(method='mean')
             self.building_satisfaction = building_satisfaction
 
-        sys.stdout = system_std_out
+            sys.stdout = system_std_out
 
         return building_satisfaction
 
@@ -272,28 +273,28 @@ class REWETPyReCoDes:
                         element_data['GeneralInformation']
                     )
 
-        building_state = state['Buildings']['Building']
+        # building_state = state['Buildings']['Building']
+        for building_types, building_state in state['Buildings'].items():            
+            for building_id, each_building in building_state.items():
+                population = each_building['GeneralInformation']['Population']
+                # Nikola: I added water demand here, so we can get it from the state dict and update node demand directly
+                water_demand = self.get_building_demand(each_building)
+                population_ratio = each_building.get('population_ratio', None)
 
-        for building_id, each_building in building_state.items():
-            population = each_building['GeneralInformation']['Population']
-            # Nikola: I added water demand here, so we can get it from the state dict and update node demand directly
-            water_demand = self.get_building_demand(each_building)
-            population_ratio = each_building.get('population_ratio', None)
+                if population_ratio is not None:
+                    ratio = population_ratio
+                else:
+                    ratio = 1
+                    building_state[building_id]['GeneralInformation']['PopulationRatio'] = 1
 
-            if population_ratio is not None:
-                ratio = population_ratio
-            else:
-                ratio = 1
-                building_state[building_id]['GeneralInformation']['PopulationRatio'] = 1
+                cur_building = {}
+                cur_building['initial_population_ratio'] = ratio
+                cur_building['population_ratio'] = ratio
+                cur_building['initial_population'] = population
+                cur_building['population'] = population
+                cur_building['initial_demand'] = water_demand
 
-            cur_building = {}
-            cur_building['initial_population_ratio'] = ratio
-            cur_building['population_ratio'] = ratio
-            cur_building['initial_population'] = population
-            cur_building['population'] = population
-            cur_building['initial_demand'] = water_demand
-
-            self.buildings[building_id] = cur_building
+                self.buildings[building_id] = cur_building
 
     def get_building_demand(self, building):
         return building['GeneralInformation']['OperationDemand'].get(self.resource_name, 0) + building['GeneralInformation']['RecoveryDemand'].get(self.resource_name, 0)
@@ -469,15 +470,16 @@ class REWETPyReCoDes:
         None.
 
         """
-        building_state = state['Buildings']['Building']
+        # building_state = state['Buildings']['Building']
 
         building_id_list = []
-        for building_id, each_building in building_state.items():
-            location = each_building['GeneralInformation']['location']
-            coordinate = (location['latitude'], location['longitude'])
-            building_id_list.append(building_id)
+        for building_type, building_state in state['Buildings'].items():
+            for building_id, each_building in building_state.items():
+                location = each_building['GeneralInformation']['location']
+                coordinate = (location['latitude'], location['longitude'])
+                building_id_list.append(building_id)
 
-            self.building_coordinates.append(coordinate)
+                self.building_coordinates.append(coordinate)
 
         demand_node_coordinate_list = [
             val['coordinates'] for key, val in self.nodes.items()
@@ -695,7 +697,7 @@ class REWETPyReCoDes:
         if status != 0:
             raise ValueError(f'There is an error: {status}')  # noqa: EM102, TRY003
 
-        return dict
+        # return dict
 
     def make_rewet_inputs(self, current_time, next_time):
         """
@@ -808,6 +810,11 @@ class REWETPyReCoDes:
         None.
 
         """
+        all_buildings = {}
+        for building_types, building_state in state['Buildings'].items():
+            # Nikola: make sure no keys are overlapping!
+            all_buildings.update(building_state)
+
         for node_name in self.demand_node_to_building:
             # cur_node = self.nodes[node_name]
             total_initial_population = self.nodes[node_name]['initial_population']
@@ -817,9 +824,9 @@ class REWETPyReCoDes:
 
             building_name_list = self.demand_node_to_building[node_name]
 
-            building = state['Buildings']['Building']
+            # buildings = state['Buildings']['Building']
 
-            node_new_demand = 0
+            node_new_demand = 0           
 
             for bldg_id in building_name_list:
                 # Nikola: We take the demand directly from the buidling general information, not based on population ratio.
@@ -830,7 +837,7 @@ class REWETPyReCoDes:
                 # ]
 
                 # cur_bldg_new_deamnd = cur_bldg_deamnd_ratio * cur_bldg_initial_demand
-                cur_bldg_new_deamnd = self.get_building_demand(building[bldg_id])
+                cur_bldg_new_deamnd = self.get_building_demand(all_buildings[bldg_id])
 
                 self.buildings[bldg_id]['current_demand'] = cur_bldg_new_deamnd
 
