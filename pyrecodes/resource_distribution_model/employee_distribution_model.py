@@ -1,40 +1,38 @@
 from pyrecodes.resource_distribution_model.abstract_resource_distribution_model import AbstractResourceDistributionModel
-from pyrecodes.resource_distribution_model.concrete_resource_distribution_model_constructor import ConcreteResourceDistributionModelConstructor
+from pyrecodes.resource_distribution_model.employee_distribution_model_constructor import EmployeeDistributionModelConstructor
 from pyrecodes.resource_distribution_model.resource_distribution_model import ResourceDistributionModel
-from pyrecodes.resource_distribution_model.single_resource_system_matrix_creator import SingleResourceSystemMatrixCreator
+from pyrecodes.resource_distribution_model.residual_demand_traffic_distribution_model import ResidualDemandTrafficDistributionModel
 from pyrecodes.component.component import Component
-from pyrecodes.component.standard_irecodes_component import StandardiReCoDeSComponent
 from pyrecodes.component.r2d_component import R2DBuildingWithBusiness
-from pyrecodes.component.component import SupplyOrDemand
-import json
-import math
-import numpy as np
-import itertools
+
 
 class EmployeeDistributionModel(AbstractResourceDistributionModel):
-    """
-    | Class to distribute resources in the system. This is the simplest distribution model, which distributes resources based on the priority of the components.
-    | Resource distribution is done using the system matrix, containing the supply and demand of each component.
-    | No physical laws (e.g., power flow or water flow physics) are considered in the distribution of resources.
-    """
+  
     components: list[Component]
     resource_name: str
     transfer_service_distribution_model: ResourceDistributionModel
 
     def __init__(self, resource_name: str, resource_parameters: dict, components: list[Component]):
-        self.constructor = ConcreteResourceDistributionModelConstructor()
+        self.constructor = EmployeeDistributionModelConstructor()
         self.constructor.construct(resource_name, resource_parameters, components, self)
-        self.transfer_service_distribution_model = None
+
+    def set_transfer_service_distribution_model(self, transfer_service_distribution_model: ResidualDemandTrafficDistributionModel) -> None:
+        self.transfer_service_distribution_model = transfer_service_distribution_model
+        self.check_employee_trips_in_od_matrix()
+
+    def check_employee_trips_in_od_matrix(self) -> None:
+        for component in self.components:
+            if isinstance(component, R2DBuildingWithBusiness):
+                for business in component.businesses:
+                    business.check_employee_trips_in_od_matrix(self.transfer_service_distribution_model)
 
     def distribute(self, time_step: int) -> None:
         if self.distribute_at_this_time_step(time_step):
             for component in self.components:
                 if isinstance(component, R2DBuildingWithBusiness):
                     for business in component.businesses:
-                        business.set_employee_homes(self.components)
-                        business.check_employees(time_step)
+                        business.check_employees(time_step, self.transfer_service_distribution_model)
                                     
-    
     def get_total_supply(self, scope='All') -> float:
         components_to_include = self.get_scope(scope)
         total_supply = 0
