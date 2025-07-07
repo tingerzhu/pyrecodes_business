@@ -1,13 +1,23 @@
 from pyrecodes.resource_distribution_model.resource_distribution_model import ResourceDistributionModel
 from abc import ABC, abstractmethod
+from pyrecodes.resource_distribution_model.concrete_resource_distribution_model_constructor import ConcreteResourceDistributionModelConstructor
+from pyrecodes.component.component import Component
 
 class AbstractResourceDistributionModel(ResourceDistributionModel):
     """
     Abstract class for the Resource Distribution Model.
     """
 
+    def __init__(self, resource_name: str, resource_parameters: dict, components: list[Component]):
+        self.constructor = ConcreteResourceDistributionModelConstructor()
+        self.constructor.construct(resource_name, resource_parameters, components, self)
+        self.transfer_service_distribution_model = None
+
     def set_distribution_time_steps(self, distribution_time_steps: list) -> None:
         self.distribution_time_steps = distribution_time_steps
+
+    def set_transfer_service_distribution_model(self, transfer_service_distribution_model: ResourceDistributionModel) -> None:
+        self.transfer_service_distribution_model = transfer_service_distribution_model
     
     @abstractmethod
     def distribute(self, time_step: int) -> None:
