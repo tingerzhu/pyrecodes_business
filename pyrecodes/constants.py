@@ -19,3 +19,9 @@ ALL_RECOVERY_ACTIVITIES_COLORS = {'RapidInspection': 'lightblue',
                                     'Functional': 'green'}
 RECOVERY_FINANCING_ACTIVITY_NAME = 'Financing'
 MONEY_RESOURCE_NAME = 'Money'
+
+GANTT_Y_LABELS = {'Home Component Functionality': 'Building damage',
+                  'Infrastructure': 'Infrastructure outage',
+                  'Labor': 'Employee availability',
+                  'LocalSuppliers': 'Access to local suppliers',
+                  'CustomerBase': 'Customer base'}
