@@ -22,7 +22,7 @@ class REWETDistributionModel(AbstractResourceDistributionModel):
         if self.distribute_at_this_time_step(time_step):
             self.update_r2d_dict()
             self.met_demand_per_building = self.distribute_water(time_step)
-            self.update_buildings_met_demand()
+            self.update_buildings_met_demand(time_step)
 
     def update_r2d_dict(self):
         """
@@ -42,14 +42,15 @@ class REWETDistributionModel(AbstractResourceDistributionModel):
             met_demand_per_building[building] = max(0.0, min(1.0, met_demand_per_building[building]))
         return met_demand_per_building
     
-    def update_buildings_met_demand(self) -> None:
+    def update_buildings_met_demand(self, time_step: int) -> None:
         """
         | Update supply of buildings based on their met demand for water.
         | At the moment, updates only R2DBuilding components
         """
         for component in self.components:            
             if self.component_is_a_building(component) and self.component_has_demand_for_water(component):
-                component.update_supply_based_on_unmet_demand(self.met_demand_per_building[component.aim_id])
+                # TODO: Some components are not in the met_demand_per_building dictionary, this is a problem. Fix this. For now, these buildings get 1.0 demand met.
+                component.update_supply_based_on_unmet_demand(self.met_demand_per_building.get(component.aim_id, 1.0), time_step)
 
     def component_is_a_building(self, component) -> bool:
         """
