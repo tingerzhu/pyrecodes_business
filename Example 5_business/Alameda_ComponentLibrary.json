@@ -51,7 +51,7 @@
                 "FunctionalityToAmountRelation": "Linear"
             },
             "RepairCrew_Transportation": {
-                "Amount": 1500,
+                "Amount": 5000,
                 "FunctionalityToAmountRelation": "Linear"
             },
             "RepairCrew_Water": {

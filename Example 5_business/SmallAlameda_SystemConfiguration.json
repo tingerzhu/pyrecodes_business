@@ -1,7 +1,7 @@
 {
     "Constants": {
         "START_TIME_STEP": 0,
-        "MAX_TIME_STEP": 1000,
+        "MAX_TIME_STEP": 15,
         "DISASTER_TIME_STEP": 1,
         "MAX_REPAIR_CREW_DEMAND_PER_BUILDING": 50,
         "HOUSING_RESOURCES": [
@@ -372,25 +372,6 @@
                 }
             }
         },
-        "InputCommodity": {
-            "Group": "OperationResources",
-            "DistributionModel": {
-                "ClassName": "UtilityDistributionModel",
-                "FileName": "utility_distribution_model",
-                "Parameters": {
-                    "DistributionPriority": {
-                        "FileName": "random_priority",
-                        "ClassName": "RandomPriority",
-                        "Parameters": {
-                            "Seed": 42.0,
-                            "DemandType": [
-                                "OperationDemand"
-                            ]
-                        }
-                    }
-                }
-            }
-        },
         "TransportationService": {
             "Group": "TransferService",
             "DistributionModel": {
@@ -419,6 +400,28 @@
                     "DemandRuleset":"./Example 5_business/transportation_network/transportation_demand_ruleset.py",
                     "ResultsFolder": "./Example 5_business/transportation_network/results",
                     "TripCutoffThreshold": 3
+                }
+            }
+        },
+        "InputCommodity": {
+            "Group": "OperationResources",
+            "DistributionModel": {
+                "ClassName": "AccessToCommoditiesDistributionModel",
+                "FileName": "access_to_commodities_distribution_model",
+                "Parameters": {
+                     "DistributionTimeStepping": [
+                        {
+                            "start": 0,
+                            "end": 50,
+                            "step": 5
+                        },
+                        {
+                            "start": 50,
+                            "end": 1000,
+                            "step": 25
+                        }
+                    ],
+                    "TransferService": "TransportationService"
                 }
             }
         },
@@ -461,7 +464,8 @@
                                 "OperationDemand"
                             ]
                         }
-                    }
+                    },
+                    "TransferService": "TransportationService"
                 }
             }
         }

@@ -3,7 +3,7 @@ minimum_simulation_time 3600
 simulation_time_step 3600
 number_of_damages multiple
 result_directory Example 5_business/water_distribution_network/rewet_results
-temp_directory C:\Users\zhut\OneDrive - Stanford\Research\02 Work\05 Commercial downtime\Pyrecodes\pyrecodes-main\Example 5_business\water_distribution_network\rewet_temp
+temp_directory /Users/nikola/pyrecodes_business/Example 5_business/water_distribution_network/rewet_temp
 save_time_step True
 last_sequence_termination True
 node_demand_temination False
@@ -11,12 +11,12 @@ node_demand_termination_time 10800
 node_demand_termination_ratio 0.95
 record_restoration_agent_logs True
 record_damage_table_logs True
-WN_INP C:\Users\zhut\OneDrive - Stanford\Research\02 Work\05 Commercial downtime\Pyrecodes\pyrecodes-main\Example 5_business\water_distribution_network\waterNetwork.inp
+WN_INP /Users/nikola/pyrecodes_business/Example 5_business/water_distribution_network/waterNetwork.inp
 demand_ratio 1
 solver ModifiedEPANETV2.2
 solver_type ModifiedEPANETV2.2
-pipe_damage_file_list C:\Users\zhut\OneDrive - Stanford\Research\02 Work\05 Commercial downtime\Pyrecodes\pyrecodes-main\Example 5_business\water_distribution_network\rewet_temp\list.xlsx
-pipe_damage_file_directory C:\Users\zhut\OneDrive - Stanford\Research\02 Work\05 Commercial downtime\Pyrecodes\pyrecodes-main\Example 5_business\water_distribution_network\rewet_temp
+pipe_damage_file_list /Users/nikola/pyrecodes_business/Example 5_business/water_distribution_network/rewet_temp/list.xlsx
+pipe_damage_file_directory /Users/nikola/pyrecodes_business/Example 5_business/water_distribution_network/rewet_temp
 pump_damage_relative_time True
 tank_damage_relative_time True
 Restoration_on False
@@ -40,15 +40,15 @@ no node damage at all
 No pump damage at all
 No Tank Damage at all
 (1, 10, 0)
-Saving: C:\Users\zhut\OneDrive - Stanford\Research\02 Work\05 Commercial downtime\Pyrecodes\pyrecodes-main\Example 5_business\water_distribution_network\rewet_results\SCN_.res
-Saving: C:\Users\zhut\OneDrive - Stanford\Research\02 Work\05 Commercial downtime\Pyrecodes\pyrecodes-main\Example 5_business\water_distribution_network\rewet_results\SCN__registry.pkl
+Saving: /Users/nikola/pyrecodes_business/Example 5_business/water_distribution_network/rewet_results/SCN_.res
+Saving: /Users/nikola/pyrecodes_business/Example 5_business/water_distribution_network/rewet_results/SCN__registry.pkl
 loading scenario SCN_
 RUN_TIME 3600
 minimum_simulation_time 3600
 simulation_time_step 3600
 number_of_damages multiple
 result_directory Example 5_business/water_distribution_network/rewet_results
-temp_directory C:\Users\zhut\OneDrive - Stanford\Research\02 Work\05 Commercial downtime\Pyrecodes\pyrecodes-main\Example 5_business\water_distribution_network\rewet_temp
+temp_directory /Users/nikola/pyrecodes_business/Example 5_business/water_distribution_network/rewet_temp
 save_time_step True
 last_sequence_termination True
 node_demand_temination False
@@ -56,282 +56,12 @@ node_demand_termination_time 10800
 node_demand_termination_ratio 0.95
 record_restoration_agent_logs True
 record_damage_table_logs True
-WN_INP C:\Users\zhut\OneDrive - Stanford\Research\02 Work\05 Commercial downtime\Pyrecodes\pyrecodes-main\Example 5_business\water_distribution_network\waterNetwork.inp
+WN_INP /Users/nikola/pyrecodes_business/Example 5_business/water_distribution_network/waterNetwork.inp
 demand_ratio 1
 solver ModifiedEPANETV2.2
 solver_type ModifiedEPANETV2.2
-pipe_damage_file_list C:\Users\zhut\OneDrive - Stanford\Research\02 Work\05 Commercial downtime\Pyrecodes\pyrecodes-main\Example 5_business\water_distribution_network\rewet_temp\list.xlsx
-pipe_damage_file_directory C:\Users\zhut\OneDrive - Stanford\Research\02 Work\05 Commercial downtime\Pyrecodes\pyrecodes-main\Example 5_business\water_distribution_network\rewet_temp
-pump_damage_relative_time True
-tank_damage_relative_time True
-Restoration_on False
-minimum_job_time 3600
-maximun_worker_idle_time 60
-number_of_proccessor 1
-dmg_rst_data_save True
-Parameter_override True
-mpi_resume True
-ignore_empty_damage False
-result_details extended
-negative_node_elmination True
-nne_flow_limit 0.5
-nne_pressure_limit -5
-Virtual_node True
-damage_node_model equal_diameter_emitter
-limit_result_file_size -1
-Pipe_damage_input_method pickle
-here was 1amended
-no node damage at all
-No pump damage at all
-No Tank Damage at all
-(1, 10, 0)
-Saving: C:\Users\zhut\OneDrive - Stanford\Research\02 Work\05 Commercial downtime\Pyrecodes\pyrecodes-main\Example 5_business\water_distribution_network\rewet_results\SCN_.res
-Saving: C:\Users\zhut\OneDrive - Stanford\Research\02 Work\05 Commercial downtime\Pyrecodes\pyrecodes-main\Example 5_business\water_distribution_network\rewet_results\SCN__registry.pkl
-loading scenario SCN_
-RUN_TIME 3600
-minimum_simulation_time 3600
-simulation_time_step 3600
-number_of_damages multiple
-result_directory Example 5_business/water_distribution_network/rewet_results
-temp_directory C:\Users\zhut\OneDrive - Stanford\Research\02 Work\05 Commercial downtime\Pyrecodes\pyrecodes-main\Example 5_business\water_distribution_network\rewet_temp
-save_time_step True
-last_sequence_termination True
-node_demand_temination False
-node_demand_termination_time 10800
-node_demand_termination_ratio 0.95
-record_restoration_agent_logs True
-record_damage_table_logs True
-WN_INP C:\Users\zhut\OneDrive - Stanford\Research\02 Work\05 Commercial downtime\Pyrecodes\pyrecodes-main\Example 5_business\water_distribution_network\waterNetwork.inp
-demand_ratio 1
-solver ModifiedEPANETV2.2
-solver_type ModifiedEPANETV2.2
-pipe_damage_file_list C:\Users\zhut\OneDrive - Stanford\Research\02 Work\05 Commercial downtime\Pyrecodes\pyrecodes-main\Example 5_business\water_distribution_network\rewet_temp\list.xlsx
-pipe_damage_file_directory C:\Users\zhut\OneDrive - Stanford\Research\02 Work\05 Commercial downtime\Pyrecodes\pyrecodes-main\Example 5_business\water_distribution_network\rewet_temp
-pump_damage_relative_time True
-tank_damage_relative_time True
-Restoration_on False
-minimum_job_time 3600
-maximun_worker_idle_time 60
-number_of_proccessor 1
-dmg_rst_data_save True
-Parameter_override True
-mpi_resume True
-ignore_empty_damage False
-result_details extended
-negative_node_elmination True
-nne_flow_limit 0.5
-nne_pressure_limit -5
-Virtual_node True
-damage_node_model equal_diameter_emitter
-limit_result_file_size -1
-Pipe_damage_input_method pickle
-here was 1amended
-no node damage at all
-No pump damage at all
-No Tank Damage at all
-(1, 10, 0)
-Saving: C:\Users\zhut\OneDrive - Stanford\Research\02 Work\05 Commercial downtime\Pyrecodes\pyrecodes-main\Example 5_business\water_distribution_network\rewet_results\SCN_.res
-Saving: C:\Users\zhut\OneDrive - Stanford\Research\02 Work\05 Commercial downtime\Pyrecodes\pyrecodes-main\Example 5_business\water_distribution_network\rewet_results\SCN__registry.pkl
-loading scenario SCN_
-RUN_TIME 3600
-minimum_simulation_time 3600
-simulation_time_step 3600
-number_of_damages multiple
-result_directory Example 5_business/water_distribution_network/rewet_results
-temp_directory C:\Users\zhut\OneDrive - Stanford\Research\02 Work\05 Commercial downtime\Pyrecodes\pyrecodes-main\Example 5_business\water_distribution_network\rewet_temp
-save_time_step True
-last_sequence_termination True
-node_demand_temination False
-node_demand_termination_time 10800
-node_demand_termination_ratio 0.95
-record_restoration_agent_logs True
-record_damage_table_logs True
-WN_INP C:\Users\zhut\OneDrive - Stanford\Research\02 Work\05 Commercial downtime\Pyrecodes\pyrecodes-main\Example 5_business\water_distribution_network\waterNetwork.inp
-demand_ratio 1
-solver ModifiedEPANETV2.2
-solver_type ModifiedEPANETV2.2
-pipe_damage_file_list C:\Users\zhut\OneDrive - Stanford\Research\02 Work\05 Commercial downtime\Pyrecodes\pyrecodes-main\Example 5_business\water_distribution_network\rewet_temp\list.xlsx
-pipe_damage_file_directory C:\Users\zhut\OneDrive - Stanford\Research\02 Work\05 Commercial downtime\Pyrecodes\pyrecodes-main\Example 5_business\water_distribution_network\rewet_temp
-pump_damage_relative_time True
-tank_damage_relative_time True
-Restoration_on False
-minimum_job_time 3600
-maximun_worker_idle_time 60
-number_of_proccessor 1
-dmg_rst_data_save True
-Parameter_override True
-mpi_resume True
-ignore_empty_damage False
-result_details extended
-negative_node_elmination True
-nne_flow_limit 0.5
-nne_pressure_limit -5
-Virtual_node True
-damage_node_model equal_diameter_emitter
-limit_result_file_size -1
-Pipe_damage_input_method pickle
-here was 1amended
-no node damage at all
-No pump damage at all
-No Tank Damage at all
-(1, 10, 0)
-Saving: C:\Users\zhut\OneDrive - Stanford\Research\02 Work\05 Commercial downtime\Pyrecodes\pyrecodes-main\Example 5_business\water_distribution_network\rewet_results\SCN_.res
-Saving: C:\Users\zhut\OneDrive - Stanford\Research\02 Work\05 Commercial downtime\Pyrecodes\pyrecodes-main\Example 5_business\water_distribution_network\rewet_results\SCN__registry.pkl
-loading scenario SCN_
-RUN_TIME 3600
-minimum_simulation_time 3600
-simulation_time_step 3600
-number_of_damages multiple
-result_directory Example 5_business/water_distribution_network/rewet_results
-temp_directory C:\Users\zhut\OneDrive - Stanford\Research\02 Work\05 Commercial downtime\Pyrecodes\pyrecodes-main\Example 5_business\water_distribution_network\rewet_temp
-save_time_step True
-last_sequence_termination True
-node_demand_temination False
-node_demand_termination_time 10800
-node_demand_termination_ratio 0.95
-record_restoration_agent_logs True
-record_damage_table_logs True
-WN_INP C:\Users\zhut\OneDrive - Stanford\Research\02 Work\05 Commercial downtime\Pyrecodes\pyrecodes-main\Example 5_business\water_distribution_network\waterNetwork.inp
-demand_ratio 1
-solver ModifiedEPANETV2.2
-solver_type ModifiedEPANETV2.2
-pipe_damage_file_list C:\Users\zhut\OneDrive - Stanford\Research\02 Work\05 Commercial downtime\Pyrecodes\pyrecodes-main\Example 5_business\water_distribution_network\rewet_temp\list.xlsx
-pipe_damage_file_directory C:\Users\zhut\OneDrive - Stanford\Research\02 Work\05 Commercial downtime\Pyrecodes\pyrecodes-main\Example 5_business\water_distribution_network\rewet_temp
-pump_damage_relative_time True
-tank_damage_relative_time True
-Restoration_on False
-minimum_job_time 3600
-maximun_worker_idle_time 60
-number_of_proccessor 1
-dmg_rst_data_save True
-Parameter_override True
-mpi_resume True
-ignore_empty_damage False
-result_details extended
-negative_node_elmination True
-nne_flow_limit 0.5
-nne_pressure_limit -5
-Virtual_node True
-damage_node_model equal_diameter_emitter
-limit_result_file_size -1
-Pipe_damage_input_method pickle
-here was 1amended
-no node damage at all
-No pump damage at all
-No Tank Damage at all
-(1, 10, 0)
-Saving: C:\Users\zhut\OneDrive - Stanford\Research\02 Work\05 Commercial downtime\Pyrecodes\pyrecodes-main\Example 5_business\water_distribution_network\rewet_results\SCN_.res
-Saving: C:\Users\zhut\OneDrive - Stanford\Research\02 Work\05 Commercial downtime\Pyrecodes\pyrecodes-main\Example 5_business\water_distribution_network\rewet_results\SCN__registry.pkl
-loading scenario SCN_
-RUN_TIME 3600
-minimum_simulation_time 3600
-simulation_time_step 3600
-number_of_damages multiple
-result_directory Example 5_business/water_distribution_network/rewet_results
-temp_directory C:\Users\zhut\OneDrive - Stanford\Research\02 Work\05 Commercial downtime\Pyrecodes\pyrecodes-main\Example 5_business\water_distribution_network\rewet_temp
-save_time_step True
-last_sequence_termination True
-node_demand_temination False
-node_demand_termination_time 10800
-node_demand_termination_ratio 0.95
-record_restoration_agent_logs True
-record_damage_table_logs True
-WN_INP C:\Users\zhut\OneDrive - Stanford\Research\02 Work\05 Commercial downtime\Pyrecodes\pyrecodes-main\Example 5_business\water_distribution_network\waterNetwork.inp
-demand_ratio 1
-solver ModifiedEPANETV2.2
-solver_type ModifiedEPANETV2.2
-pipe_damage_file_list C:\Users\zhut\OneDrive - Stanford\Research\02 Work\05 Commercial downtime\Pyrecodes\pyrecodes-main\Example 5_business\water_distribution_network\rewet_temp\list.xlsx
-pipe_damage_file_directory C:\Users\zhut\OneDrive - Stanford\Research\02 Work\05 Commercial downtime\Pyrecodes\pyrecodes-main\Example 5_business\water_distribution_network\rewet_temp
-pump_damage_relative_time True
-tank_damage_relative_time True
-Restoration_on False
-minimum_job_time 3600
-maximun_worker_idle_time 60
-number_of_proccessor 1
-dmg_rst_data_save True
-Parameter_override True
-mpi_resume True
-ignore_empty_damage False
-result_details extended
-negative_node_elmination True
-nne_flow_limit 0.5
-nne_pressure_limit -5
-Virtual_node True
-damage_node_model equal_diameter_emitter
-limit_result_file_size -1
-Pipe_damage_input_method pickle
-here was 1amended
-no node damage at all
-No pump damage at all
-No Tank Damage at all
-(1, 10, 0)
-Saving: C:\Users\zhut\OneDrive - Stanford\Research\02 Work\05 Commercial downtime\Pyrecodes\pyrecodes-main\Example 5_business\water_distribution_network\rewet_results\SCN_.res
-Saving: C:\Users\zhut\OneDrive - Stanford\Research\02 Work\05 Commercial downtime\Pyrecodes\pyrecodes-main\Example 5_business\water_distribution_network\rewet_results\SCN__registry.pkl
-loading scenario SCN_
-RUN_TIME 3600
-minimum_simulation_time 3600
-simulation_time_step 3600
-number_of_damages multiple
-result_directory Example 5_business/water_distribution_network/rewet_results
-temp_directory C:\Users\zhut\OneDrive - Stanford\Research\02 Work\05 Commercial downtime\Pyrecodes\pyrecodes-main\Example 5_business\water_distribution_network\rewet_temp
-save_time_step True
-last_sequence_termination True
-node_demand_temination False
-node_demand_termination_time 10800
-node_demand_termination_ratio 0.95
-record_restoration_agent_logs True
-record_damage_table_logs True
-WN_INP C:\Users\zhut\OneDrive - Stanford\Research\02 Work\05 Commercial downtime\Pyrecodes\pyrecodes-main\Example 5_business\water_distribution_network\waterNetwork.inp
-demand_ratio 1
-solver ModifiedEPANETV2.2
-solver_type ModifiedEPANETV2.2
-pipe_damage_file_list C:\Users\zhut\OneDrive - Stanford\Research\02 Work\05 Commercial downtime\Pyrecodes\pyrecodes-main\Example 5_business\water_distribution_network\rewet_temp\list.xlsx
-pipe_damage_file_directory C:\Users\zhut\OneDrive - Stanford\Research\02 Work\05 Commercial downtime\Pyrecodes\pyrecodes-main\Example 5_business\water_distribution_network\rewet_temp
-pump_damage_relative_time True
-tank_damage_relative_time True
-Restoration_on False
-minimum_job_time 3600
-maximun_worker_idle_time 60
-number_of_proccessor 1
-dmg_rst_data_save True
-Parameter_override True
-mpi_resume True
-ignore_empty_damage False
-result_details extended
-negative_node_elmination True
-nne_flow_limit 0.5
-nne_pressure_limit -5
-Virtual_node True
-damage_node_model equal_diameter_emitter
-limit_result_file_size -1
-Pipe_damage_input_method pickle
-here was 1amended
-no node damage at all
-No pump damage at all
-No Tank Damage at all
-(1, 10, 0)
-Saving: C:\Users\zhut\OneDrive - Stanford\Research\02 Work\05 Commercial downtime\Pyrecodes\pyrecodes-main\Example 5_business\water_distribution_network\rewet_results\SCN_.res
-Saving: C:\Users\zhut\OneDrive - Stanford\Research\02 Work\05 Commercial downtime\Pyrecodes\pyrecodes-main\Example 5_business\water_distribution_network\rewet_results\SCN__registry.pkl
-loading scenario SCN_
-RUN_TIME 3600
-minimum_simulation_time 3600
-simulation_time_step 3600
-number_of_damages multiple
-result_directory Example 5_business/water_distribution_network/rewet_results
-temp_directory C:\Users\zhut\OneDrive - Stanford\Research\02 Work\05 Commercial downtime\Pyrecodes\pyrecodes-main\Example 5_business\water_distribution_network\rewet_temp
-save_time_step True
-last_sequence_termination True
-node_demand_temination False
-node_demand_termination_time 10800
-node_demand_termination_ratio 0.95
-record_restoration_agent_logs True
-record_damage_table_logs True
-WN_INP C:\Users\zhut\OneDrive - Stanford\Research\02 Work\05 Commercial downtime\Pyrecodes\pyrecodes-main\Example 5_business\water_distribution_network\waterNetwork.inp
-demand_ratio 1
-solver ModifiedEPANETV2.2
-solver_type ModifiedEPANETV2.2
-pipe_damage_file_list C:\Users\zhut\OneDrive - Stanford\Research\02 Work\05 Commercial downtime\Pyrecodes\pyrecodes-main\Example 5_business\water_distribution_network\rewet_temp\list.xlsx
-pipe_damage_file_directory C:\Users\zhut\OneDrive - Stanford\Research\02 Work\05 Commercial downtime\Pyrecodes\pyrecodes-main\Example 5_business\water_distribution_network\rewet_temp
+pipe_damage_file_list /Users/nikola/pyrecodes_business/Example 5_business/water_distribution_network/rewet_temp/list.xlsx
+pipe_damage_file_directory /Users/nikola/pyrecodes_business/Example 5_business/water_distribution_network/rewet_temp
 pump_damage_relative_time True
 tank_damage_relative_time True
 Restoration_on False
@@ -355,15 +85,15 @@ no node damage at all
 No pump damage at all
 No Tank Damage at all
 (1, 10, 0)
-Saving: C:\Users\zhut\OneDrive - Stanford\Research\02 Work\05 Commercial downtime\Pyrecodes\pyrecodes-main\Example 5_business\water_distribution_network\rewet_results\SCN_.res
-Saving: C:\Users\zhut\OneDrive - Stanford\Research\02 Work\05 Commercial downtime\Pyrecodes\pyrecodes-main\Example 5_business\water_distribution_network\rewet_results\SCN__registry.pkl
+Saving: /Users/nikola/pyrecodes_business/Example 5_business/water_distribution_network/rewet_results/SCN_.res
+Saving: /Users/nikola/pyrecodes_business/Example 5_business/water_distribution_network/rewet_results/SCN__registry.pkl
 loading scenario SCN_
 RUN_TIME 3600
 minimum_simulation_time 3600
 simulation_time_step 3600
 number_of_damages multiple
 result_directory Example 5_business/water_distribution_network/rewet_results
-temp_directory C:\Users\zhut\OneDrive - Stanford\Research\02 Work\05 Commercial downtime\Pyrecodes\pyrecodes-main\Example 5_business\water_distribution_network\rewet_temp
+temp_directory /Users/nikola/pyrecodes_business/Example 5_business/water_distribution_network/rewet_temp
 save_time_step True
 last_sequence_termination True
 node_demand_temination False
@@ -371,12 +101,12 @@ node_demand_termination_time 10800
 node_demand_termination_ratio 0.95
 record_restoration_agent_logs True
 record_damage_table_logs True
-WN_INP C:\Users\zhut\OneDrive - Stanford\Research\02 Work\05 Commercial downtime\Pyrecodes\pyrecodes-main\Example 5_business\water_distribution_network\waterNetwork.inp
+WN_INP /Users/nikola/pyrecodes_business/Example 5_business/water_distribution_network/waterNetwork.inp
 demand_ratio 1
 solver ModifiedEPANETV2.2
 solver_type ModifiedEPANETV2.2
-pipe_damage_file_list C:\Users\zhut\OneDrive - Stanford\Research\02 Work\05 Commercial downtime\Pyrecodes\pyrecodes-main\Example 5_business\water_distribution_network\rewet_temp\list.xlsx
-pipe_damage_file_directory C:\Users\zhut\OneDrive - Stanford\Research\02 Work\05 Commercial downtime\Pyrecodes\pyrecodes-main\Example 5_business\water_distribution_network\rewet_temp
+pipe_damage_file_list /Users/nikola/pyrecodes_business/Example 5_business/water_distribution_network/rewet_temp/list.xlsx
+pipe_damage_file_directory /Users/nikola/pyrecodes_business/Example 5_business/water_distribution_network/rewet_temp
 pump_damage_relative_time True
 tank_damage_relative_time True
 Restoration_on False
@@ -400,15 +130,15 @@ no node damage at all
 No pump damage at all
 No Tank Damage at all
 (1, 10, 0)
-Saving: C:\Users\zhut\OneDrive - Stanford\Research\02 Work\05 Commercial downtime\Pyrecodes\pyrecodes-main\Example 5_business\water_distribution_network\rewet_results\SCN_.res
-Saving: C:\Users\zhut\OneDrive - Stanford\Research\02 Work\05 Commercial downtime\Pyrecodes\pyrecodes-main\Example 5_business\water_distribution_network\rewet_results\SCN__registry.pkl
+Saving: /Users/nikola/pyrecodes_business/Example 5_business/water_distribution_network/rewet_results/SCN_.res
+Saving: /Users/nikola/pyrecodes_business/Example 5_business/water_distribution_network/rewet_results/SCN__registry.pkl
 loading scenario SCN_
 RUN_TIME 3600
 minimum_simulation_time 3600
 simulation_time_step 3600
 number_of_damages multiple
 result_directory Example 5_business/water_distribution_network/rewet_results
-temp_directory C:\Users\zhut\OneDrive - Stanford\Research\02 Work\05 Commercial downtime\Pyrecodes\pyrecodes-main\Example 5_business\water_distribution_network\rewet_temp
+temp_directory /Users/nikola/pyrecodes_business/Example 5_business/water_distribution_network/rewet_temp
 save_time_step True
 last_sequence_termination True
 node_demand_temination False
@@ -416,12 +146,12 @@ node_demand_termination_time 10800
 node_demand_termination_ratio 0.95
 record_restoration_agent_logs True
 record_damage_table_logs True
-WN_INP C:\Users\zhut\OneDrive - Stanford\Research\02 Work\05 Commercial downtime\Pyrecodes\pyrecodes-main\Example 5_business\water_distribution_network\waterNetwork.inp
+WN_INP /Users/nikola/pyrecodes_business/Example 5_business/water_distribution_network/waterNetwork.inp
 demand_ratio 1
 solver ModifiedEPANETV2.2
 solver_type ModifiedEPANETV2.2
-pipe_damage_file_list C:\Users\zhut\OneDrive - Stanford\Research\02 Work\05 Commercial downtime\Pyrecodes\pyrecodes-main\Example 5_business\water_distribution_network\rewet_temp\list.xlsx
-pipe_damage_file_directory C:\Users\zhut\OneDrive - Stanford\Research\02 Work\05 Commercial downtime\Pyrecodes\pyrecodes-main\Example 5_business\water_distribution_network\rewet_temp
+pipe_damage_file_list /Users/nikola/pyrecodes_business/Example 5_business/water_distribution_network/rewet_temp/list.xlsx
+pipe_damage_file_directory /Users/nikola/pyrecodes_business/Example 5_business/water_distribution_network/rewet_temp
 pump_damage_relative_time True
 tank_damage_relative_time True
 Restoration_on False
@@ -445,15 +175,15 @@ no node damage at all
 No pump damage at all
 No Tank Damage at all
 (1, 10, 0)
-Saving: C:\Users\zhut\OneDrive - Stanford\Research\02 Work\05 Commercial downtime\Pyrecodes\pyrecodes-main\Example 5_business\water_distribution_network\rewet_results\SCN_.res
-Saving: C:\Users\zhut\OneDrive - Stanford\Research\02 Work\05 Commercial downtime\Pyrecodes\pyrecodes-main\Example 5_business\water_distribution_network\rewet_results\SCN__registry.pkl
+Saving: /Users/nikola/pyrecodes_business/Example 5_business/water_distribution_network/rewet_results/SCN_.res
+Saving: /Users/nikola/pyrecodes_business/Example 5_business/water_distribution_network/rewet_results/SCN__registry.pkl
 loading scenario SCN_
 RUN_TIME 3600
 minimum_simulation_time 3600
 simulation_time_step 3600
 number_of_damages multiple
 result_directory Example 5_business/water_distribution_network/rewet_results
-temp_directory C:\Users\zhut\OneDrive - Stanford\Research\02 Work\05 Commercial downtime\Pyrecodes\pyrecodes-main\Example 5_business\water_distribution_network\rewet_temp
+temp_directory /Users/nikola/pyrecodes_business/Example 5_business/water_distribution_network/rewet_temp
 save_time_step True
 last_sequence_termination True
 node_demand_temination False
@@ -461,12 +191,12 @@ node_demand_termination_time 10800
 node_demand_termination_ratio 0.95
 record_restoration_agent_logs True
 record_damage_table_logs True
-WN_INP C:\Users\zhut\OneDrive - Stanford\Research\02 Work\05 Commercial downtime\Pyrecodes\pyrecodes-main\Example 5_business\water_distribution_network\waterNetwork.inp
+WN_INP /Users/nikola/pyrecodes_business/Example 5_business/water_distribution_network/waterNetwork.inp
 demand_ratio 1
 solver ModifiedEPANETV2.2
 solver_type ModifiedEPANETV2.2
-pipe_damage_file_list C:\Users\zhut\OneDrive - Stanford\Research\02 Work\05 Commercial downtime\Pyrecodes\pyrecodes-main\Example 5_business\water_distribution_network\rewet_temp\list.xlsx
-pipe_damage_file_directory C:\Users\zhut\OneDrive - Stanford\Research\02 Work\05 Commercial downtime\Pyrecodes\pyrecodes-main\Example 5_business\water_distribution_network\rewet_temp
+pipe_damage_file_list /Users/nikola/pyrecodes_business/Example 5_business/water_distribution_network/rewet_temp/list.xlsx
+pipe_damage_file_directory /Users/nikola/pyrecodes_business/Example 5_business/water_distribution_network/rewet_temp
 pump_damage_relative_time True
 tank_damage_relative_time True
 Restoration_on False
@@ -490,15 +220,15 @@ no node damage at all
 No pump damage at all
 No Tank Damage at all
 (1, 10, 0)
-Saving: C:\Users\zhut\OneDrive - Stanford\Research\02 Work\05 Commercial downtime\Pyrecodes\pyrecodes-main\Example 5_business\water_distribution_network\rewet_results\SCN_.res
-Saving: C:\Users\zhut\OneDrive - Stanford\Research\02 Work\05 Commercial downtime\Pyrecodes\pyrecodes-main\Example 5_business\water_distribution_network\rewet_results\SCN__registry.pkl
+Saving: /Users/nikola/pyrecodes_business/Example 5_business/water_distribution_network/rewet_results/SCN_.res
+Saving: /Users/nikola/pyrecodes_business/Example 5_business/water_distribution_network/rewet_results/SCN__registry.pkl
 loading scenario SCN_
 RUN_TIME 3600
 minimum_simulation_time 3600
 simulation_time_step 3600
 number_of_damages multiple
 result_directory Example 5_business/water_distribution_network/rewet_results
-temp_directory C:\Users\zhut\OneDrive - Stanford\Research\02 Work\05 Commercial downtime\Pyrecodes\pyrecodes-main\Example 5_business\water_distribution_network\rewet_temp
+temp_directory /Users/nikola/pyrecodes_business/Example 5_business/water_distribution_network/rewet_temp
 save_time_step True
 last_sequence_termination True
 node_demand_temination False
@@ -506,12 +236,12 @@ node_demand_termination_time 10800
 node_demand_termination_ratio 0.95
 record_restoration_agent_logs True
 record_damage_table_logs True
-WN_INP C:\Users\zhut\OneDrive - Stanford\Research\02 Work\05 Commercial downtime\Pyrecodes\pyrecodes-main\Example 5_business\water_distribution_network\waterNetwork.inp
+WN_INP /Users/nikola/pyrecodes_business/Example 5_business/water_distribution_network/waterNetwork.inp
 demand_ratio 1
 solver ModifiedEPANETV2.2
 solver_type ModifiedEPANETV2.2
-pipe_damage_file_list C:\Users\zhut\OneDrive - Stanford\Research\02 Work\05 Commercial downtime\Pyrecodes\pyrecodes-main\Example 5_business\water_distribution_network\rewet_temp\list.xlsx
-pipe_damage_file_directory C:\Users\zhut\OneDrive - Stanford\Research\02 Work\05 Commercial downtime\Pyrecodes\pyrecodes-main\Example 5_business\water_distribution_network\rewet_temp
+pipe_damage_file_list /Users/nikola/pyrecodes_business/Example 5_business/water_distribution_network/rewet_temp/list.xlsx
+pipe_damage_file_directory /Users/nikola/pyrecodes_business/Example 5_business/water_distribution_network/rewet_temp
 pump_damage_relative_time True
 tank_damage_relative_time True
 Restoration_on False
@@ -535,15 +265,15 @@ no node damage at all
 No pump damage at all
 No Tank Damage at all
 (1, 10, 0)
-Saving: C:\Users\zhut\OneDrive - Stanford\Research\02 Work\05 Commercial downtime\Pyrecodes\pyrecodes-main\Example 5_business\water_distribution_network\rewet_results\SCN_.res
-Saving: C:\Users\zhut\OneDrive - Stanford\Research\02 Work\05 Commercial downtime\Pyrecodes\pyrecodes-main\Example 5_business\water_distribution_network\rewet_results\SCN__registry.pkl
+Saving: /Users/nikola/pyrecodes_business/Example 5_business/water_distribution_network/rewet_results/SCN_.res
+Saving: /Users/nikola/pyrecodes_business/Example 5_business/water_distribution_network/rewet_results/SCN__registry.pkl
 loading scenario SCN_
 RUN_TIME 3600
 minimum_simulation_time 3600
 simulation_time_step 3600
 number_of_damages multiple
 result_directory Example 5_business/water_distribution_network/rewet_results
-temp_directory C:\Users\zhut\OneDrive - Stanford\Research\02 Work\05 Commercial downtime\Pyrecodes\pyrecodes-main\Example 5_business\water_distribution_network\rewet_temp
+temp_directory /Users/nikola/pyrecodes_business/Example 5_business/water_distribution_network/rewet_temp
 save_time_step True
 last_sequence_termination True
 node_demand_temination False
@@ -551,12 +281,12 @@ node_demand_termination_time 10800
 node_demand_termination_ratio 0.95
 record_restoration_agent_logs True
 record_damage_table_logs True
-WN_INP C:\Users\zhut\OneDrive - Stanford\Research\02 Work\05 Commercial downtime\Pyrecodes\pyrecodes-main\Example 5_business\water_distribution_network\waterNetwork.inp
+WN_INP /Users/nikola/pyrecodes_business/Example 5_business/water_distribution_network/waterNetwork.inp
 demand_ratio 1
 solver ModifiedEPANETV2.2
 solver_type ModifiedEPANETV2.2
-pipe_damage_file_list C:\Users\zhut\OneDrive - Stanford\Research\02 Work\05 Commercial downtime\Pyrecodes\pyrecodes-main\Example 5_business\water_distribution_network\rewet_temp\list.xlsx
-pipe_damage_file_directory C:\Users\zhut\OneDrive - Stanford\Research\02 Work\05 Commercial downtime\Pyrecodes\pyrecodes-main\Example 5_business\water_distribution_network\rewet_temp
+pipe_damage_file_list /Users/nikola/pyrecodes_business/Example 5_business/water_distribution_network/rewet_temp/list.xlsx
+pipe_damage_file_directory /Users/nikola/pyrecodes_business/Example 5_business/water_distribution_network/rewet_temp
 pump_damage_relative_time True
 tank_damage_relative_time True
 Restoration_on False
@@ -580,15 +310,15 @@ no node damage at all
 No pump damage at all
 No Tank Damage at all
 (1, 10, 0)
-Saving: C:\Users\zhut\OneDrive - Stanford\Research\02 Work\05 Commercial downtime\Pyrecodes\pyrecodes-main\Example 5_business\water_distribution_network\rewet_results\SCN_.res
-Saving: C:\Users\zhut\OneDrive - Stanford\Research\02 Work\05 Commercial downtime\Pyrecodes\pyrecodes-main\Example 5_business\water_distribution_network\rewet_results\SCN__registry.pkl
+Saving: /Users/nikola/pyrecodes_business/Example 5_business/water_distribution_network/rewet_results/SCN_.res
+Saving: /Users/nikola/pyrecodes_business/Example 5_business/water_distribution_network/rewet_results/SCN__registry.pkl
 loading scenario SCN_
 RUN_TIME 3600
 minimum_simulation_time 3600
 simulation_time_step 3600
 number_of_damages multiple
 result_directory Example 5_business/water_distribution_network/rewet_results
-temp_directory C:\Users\zhut\OneDrive - Stanford\Research\02 Work\05 Commercial downtime\Pyrecodes\pyrecodes-main\Example 5_business\water_distribution_network\rewet_temp
+temp_directory /Users/nikola/pyrecodes_business/Example 5_business/water_distribution_network/rewet_temp
 save_time_step True
 last_sequence_termination True
 node_demand_temination False
@@ -596,12 +326,12 @@ node_demand_termination_time 10800
 node_demand_termination_ratio 0.95
 record_restoration_agent_logs True
 record_damage_table_logs True
-WN_INP C:\Users\zhut\OneDrive - Stanford\Research\02 Work\05 Commercial downtime\Pyrecodes\pyrecodes-main\Example 5_business\water_distribution_network\waterNetwork.inp
+WN_INP /Users/nikola/pyrecodes_business/Example 5_business/water_distribution_network/waterNetwork.inp
 demand_ratio 1
 solver ModifiedEPANETV2.2
 solver_type ModifiedEPANETV2.2
-pipe_damage_file_list C:\Users\zhut\OneDrive - Stanford\Research\02 Work\05 Commercial downtime\Pyrecodes\pyrecodes-main\Example 5_business\water_distribution_network\rewet_temp\list.xlsx
-pipe_damage_file_directory C:\Users\zhut\OneDrive - Stanford\Research\02 Work\05 Commercial downtime\Pyrecodes\pyrecodes-main\Example 5_business\water_distribution_network\rewet_temp
+pipe_damage_file_list /Users/nikola/pyrecodes_business/Example 5_business/water_distribution_network/rewet_temp/list.xlsx
+pipe_damage_file_directory /Users/nikola/pyrecodes_business/Example 5_business/water_distribution_network/rewet_temp
 pump_damage_relative_time True
 tank_damage_relative_time True
 Restoration_on False
@@ -625,15 +355,15 @@ no node damage at all
 No pump damage at all
 No Tank Damage at all
 (1, 10, 0)
-Saving: C:\Users\zhut\OneDrive - Stanford\Research\02 Work\05 Commercial downtime\Pyrecodes\pyrecodes-main\Example 5_business\water_distribution_network\rewet_results\SCN_.res
-Saving: C:\Users\zhut\OneDrive - Stanford\Research\02 Work\05 Commercial downtime\Pyrecodes\pyrecodes-main\Example 5_business\water_distribution_network\rewet_results\SCN__registry.pkl
+Saving: /Users/nikola/pyrecodes_business/Example 5_business/water_distribution_network/rewet_results/SCN_.res
+Saving: /Users/nikola/pyrecodes_business/Example 5_business/water_distribution_network/rewet_results/SCN__registry.pkl
 loading scenario SCN_
 RUN_TIME 3600
 minimum_simulation_time 3600
 simulation_time_step 3600
 number_of_damages multiple
 result_directory Example 5_business/water_distribution_network/rewet_results
-temp_directory C:\Users\zhut\OneDrive - Stanford\Research\02 Work\05 Commercial downtime\Pyrecodes\pyrecodes-main\Example 5_business\water_distribution_network\rewet_temp
+temp_directory /Users/nikola/pyrecodes_business/Example 5_business/water_distribution_network/rewet_temp
 save_time_step True
 last_sequence_termination True
 node_demand_temination False
@@ -641,12 +371,12 @@ node_demand_termination_time 10800
 node_demand_termination_ratio 0.95
 record_restoration_agent_logs True
 record_damage_table_logs True
-WN_INP C:\Users\zhut\OneDrive - Stanford\Research\02 Work\05 Commercial downtime\Pyrecodes\pyrecodes-main\Example 5_business\water_distribution_network\waterNetwork.inp
+WN_INP /Users/nikola/pyrecodes_business/Example 5_business/water_distribution_network/waterNetwork.inp
 demand_ratio 1
 solver ModifiedEPANETV2.2
 solver_type ModifiedEPANETV2.2
-pipe_damage_file_list C:\Users\zhut\OneDrive - Stanford\Research\02 Work\05 Commercial downtime\Pyrecodes\pyrecodes-main\Example 5_business\water_distribution_network\rewet_temp\list.xlsx
-pipe_damage_file_directory C:\Users\zhut\OneDrive - Stanford\Research\02 Work\05 Commercial downtime\Pyrecodes\pyrecodes-main\Example 5_business\water_distribution_network\rewet_temp
+pipe_damage_file_list /Users/nikola/pyrecodes_business/Example 5_business/water_distribution_network/rewet_temp/list.xlsx
+pipe_damage_file_directory /Users/nikola/pyrecodes_business/Example 5_business/water_distribution_network/rewet_temp
 pump_damage_relative_time True
 tank_damage_relative_time True
 Restoration_on False
@@ -670,15 +400,15 @@ no node damage at all
 No pump damage at all
 No Tank Damage at all
 (1, 10, 0)
-Saving: C:\Users\zhut\OneDrive - Stanford\Research\02 Work\05 Commercial downtime\Pyrecodes\pyrecodes-main\Example 5_business\water_distribution_network\rewet_results\SCN_.res
-Saving: C:\Users\zhut\OneDrive - Stanford\Research\02 Work\05 Commercial downtime\Pyrecodes\pyrecodes-main\Example 5_business\water_distribution_network\rewet_results\SCN__registry.pkl
+Saving: /Users/nikola/pyrecodes_business/Example 5_business/water_distribution_network/rewet_results/SCN_.res
+Saving: /Users/nikola/pyrecodes_business/Example 5_business/water_distribution_network/rewet_results/SCN__registry.pkl
 loading scenario SCN_
 RUN_TIME 3600
 minimum_simulation_time 3600
 simulation_time_step 3600
 number_of_damages multiple
 result_directory Example 5_business/water_distribution_network/rewet_results
-temp_directory C:\Users\zhut\OneDrive - Stanford\Research\02 Work\05 Commercial downtime\Pyrecodes\pyrecodes-main\Example 5_business\water_distribution_network\rewet_temp
+temp_directory /Users/nikola/pyrecodes_business/Example 5_business/water_distribution_network/rewet_temp
 save_time_step True
 last_sequence_termination True
 node_demand_temination False
@@ -686,12 +416,12 @@ node_demand_termination_time 10800
 node_demand_termination_ratio 0.95
 record_restoration_agent_logs True
 record_damage_table_logs True
-WN_INP C:\Users\zhut\OneDrive - Stanford\Research\02 Work\05 Commercial downtime\Pyrecodes\pyrecodes-main\Example 5_business\water_distribution_network\waterNetwork.inp
+WN_INP /Users/nikola/pyrecodes_business/Example 5_business/water_distribution_network/waterNetwork.inp
 demand_ratio 1
 solver ModifiedEPANETV2.2
 solver_type ModifiedEPANETV2.2
-pipe_damage_file_list C:\Users\zhut\OneDrive - Stanford\Research\02 Work\05 Commercial downtime\Pyrecodes\pyrecodes-main\Example 5_business\water_distribution_network\rewet_temp\list.xlsx
-pipe_damage_file_directory C:\Users\zhut\OneDrive - Stanford\Research\02 Work\05 Commercial downtime\Pyrecodes\pyrecodes-main\Example 5_business\water_distribution_network\rewet_temp
+pipe_damage_file_list /Users/nikola/pyrecodes_business/Example 5_business/water_distribution_network/rewet_temp/list.xlsx
+pipe_damage_file_directory /Users/nikola/pyrecodes_business/Example 5_business/water_distribution_network/rewet_temp
 pump_damage_relative_time True
 tank_damage_relative_time True
 Restoration_on False
@@ -715,15 +445,15 @@ no node damage at all
 No pump damage at all
 No Tank Damage at all
 (1, 10, 0)
-Saving: C:\Users\zhut\OneDrive - Stanford\Research\02 Work\05 Commercial downtime\Pyrecodes\pyrecodes-main\Example 5_business\water_distribution_network\rewet_results\SCN_.res
-Saving: C:\Users\zhut\OneDrive - Stanford\Research\02 Work\05 Commercial downtime\Pyrecodes\pyrecodes-main\Example 5_business\water_distribution_network\rewet_results\SCN__registry.pkl
+Saving: /Users/nikola/pyrecodes_business/Example 5_business/water_distribution_network/rewet_results/SCN_.res
+Saving: /Users/nikola/pyrecodes_business/Example 5_business/water_distribution_network/rewet_results/SCN__registry.pkl
 loading scenario SCN_
 RUN_TIME 3600
 minimum_simulation_time 3600
 simulation_time_step 3600
 number_of_damages multiple
 result_directory Example 5_business/water_distribution_network/rewet_results
-temp_directory C:\Users\zhut\OneDrive - Stanford\Research\02 Work\05 Commercial downtime\Pyrecodes\pyrecodes-main\Example 5_business\water_distribution_network\rewet_temp
+temp_directory /Users/nikola/pyrecodes_business/Example 5_business/water_distribution_network/rewet_temp
 save_time_step True
 last_sequence_termination True
 node_demand_temination False
@@ -731,12 +461,12 @@ node_demand_termination_time 10800
 node_demand_termination_ratio 0.95
 record_restoration_agent_logs True
 record_damage_table_logs True
-WN_INP C:\Users\zhut\OneDrive - Stanford\Research\02 Work\05 Commercial downtime\Pyrecodes\pyrecodes-main\Example 5_business\water_distribution_network\waterNetwork.inp
+WN_INP /Users/nikola/pyrecodes_business/Example 5_business/water_distribution_network/waterNetwork.inp
 demand_ratio 1
 solver ModifiedEPANETV2.2
 solver_type ModifiedEPANETV2.2
-pipe_damage_file_list C:\Users\zhut\OneDrive - Stanford\Research\02 Work\05 Commercial downtime\Pyrecodes\pyrecodes-main\Example 5_business\water_distribution_network\rewet_temp\list.xlsx
-pipe_damage_file_directory C:\Users\zhut\OneDrive - Stanford\Research\02 Work\05 Commercial downtime\Pyrecodes\pyrecodes-main\Example 5_business\water_distribution_network\rewet_temp
+pipe_damage_file_list /Users/nikola/pyrecodes_business/Example 5_business/water_distribution_network/rewet_temp/list.xlsx
+pipe_damage_file_directory /Users/nikola/pyrecodes_business/Example 5_business/water_distribution_network/rewet_temp
 pump_damage_relative_time True
 tank_damage_relative_time True
 Restoration_on False
@@ -760,15 +490,15 @@ no node damage at all
 No pump damage at all
 No Tank Damage at all
 (1, 10, 0)
-Saving: C:\Users\zhut\OneDrive - Stanford\Research\02 Work\05 Commercial downtime\Pyrecodes\pyrecodes-main\Example 5_business\water_distribution_network\rewet_results\SCN_.res
-Saving: C:\Users\zhut\OneDrive - Stanford\Research\02 Work\05 Commercial downtime\Pyrecodes\pyrecodes-main\Example 5_business\water_distribution_network\rewet_results\SCN__registry.pkl
+Saving: /Users/nikola/pyrecodes_business/Example 5_business/water_distribution_network/rewet_results/SCN_.res
+Saving: /Users/nikola/pyrecodes_business/Example 5_business/water_distribution_network/rewet_results/SCN__registry.pkl
 loading scenario SCN_
 RUN_TIME 3600
 minimum_simulation_time 3600
 simulation_time_step 3600
 number_of_damages multiple
 result_directory Example 5_business/water_distribution_network/rewet_results
-temp_directory C:\Users\zhut\OneDrive - Stanford\Research\02 Work\05 Commercial downtime\Pyrecodes\pyrecodes-main\Example 5_business\water_distribution_network\rewet_temp
+temp_directory /Users/nikola/pyrecodes_business/Example 5_business/water_distribution_network/rewet_temp
 save_time_step True
 last_sequence_termination True
 node_demand_temination False
@@ -776,12 +506,12 @@ node_demand_termination_time 10800
 node_demand_termination_ratio 0.95
 record_restoration_agent_logs True
 record_damage_table_logs True
-WN_INP C:\Users\zhut\OneDrive - Stanford\Research\02 Work\05 Commercial downtime\Pyrecodes\pyrecodes-main\Example 5_business\water_distribution_network\waterNetwork.inp
+WN_INP /Users/nikola/pyrecodes_business/Example 5_business/water_distribution_network/waterNetwork.inp
 demand_ratio 1
 solver ModifiedEPANETV2.2
 solver_type ModifiedEPANETV2.2
-pipe_damage_file_list C:\Users\zhut\OneDrive - Stanford\Research\02 Work\05 Commercial downtime\Pyrecodes\pyrecodes-main\Example 5_business\water_distribution_network\rewet_temp\list.xlsx
-pipe_damage_file_directory C:\Users\zhut\OneDrive - Stanford\Research\02 Work\05 Commercial downtime\Pyrecodes\pyrecodes-main\Example 5_business\water_distribution_network\rewet_temp
+pipe_damage_file_list /Users/nikola/pyrecodes_business/Example 5_business/water_distribution_network/rewet_temp/list.xlsx
+pipe_damage_file_directory /Users/nikola/pyrecodes_business/Example 5_business/water_distribution_network/rewet_temp
 pump_damage_relative_time True
 tank_damage_relative_time True
 Restoration_on False
@@ -805,6 +535,276 @@ no node damage at all
 No pump damage at all
 No Tank Damage at all
 (1, 10, 0)
-Saving: C:\Users\zhut\OneDrive - Stanford\Research\02 Work\05 Commercial downtime\Pyrecodes\pyrecodes-main\Example 5_business\water_distribution_network\rewet_results\SCN_.res
-Saving: C:\Users\zhut\OneDrive - Stanford\Research\02 Work\05 Commercial downtime\Pyrecodes\pyrecodes-main\Example 5_business\water_distribution_network\rewet_results\SCN__registry.pkl
+Saving: /Users/nikola/pyrecodes_business/Example 5_business/water_distribution_network/rewet_results/SCN_.res
+Saving: /Users/nikola/pyrecodes_business/Example 5_business/water_distribution_network/rewet_results/SCN__registry.pkl
+loading scenario SCN_
+RUN_TIME 3600
+minimum_simulation_time 3600
+simulation_time_step 3600
+number_of_damages multiple
+result_directory Example 5_business/water_distribution_network/rewet_results
+temp_directory /Users/nikola/pyrecodes_business/Example 5_business/water_distribution_network/rewet_temp
+save_time_step True
+last_sequence_termination True
+node_demand_temination False
+node_demand_termination_time 10800
+node_demand_termination_ratio 0.95
+record_restoration_agent_logs True
+record_damage_table_logs True
+WN_INP /Users/nikola/pyrecodes_business/Example 5_business/water_distribution_network/waterNetwork.inp
+demand_ratio 1
+solver ModifiedEPANETV2.2
+solver_type ModifiedEPANETV2.2
+pipe_damage_file_list /Users/nikola/pyrecodes_business/Example 5_business/water_distribution_network/rewet_temp/list.xlsx
+pipe_damage_file_directory /Users/nikola/pyrecodes_business/Example 5_business/water_distribution_network/rewet_temp
+pump_damage_relative_time True
+tank_damage_relative_time True
+Restoration_on False
+minimum_job_time 3600
+maximun_worker_idle_time 60
+number_of_proccessor 1
+dmg_rst_data_save True
+Parameter_override True
+mpi_resume True
+ignore_empty_damage False
+result_details extended
+negative_node_elmination True
+nne_flow_limit 0.5
+nne_pressure_limit -5
+Virtual_node True
+damage_node_model equal_diameter_emitter
+limit_result_file_size -1
+Pipe_damage_input_method pickle
+No Pipe damages at all
+no node damage at all
+No pump damage at all
+No Tank Damage at all
+(1, 10, 0)
+Saving: /Users/nikola/pyrecodes_business/Example 5_business/water_distribution_network/rewet_results/SCN_.res
+Saving: /Users/nikola/pyrecodes_business/Example 5_business/water_distribution_network/rewet_results/SCN__registry.pkl
+loading scenario SCN_
+RUN_TIME 3600
+minimum_simulation_time 3600
+simulation_time_step 3600
+number_of_damages multiple
+result_directory Example 5_business/water_distribution_network/rewet_results
+temp_directory /Users/nikola/pyrecodes_business/Example 5_business/water_distribution_network/rewet_temp
+save_time_step True
+last_sequence_termination True
+node_demand_temination False
+node_demand_termination_time 10800
+node_demand_termination_ratio 0.95
+record_restoration_agent_logs True
+record_damage_table_logs True
+WN_INP /Users/nikola/pyrecodes_business/Example 5_business/water_distribution_network/waterNetwork.inp
+demand_ratio 1
+solver ModifiedEPANETV2.2
+solver_type ModifiedEPANETV2.2
+pipe_damage_file_list /Users/nikola/pyrecodes_business/Example 5_business/water_distribution_network/rewet_temp/list.xlsx
+pipe_damage_file_directory /Users/nikola/pyrecodes_business/Example 5_business/water_distribution_network/rewet_temp
+pump_damage_relative_time True
+tank_damage_relative_time True
+Restoration_on False
+minimum_job_time 3600
+maximun_worker_idle_time 60
+number_of_proccessor 1
+dmg_rst_data_save True
+Parameter_override True
+mpi_resume True
+ignore_empty_damage False
+result_details extended
+negative_node_elmination True
+nne_flow_limit 0.5
+nne_pressure_limit -5
+Virtual_node True
+damage_node_model equal_diameter_emitter
+limit_result_file_size -1
+Pipe_damage_input_method pickle
+No Pipe damages at all
+no node damage at all
+No pump damage at all
+No Tank Damage at all
+(1, 10, 0)
+Saving: /Users/nikola/pyrecodes_business/Example 5_business/water_distribution_network/rewet_results/SCN_.res
+Saving: /Users/nikola/pyrecodes_business/Example 5_business/water_distribution_network/rewet_results/SCN__registry.pkl
+loading scenario SCN_
+RUN_TIME 3600
+minimum_simulation_time 3600
+simulation_time_step 3600
+number_of_damages multiple
+result_directory Example 5_business/water_distribution_network/rewet_results
+temp_directory /Users/nikola/pyrecodes_business/Example 5_business/water_distribution_network/rewet_temp
+save_time_step True
+last_sequence_termination True
+node_demand_temination False
+node_demand_termination_time 10800
+node_demand_termination_ratio 0.95
+record_restoration_agent_logs True
+record_damage_table_logs True
+WN_INP /Users/nikola/pyrecodes_business/Example 5_business/water_distribution_network/waterNetwork.inp
+demand_ratio 1
+solver ModifiedEPANETV2.2
+solver_type ModifiedEPANETV2.2
+pipe_damage_file_list /Users/nikola/pyrecodes_business/Example 5_business/water_distribution_network/rewet_temp/list.xlsx
+pipe_damage_file_directory /Users/nikola/pyrecodes_business/Example 5_business/water_distribution_network/rewet_temp
+pump_damage_relative_time True
+tank_damage_relative_time True
+Restoration_on False
+minimum_job_time 3600
+maximun_worker_idle_time 60
+number_of_proccessor 1
+dmg_rst_data_save True
+Parameter_override True
+mpi_resume True
+ignore_empty_damage False
+result_details extended
+negative_node_elmination True
+nne_flow_limit 0.5
+nne_pressure_limit -5
+Virtual_node True
+damage_node_model equal_diameter_emitter
+limit_result_file_size -1
+Pipe_damage_input_method pickle
+No Pipe damages at all
+no node damage at all
+No pump damage at all
+No Tank Damage at all
+(1, 10, 0)
+Saving: /Users/nikola/pyrecodes_business/Example 5_business/water_distribution_network/rewet_results/SCN_.res
+Saving: /Users/nikola/pyrecodes_business/Example 5_business/water_distribution_network/rewet_results/SCN__registry.pkl
+loading scenario SCN_
+RUN_TIME 3600
+minimum_simulation_time 3600
+simulation_time_step 3600
+number_of_damages multiple
+result_directory Example 5_business/water_distribution_network/rewet_results
+temp_directory /Users/nikola/pyrecodes_business/Example 5_business/water_distribution_network/rewet_temp
+save_time_step True
+last_sequence_termination True
+node_demand_temination False
+node_demand_termination_time 10800
+node_demand_termination_ratio 0.95
+record_restoration_agent_logs True
+record_damage_table_logs True
+WN_INP /Users/nikola/pyrecodes_business/Example 5_business/water_distribution_network/waterNetwork.inp
+demand_ratio 1
+solver ModifiedEPANETV2.2
+solver_type ModifiedEPANETV2.2
+pipe_damage_file_list /Users/nikola/pyrecodes_business/Example 5_business/water_distribution_network/rewet_temp/list.xlsx
+pipe_damage_file_directory /Users/nikola/pyrecodes_business/Example 5_business/water_distribution_network/rewet_temp
+pump_damage_relative_time True
+tank_damage_relative_time True
+Restoration_on False
+minimum_job_time 3600
+maximun_worker_idle_time 60
+number_of_proccessor 1
+dmg_rst_data_save True
+Parameter_override True
+mpi_resume True
+ignore_empty_damage False
+result_details extended
+negative_node_elmination True
+nne_flow_limit 0.5
+nne_pressure_limit -5
+Virtual_node True
+damage_node_model equal_diameter_emitter
+limit_result_file_size -1
+Pipe_damage_input_method pickle
+No Pipe damages at all
+no node damage at all
+No pump damage at all
+No Tank Damage at all
+(1, 10, 0)
+Saving: /Users/nikola/pyrecodes_business/Example 5_business/water_distribution_network/rewet_results/SCN_.res
+Saving: /Users/nikola/pyrecodes_business/Example 5_business/water_distribution_network/rewet_results/SCN__registry.pkl
+loading scenario SCN_
+RUN_TIME 3600
+minimum_simulation_time 3600
+simulation_time_step 3600
+number_of_damages multiple
+result_directory Example 5_business/water_distribution_network/rewet_results
+temp_directory /Users/nikola/pyrecodes_business/Example 5_business/water_distribution_network/rewet_temp
+save_time_step True
+last_sequence_termination True
+node_demand_temination False
+node_demand_termination_time 10800
+node_demand_termination_ratio 0.95
+record_restoration_agent_logs True
+record_damage_table_logs True
+WN_INP /Users/nikola/pyrecodes_business/Example 5_business/water_distribution_network/waterNetwork.inp
+demand_ratio 1
+solver ModifiedEPANETV2.2
+solver_type ModifiedEPANETV2.2
+pipe_damage_file_list /Users/nikola/pyrecodes_business/Example 5_business/water_distribution_network/rewet_temp/list.xlsx
+pipe_damage_file_directory /Users/nikola/pyrecodes_business/Example 5_business/water_distribution_network/rewet_temp
+pump_damage_relative_time True
+tank_damage_relative_time True
+Restoration_on False
+minimum_job_time 3600
+maximun_worker_idle_time 60
+number_of_proccessor 1
+dmg_rst_data_save True
+Parameter_override True
+mpi_resume True
+ignore_empty_damage False
+result_details extended
+negative_node_elmination True
+nne_flow_limit 0.5
+nne_pressure_limit -5
+Virtual_node True
+damage_node_model equal_diameter_emitter
+limit_result_file_size -1
+Pipe_damage_input_method pickle
+No Pipe damages at all
+no node damage at all
+No pump damage at all
+No Tank Damage at all
+(1, 10, 0)
+Saving: /Users/nikola/pyrecodes_business/Example 5_business/water_distribution_network/rewet_results/SCN_.res
+Saving: /Users/nikola/pyrecodes_business/Example 5_business/water_distribution_network/rewet_results/SCN__registry.pkl
+loading scenario SCN_
+RUN_TIME 3600
+minimum_simulation_time 3600
+simulation_time_step 3600
+number_of_damages multiple
+result_directory Example 5_business/water_distribution_network/rewet_results
+temp_directory /Users/nikola/pyrecodes_business/Example 5_business/water_distribution_network/rewet_temp
+save_time_step True
+last_sequence_termination True
+node_demand_temination False
+node_demand_termination_time 10800
+node_demand_termination_ratio 0.95
+record_restoration_agent_logs True
+record_damage_table_logs True
+WN_INP /Users/nikola/pyrecodes_business/Example 5_business/water_distribution_network/waterNetwork.inp
+demand_ratio 1
+solver ModifiedEPANETV2.2
+solver_type ModifiedEPANETV2.2
+pipe_damage_file_list /Users/nikola/pyrecodes_business/Example 5_business/water_distribution_network/rewet_temp/list.xlsx
+pipe_damage_file_directory /Users/nikola/pyrecodes_business/Example 5_business/water_distribution_network/rewet_temp
+pump_damage_relative_time True
+tank_damage_relative_time True
+Restoration_on False
+minimum_job_time 3600
+maximun_worker_idle_time 60
+number_of_proccessor 1
+dmg_rst_data_save True
+Parameter_override True
+mpi_resume True
+ignore_empty_damage False
+result_details extended
+negative_node_elmination True
+nne_flow_limit 0.5
+nne_pressure_limit -5
+Virtual_node True
+damage_node_model equal_diameter_emitter
+limit_result_file_size -1
+Pipe_damage_input_method pickle
+No Pipe damages at all
+no node damage at all
+No pump damage at all
+No Tank Damage at all
+(1, 10, 0)
+Saving: /Users/nikola/pyrecodes_business/Example 5_business/water_distribution_network/rewet_results/SCN_.res
+Saving: /Users/nikola/pyrecodes_business/Example 5_business/water_distribution_network/rewet_results/SCN__registry.pkl
 loading scenario SCN_
