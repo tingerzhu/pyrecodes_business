@@ -100,11 +100,6 @@ class R2DBuildingWithBusiness(R2DBuilding):
     """
     Class used to represent buildings with businesses in a system when using the R2D files as inputs.
     """
-    # def __init__(self) -> None:
-    #     super().__init__()
-
-    # def update_r2d_dict(self):
-    #     super().update_r2d_dict()
 
     def update(self, time_step: int) -> None:
         """
@@ -117,16 +112,16 @@ class R2DBuildingWithBusiness(R2DBuilding):
         for business in self.businesses:
             business.update(time_step)
 
-    def update_supply_based_on_unmet_demand(self, percent_of_met_demand):
+    def update_supply_based_on_unmet_demand(self, percent_of_met_demand, time_step):
         super().update_supply_based_on_unmet_demand(percent_of_met_demand)
-        self.update_businesses_based_on_unmet_demand(percent_of_met_demand)
+        self.update_businesses_based_on_unmet_demand(time_step, percent_of_met_demand)
 
-    def update_businesses_based_on_unmet_demand(self, percent_of_met_demand):
+    def update_businesses_based_on_unmet_demand(self, time_step, percent_of_met_demand):
         """
         Update the businesses based on the unmet demand of the building.
         """
         for business in self.businesses:
-            business.update_functionality_based_on_unmet_demand(percent_of_met_demand)
+            business.update_functionality_based_on_unmet_demand(time_step, percent_of_met_demand)
 
     def map_building_to_businesses(self, components: list[Component]) -> None:
         """
@@ -140,6 +135,11 @@ class R2DBuildingWithBusiness(R2DBuilding):
         for business in self.businesses:
             business.recover(time_step)
 
-    def update_access_of_businesses_to_suppliers(self, building_to_traffic_node_dict, latest_travel_times, travel_time_change) -> None:
+    def update_access_of_businesses_to_suppliers(self, time_step, transfer_service_distribution_model) -> None:
+        # there is no need to have transfer_service_distribution_model as input here, change the code to reference the model in the business class as attribute. TODO: Implement later.
         for business in self.businesses:
-            business.update_access_to_suppliers(travel_times)
+            business.update_access_to_suppliers(time_step, transfer_service_distribution_model)
+
+    def update_business_customer_base(self, time_step: int, current_block_population_ratios: dict) -> None:
+        for business in self.businesses:
+            business.update_customer_base(time_step, current_block_population_ratios) 

@@ -111,7 +111,7 @@ class R2DBuildingConfigurator(R2DComponentConfigurator):
             building_data['Information']['GeneralInformation']['NumberOfStories']
 
     def get_building_housing_capacity(self, building_data: dict) -> int:  
-        return building_data['Information']['GeneralInformation']['Population'] 
+        return building_data['Information']['GeneralInformation']['Population']
     
     def set_supply_parameters(self, component: Component, building_data: dict):
         if self.system_level_data['HOUSING_RESOURCES'] is not None:

@@ -98,7 +98,7 @@ class ConcreteSystemCreator(SystemCreator):
                 resources[resource_name]['DistributionModel'] = self.get_resource_distribution_model(resource_name, resource_parameters, components)
                 required_transfer_service = resource_parameters['DistributionModel']['Parameters'].get('TransferService', None)
                 if required_transfer_service is not None: 
-                    resources[resource_name]['DistributionModel'].transfer_service_distribution_model = transfer_services[required_transfer_service]['DistributionModel']
+                    resources[resource_name]['DistributionModel'].set_transfer_service_distribution_model(transfer_services[required_transfer_service]['DistributionModel'])
         return resources
     
     def get_resource_distribution_model(self, resource_name: str, resource_parameters: dict, components: list[Component]) -> ResourceDistributionModel:

@@ -235,7 +235,7 @@ class StandardiReCoDeSComponent(Component):
         """
         self.recovery_model.set_activities_demand_to_met()
 
-    def update_supply_based_on_unmet_demand(self, percent_of_met_demand: float) -> None:
+    def update_supply_based_on_unmet_demand(self, percent_of_met_demand: float, time_step=None) -> None:
         """
         | Update component's supply based on how much of its operation demand is met.
         | This is how component interdependencies are captured.

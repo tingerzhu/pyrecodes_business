@@ -51,7 +51,7 @@
                 "FunctionalityToAmountRelation": "Linear"
             },
             "RepairCrew_Transportation": {
-                "Amount": 1500,
+                "Amount": 5000,
                 "FunctionalityToAmountRelation": "Linear"
             },
             "RepairCrew_Water": {
@@ -1689,6 +1689,378 @@
                         "ContractorMobilization",
                         "Permitting",
                         "Demolition"
+                    ]
+                }
+            },
+            "DamageFunctionalityRelation": {
+                "Type": "ReverseBinary"
+            }
+        },
+        "Supply": {
+            "Shelter": {
+                "Amount": 0,
+                "FunctionalityToAmountRelation": "Linear",
+                "UnmetDemandToAmountRelation": "Constant"
+            },
+            "FunctionalHousing": {
+                "Amount": 0,
+                "FunctionalityToAmountRelation": "Linear",
+                "UnmetDemandToAmountRelation": "Linear"
+            },
+            "Employee": {
+                "Amount": 0,
+                "FunctionalityToAmountRelation": "Linear",
+                "UnmetDemandToAmountRelation": "Linear"
+            },
+            "InputCommodity": {
+                "Amount": 0,
+                "FunctionalityToAmountRelation": "Linear",
+                "UnmetDemandToAmountRelation": "Linear"
+            }
+        },
+        "OperationDemand": {
+            "Shelter": {
+                "Amount": 0,
+                "FunctionalityToAmountRelation": "Constant"
+            },
+            "FunctionalHousing": {
+                "Amount": 0,
+                "FunctionalityToAmountRelation": "Constant"
+            },
+            "ElectricPower": {
+                "Amount": 0,
+                "FunctionalityToAmountRelation": "Linear"
+            },
+            "PotableWater": {
+                "Amount": 0,
+                "FunctionalityToAmountRelation": "Linear"
+            },
+            "CellularCommunication": {
+                "Amount": 0,
+                "PostDisasterIncreaseDueToEmergencyCalls": "True",
+                "FunctionalityToAmountRelation": "Linear"
+            },
+            "Employee": {
+                "Amount": 0,
+                "FunctionalityToAmountRelation": "Linear"
+            },
+            "InputCommodity": {
+                "Amount": 0,
+                "FunctionalityToAmountRelation": "Linear"
+            }
+        }
+    },
+    "DS0_BuildingSimplerRecovery": {
+        "ComponentClass": {"FileName": "r2d_component", "ClassName": "R2DBuilding"},
+        "RecoveryModel": {
+            "FileName": "no_recovery_activity_model",
+            "ClassName": "NoRecoveryActivityModel",
+            "Parameters": {},
+            "DamageFunctionalityRelation": {
+                "Type": "Constant"
+            }
+        },
+        "Supply": {
+            "Shelter": {
+                "Amount": 0,
+                "FunctionalityToAmountRelation": "Linear",
+                "UnmetDemandToAmountRelation": "Constant"
+            },
+            "FunctionalHousing": {
+                "Amount": 0,
+                "FunctionalityToAmountRelation": "Linear",
+                "UnmetDemandToAmountRelation": "Linear"
+            },
+            "Employee": {
+                "Amount": 0,
+                "FunctionalityToAmountRelation": "Linear",
+                "UnmetDemandToAmountRelation": "Linear"
+            },
+            "InputCommodity": {
+                "Amount": 0,
+                "FunctionalityToAmountRelation": "Linear",
+                "UnmetDemandToAmountRelation": "Linear"
+            }
+        },
+        "OperationDemand": {
+            "Shelter": {
+                "Amount": 0,
+                "FunctionalityToAmountRelation": "Constant"
+            },
+            "FunctionalHousing": {
+                "Amount": 0,
+                "FunctionalityToAmountRelation": "Constant"
+            },
+            "ElectricPower": {
+                "Amount": 0,
+                "FunctionalityToAmountRelation": "Linear"
+            },
+            "PotableWater": {
+                "Amount": 0,
+                "FunctionalityToAmountRelation": "Linear"
+            },
+            "CellularCommunication": {
+                "Amount": 0,
+                "PostDisasterIncreaseDueToEmergencyCalls": "True",
+                "FunctionalityToAmountRelation": "Linear"
+            },
+            "Employee": {
+                "Amount": 0,
+                "FunctionalityToAmountRelation": "Linear"
+            },
+            "InputCommodity": {
+                "Amount": 0,
+                "FunctionalityToAmountRelation": "Linear"
+            }
+        }
+    },
+    "DS1_BuildingSimplerRecovery": {
+        "ComponentClass": {"FileName": "r2d_component", "ClassName": "R2DBuilding"},
+        "RecoveryModel": {
+            "FileName": "component_level_recovery_activities_model",
+            "ClassName": "ComponentLevelRecoveryActivitiesModel",
+            "Parameters": {
+                "Repair": {
+                    "Duration": {
+                        "Lognormal": {
+                            "Median": 5,
+                            "Dispersion": 0.2
+                        }
+                    },
+                    "Demand": [
+                    ],
+                    "PrecedingActivities": [
+                    ]
+                }
+            },
+            "DamageFunctionalityRelation": {
+                "Type": "Constant"
+            }
+        },
+        "Supply": {
+            "Shelter": {
+                "Amount": 0,
+                "FunctionalityToAmountRelation": "Linear",
+                "UnmetDemandToAmountRelation": "Constant"
+            },
+            "FunctionalHousing": {
+                "Amount": 0,
+                "FunctionalityToAmountRelation": "Linear",
+                "UnmetDemandToAmountRelation": "Linear"
+            },
+            "Employee": {
+                "Amount": 0,
+                "FunctionalityToAmountRelation": "Linear",
+                "UnmetDemandToAmountRelation": "Linear"
+            },
+            "InputCommodity": {
+                "Amount": 0,
+                "FunctionalityToAmountRelation": "Linear",
+                "UnmetDemandToAmountRelation": "Linear"
+            }
+        },
+        "OperationDemand": {
+            "Shelter": {
+                "Amount": 0,
+                "FunctionalityToAmountRelation": "Constant"
+            },
+            "FunctionalHousing": {
+                "Amount": 0,
+                "FunctionalityToAmountRelation": "Constant"
+            },
+            "ElectricPower": {
+                "Amount": 0,
+                "FunctionalityToAmountRelation": "Linear"
+            },
+            "PotableWater": {
+                "Amount": 0,
+                "FunctionalityToAmountRelation": "Linear"
+            },
+            "CellularCommunication": {
+                "Amount": 0,
+                "PostDisasterIncreaseDueToEmergencyCalls": "True",
+                "FunctionalityToAmountRelation": "Linear"
+            },
+            "Employee": {
+                "Amount": 0,
+                "FunctionalityToAmountRelation": "Linear"
+            },
+            "InputCommodity": {
+                "Amount": 0,
+                "FunctionalityToAmountRelation": "Linear"
+            }
+        }
+    },
+    "DS2_BuildingSimplerRecovery": {
+        "ComponentClass": {"FileName": "r2d_component", "ClassName": "R2DBuilding"},
+        "RecoveryModel": {
+            "FileName": "component_level_recovery_activities_model",
+            "ClassName": "ComponentLevelRecoveryActivitiesModel",
+            "Parameters": {
+                "Repair": {
+                    "Duration": {
+                        "Lognormal": {
+                            "Median": 120,
+                            "Dispersion": 0.2
+                        }
+                    },
+                    "Demand": [
+                    ],
+                    "PrecedingActivities": [
+                    ]
+                }
+            },
+            "DamageFunctionalityRelation": {
+                "Type": "Constant"
+            }
+        },
+        "Supply": {
+            "Shelter": {
+                "Amount": 0,
+                "FunctionalityToAmountRelation": "Linear",
+                "UnmetDemandToAmountRelation": "Constant"
+            },
+            "FunctionalHousing": {
+                "Amount": 0,
+                "FunctionalityToAmountRelation": "Linear",
+                "UnmetDemandToAmountRelation": "Linear"
+            },
+            "Employee": {
+                "Amount": 0,
+                "FunctionalityToAmountRelation": "Linear",
+                "UnmetDemandToAmountRelation": "Linear"
+            },
+            "InputCommodity": {
+                "Amount": 0,
+                "FunctionalityToAmountRelation": "Linear",
+                "UnmetDemandToAmountRelation": "Linear"
+            }
+        },
+        "OperationDemand": {
+            "Shelter": {
+                "Amount": 0,
+                "FunctionalityToAmountRelation": "Constant"
+            },
+            "FunctionalHousing": {
+                "Amount": 0,
+                "FunctionalityToAmountRelation": "Constant"
+            },
+            "ElectricPower": {
+                "Amount": 0,
+                "FunctionalityToAmountRelation": "Linear"
+            },
+            "PotableWater": {
+                "Amount": 0,
+                "FunctionalityToAmountRelation": "Linear"
+            },
+            "CellularCommunication": {
+                "Amount": 0,
+                "PostDisasterIncreaseDueToEmergencyCalls": "True",
+                "FunctionalityToAmountRelation": "Linear"
+            },
+            "Employee": {
+                "Amount": 0,
+                "FunctionalityToAmountRelation": "Linear"
+            },
+            "InputCommodity": {
+                "Amount": 0,
+                "FunctionalityToAmountRelation": "Linear"
+            }
+        }
+    },
+    "DS3_BuildingSimplerRecovery": {
+        "ComponentClass": {"FileName": "r2d_component", "ClassName": "R2DBuilding"},
+        "RecoveryModel": {
+            "FileName": "component_level_recovery_activities_model",
+            "ClassName": "ComponentLevelRecoveryActivitiesModel",
+            "Parameters": {
+                "Repair": {
+                    "Duration": {
+                        "Lognormal": {
+                            "Median": 360,
+                            "Dispersion": 0.2
+                        }
+                    },
+                    "Demand": [
+                    ],
+                    "PrecedingActivities": [
+                    ]
+                }
+            },
+            "DamageFunctionalityRelation": {
+                "Type": "ReverseBinary"
+            }
+        },
+        "Supply": {
+            "Shelter": {
+                "Amount": 0,
+                "FunctionalityToAmountRelation": "Linear",
+                "UnmetDemandToAmountRelation": "Constant"
+            },
+            "FunctionalHousing": {
+                "Amount": 0,
+                "FunctionalityToAmountRelation": "Linear",
+                "UnmetDemandToAmountRelation": "Linear"
+            },
+            "Employee": {
+                "Amount": 0,
+                "FunctionalityToAmountRelation": "Linear",
+                "UnmetDemandToAmountRelation": "Linear"
+            },
+            "InputCommodity": {
+                "Amount": 0,
+                "FunctionalityToAmountRelation": "Linear",
+                "UnmetDemandToAmountRelation": "Linear"
+            }
+        },
+        "OperationDemand": {
+            "Shelter": {
+                "Amount": 0,
+                "FunctionalityToAmountRelation": "Constant"
+            },
+            "FunctionalHousing": {
+                "Amount": 0,
+                "FunctionalityToAmountRelation": "Constant"
+            },
+            "ElectricPower": {
+                "Amount": 0,
+                "FunctionalityToAmountRelation": "Linear"
+            },
+            "PotableWater": {
+                "Amount": 0,
+                "FunctionalityToAmountRelation": "Linear"
+            },
+            "CellularCommunication": {
+                "Amount": 0,
+                "PostDisasterIncreaseDueToEmergencyCalls": "True",
+                "FunctionalityToAmountRelation": "Linear"
+            },
+            "Employee": {
+                "Amount": 0,
+                "FunctionalityToAmountRelation": "Linear"
+            },
+            "InputCommodity": {
+                "Amount": 0,
+                "FunctionalityToAmountRelation": "Linear"
+            }
+        }
+    },
+    "DS4_BuildingSimplerRecovery": {
+        "ComponentClass": {"FileName": "r2d_component", "ClassName": "R2DBuilding"},
+        "RecoveryModel": {
+            "FileName": "component_level_recovery_activities_model",
+            "ClassName": "ComponentLevelRecoveryActivitiesModel",
+            "Parameters": {
+                "Repair": {
+                    "Duration": {
+                        "Lognormal": {
+                            "Median": 720,
+                            "Dispersion": 0.2
+                        }
+                    },
+                    "Demand": [
+                    ],
+                    "PrecedingActivities": [
                     ]
                 }
             },

@@ -45,11 +45,15 @@ class R2DSubsystemCreator(SubsystemCreator):
         """
         component_type = self.get_component_type(component_info, asset_subtype)
         component_damage_state = self.get_component_damage_state(damage_info, component_type)
-        component = self.get_component_object(f'DS{component_damage_state}_{component_type}')
+        component_class_name = self.get_component_class_name(component_damage_state, component_type)
+        component = self.get_component_object(component_class_name)
         component_data = {'Information': component_info, 'Loss': damage_info.get('Loss', {}), 'AssetType':asset_type,
                           'AssetSubtype': asset_subtype}
         component = self.component_configurator[component_type].set_parameters(component, [self.locality['LocalityName']], component_data, component_damage_state)
         return [component]
+    
+    def get_component_class_name(self, component_damage_state: int, component_type: str) -> str:  
+        return f'DS{component_damage_state}_{component_type}'
     
     def get_component_type(self, component_info: dict, asset_subtype: str) -> str:
         """
@@ -70,3 +74,11 @@ class R2DSubsystemCreator(SubsystemCreator):
     
     def get_component_damage_state(self, damage_info: dict, component_type: str) -> int:
         return self.component_configurator[component_type].get_damage_state(damage_info)
+
+class R2DSimpleRecoverySubsystemCreator(R2DSubsystemCreator):
+    """
+    Class to create a subystem with components with simple recovery models.
+    """
+
+    def get_component_class_name(self, component_damage_state, component_type):
+        return f'DS{component_damage_state}_{component_type}SimplerRecovery'

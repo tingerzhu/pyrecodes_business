@@ -77,7 +77,7 @@ setup(
         'pyogrio==0.10.0',  
         'pyparsing==3.2.1',  
         'pyproj==3.6.1',  
-        'pyrecodes==0.2.0',  
+        'pyrecodes>=0.2.0a0',  
         'python-dateutil==2.9.0.post0',  
         'pytz==2024.2',  
         'pyzmq==26.2.1',  

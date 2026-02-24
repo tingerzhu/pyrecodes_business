@@ -48,7 +48,7 @@ class Component(ABC):
         pass
 
     @abstractmethod
-    def update_supply_based_on_unmet_demand(self, percent_of_met_demand: float) -> None:
+    def update_supply_based_on_unmet_demand(self, percent_of_met_demand: float, time_step=None) -> None:
         pass
 
     @abstractmethod

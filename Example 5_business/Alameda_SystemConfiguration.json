@@ -1,7 +1,7 @@
 {
     "Constants": {
         "START_TIME_STEP": 0,
-        "MAX_TIME_STEP": 1000,
+        "MAX_TIME_STEP": 50,
         "DISASTER_TIME_STEP": 1,
         "MAX_REPAIR_CREW_DEMAND_PER_BUILDING": 50,
         "HOUSING_RESOURCES": [
@@ -14,10 +14,10 @@
             "DS3": 2700,
             "DS4": 2700
         },
-        "REPAIR_CREW_DEMAND_PER_MILE_ROADWAY": 5,
+        "REPAIR_CREW_DEMAND_PER_MILE_ROADWAY": 2,
         "REPAIR_CREW_DEMAND_PER_MILE_TUNNEL": 5,
         "REPAIR_CREW_DEMAND_PER_MILE_BRIDGE": 5,
-        "REPAIR_CREW_DEMAND_PER_MILE_PIPE": 5,
+        "REPAIR_CREW_DEMAND_PER_MILE_PIPE": 2,
         "DEFAULT_REPAIR_DURATION_DICT": {
             "Lognormal": {
                 "Median": 0,
@@ -60,7 +60,7 @@
                                 "Resource": [
                                     "TransportationService"
                                 ],
-                                "R2DJSONFile_Info": "./Example 5_business/Alameda_Exposure_business_sim1.json",
+                                "R2DJSONFile_Info": "./Example 5_business/Alameda_Exposure_business_sim0_final.json",
                                 "SubsystemNameInR2DJSON": "TransportationNetwork",
                                 "AssetTypes": [
                                     "Bridge",
@@ -78,7 +78,7 @@
                                 "Resource": [
                                     "Water"
                                 ],
-                                "R2DJSONFile_Info": "./Example 5_business/Alameda_Exposure_business_sim1.json",
+                                "R2DJSONFile_Info": "./Example 5_business/Alameda_Exposure_business_sim0_final.json",
                                 "SubsystemNameInR2DJSON": "WaterDistributionNetwork",
                                 "AssetTypes": [
                                     "Pipe"
@@ -98,7 +98,7 @@
                                     "Shelter",
                                     "FunctionalHousing"
                                 ],
-                                "R2DJSONFile_Info": "./Example 5_business/Alameda_Exposure_business_sim1.json",
+                                "R2DJSONFile_Info": "./Example 5_business/Alameda_Exposure_business_sim0_final.json",
                                 "SubsystemNameInR2DJSON": "Buildings",
                                 "AssetTypes": [
                                     "Building",
@@ -139,7 +139,7 @@
                                 "Resource": [
                                     "TransportationService"
                                 ],
-                                "R2DJSONFile_Info": "./Example 5_business/Alameda_Exposure_business_sim1.json",
+                                "R2DJSONFile_Info": "./Example 5_business/Alameda_Exposure_business_sim0_final.json",
                                 "SubsystemNameInR2DJSON": "TransportationNetwork",
                                 "AssetTypes": [
                                     "Bridge",
@@ -157,7 +157,7 @@
                                 "Resource": [
                                     "Water"
                                 ],
-                                "R2DJSONFile_Info": "./Example 5_business/Alameda_Exposure_business_sim1.json",
+                                "R2DJSONFile_Info": "./Example 5_business/Alameda_Exposure_business_sim0_final.json",
                                 "SubsystemNameInR2DJSON": "WaterDistributionNetwork",
                                 "AssetTypes": [
                                     "Pipe"
@@ -177,7 +177,7 @@
                                     "Shelter",
                                     "FunctionalHousing"
                                 ],
-                                "R2DJSONFile_Info": "./Example 5_business/Alameda_Exposure_business_sim1.json",
+                                "R2DJSONFile_Info": "./Example 5_business/Alameda_Exposure_business_sim0_final.json",
                                 "SubsystemNameInR2DJSON": "Buildings",
                                 "AssetTypes": [
                                     "Building",
@@ -206,7 +206,7 @@
                                 "Resource": [
                                     "TransportationService"
                                 ],
-                                "R2DJSONFile_Info": "./Example 5_business/Alameda_Exposure_business_sim1.json",
+                                "R2DJSONFile_Info": "./Example 5_business/Alameda_Exposure_business_sim0_final.json",
                                 "SubsystemNameInR2DJSON": "TransportationNetwork",
                                 "AssetTypes": [
                                     "Bridge",
@@ -224,7 +224,7 @@
                                 "Resource": [
                                     "Water"
                                 ],
-                                "R2DJSONFile_Info": "./Example 5_business/Alameda_Exposure_business_sim1.json",
+                                "R2DJSONFile_Info": "./Example 5_business/Alameda_Exposure_business_sim0_final.json",
                                 "SubsystemNameInR2DJSON": "WaterDistributionNetwork",
                                 "AssetTypes": [
                                     "Pipe"
@@ -244,7 +244,7 @@
                                     "Shelter",
                                     "FunctionalHousing"
                                 ],
-                                "R2DJSONFile_Info": "./Example 5_business/Alameda_Exposure_business_sim1.json",
+                                "R2DJSONFile_Info": "./Example 5_business/Alameda_Exposure_business_sim0_final.json",
                                 "SubsystemNameInR2DJSON": "Buildings",
                                 "AssetTypes": [
                                     "Building",
@@ -273,7 +273,7 @@
                                 "Resource": [
                                     "TransportationService"
                                 ],
-                                "R2DJSONFile_Info": "./Example 5_business/Alameda_Exposure_business_sim1.json",
+                                "R2DJSONFile_Info": "./Example 5_business/Alameda_Exposure_business_sim0_final.json",
                                 "SubsystemNameInR2DJSON": "TransportationNetwork",
                                 "AssetTypes": [
                                     "Bridge",
@@ -291,7 +291,7 @@
                                 "Resource": [
                                     "Water"
                                 ],
-                                "R2DJSONFile_Info": "./Example 5_business/Alameda_Exposure_business_sim1.json",
+                                "R2DJSONFile_Info": "./Example 5_business/Alameda_Exposure_business_sim0_final.json",
                                 "SubsystemNameInR2DJSON": "WaterDistributionNetwork",
                                 "AssetTypes": [
                                     "Pipe"
@@ -311,7 +311,7 @@
                                     "Shelter",
                                     "FunctionalHousing"
                                 ],
-                                "R2DJSONFile_Info": "./Example 5_business/Alameda_Exposure_business_sim1.json",
+                                "R2DJSONFile_Info": "./Example 5_business/Alameda_Exposure_business_sim0_final.json",
                                 "SubsystemNameInR2DJSON": "Buildings",
                                 "AssetTypes": [
                                     "Building",
@@ -340,7 +340,7 @@
                                 "Resource": [
                                     "TransportationService"
                                 ],
-                                "R2DJSONFile_Info": "./Example 5_business/Alameda_Exposure_business_sim1.json",
+                                "R2DJSONFile_Info": "./Example 5_business/Alameda_Exposure_business_sim0_final.json",
                                 "SubsystemNameInR2DJSON": "TransportationNetwork",
                                 "AssetTypes": [
                                     "Bridge",
@@ -358,7 +358,7 @@
                                 "Resource": [
                                     "Water"
                                 ],
-                                "R2DJSONFile_Info": "./Example 5_business/Alameda_Exposure_business_sim1.json",
+                                "R2DJSONFile_Info": "./Example 5_business/Alameda_Exposure_business_sim0_final.json",
                                 "SubsystemNameInR2DJSON": "WaterDistributionNetwork",
                                 "AssetTypes": [
                                     "Pipe"
@@ -378,7 +378,7 @@
                                     "Shelter",
                                     "FunctionalHousing"
                                 ],
-                                "R2DJSONFile_Info": "./Example 5_business/Alameda_Exposure_business_sim1.json",
+                                "R2DJSONFile_Info": "./Example 5_business/Alameda_Exposure_business_sim0_final.json",
                                 "SubsystemNameInR2DJSON": "Buildings",
                                 "AssetTypes": [
                                     "Building",
@@ -407,7 +407,7 @@
                                 "Resource": [
                                     "TransportationService"
                                 ],
-                                "R2DJSONFile_Info": "./Example 5_business/Alameda_Exposure_business_sim1.json",
+                                "R2DJSONFile_Info": "./Example 5_business/Alameda_Exposure_business_sim0_final.json",
                                 "SubsystemNameInR2DJSON": "TransportationNetwork",
                                 "AssetTypes": [
                                     "Bridge",
@@ -425,7 +425,7 @@
                                 "Resource": [
                                     "Water"
                                 ],
-                                "R2DJSONFile_Info": "./Example 5_business/Alameda_Exposure_business_sim1.json",
+                                "R2DJSONFile_Info": "./Example 5_business/Alameda_Exposure_business_sim0_final.json",
                                 "SubsystemNameInR2DJSON": "WaterDistributionNetwork",
                                 "AssetTypes": [
                                     "Pipe"
@@ -445,7 +445,7 @@
                                     "Shelter",
                                     "FunctionalHousing"
                                 ],
-                                "R2DJSONFile_Info": "./Example 5_business/Alameda_Exposure_business_sim1.json",
+                                "R2DJSONFile_Info": "./Example 5_business/Alameda_Exposure_business_sim0_final.json",
                                 "SubsystemNameInR2DJSON": "Buildings",
                                 "AssetTypes": [
                                     "Building",
@@ -474,7 +474,7 @@
                                 "Resource": [
                                     "TransportationService"
                                 ],
-                                "R2DJSONFile_Info": "./Example 5_business/Alameda_Exposure_business_sim1.json",
+                                "R2DJSONFile_Info": "./Example 5_business/Alameda_Exposure_business_sim0_final.json",
                                 "SubsystemNameInR2DJSON": "TransportationNetwork",
                                 "AssetTypes": [
                                     "Bridge",
@@ -492,7 +492,7 @@
                                 "Resource": [
                                     "Water"
                                 ],
-                                "R2DJSONFile_Info": "./Example 5_business/Alameda_Exposure_business_sim1.json",
+                                "R2DJSONFile_Info": "./Example 5_business/Alameda_Exposure_business_sim0_final.json",
                                 "SubsystemNameInR2DJSON": "WaterDistributionNetwork",
                                 "AssetTypes": [
                                     "Pipe"
@@ -512,7 +512,7 @@
                                     "Shelter",
                                     "FunctionalHousing"
                                 ],
-                                "R2DJSONFile_Info": "./Example 5_business/Alameda_Exposure_business_sim1.json",
+                                "R2DJSONFile_Info": "./Example 5_business/Alameda_Exposure_business_sim0_final.json",
                                 "SubsystemNameInR2DJSON": "Buildings",
                                 "AssetTypes": [
                                     "Building",
@@ -541,7 +541,7 @@
                                 "Resource": [
                                     "TransportationService"
                                 ],
-                                "R2DJSONFile_Info": "./Example 5_business/Alameda_Exposure_business_sim1.json",
+                                "R2DJSONFile_Info": "./Example 5_business/Alameda_Exposure_business_sim0_final.json",
                                 "SubsystemNameInR2DJSON": "TransportationNetwork",
                                 "AssetTypes": [
                                     "Bridge",
@@ -559,7 +559,7 @@
                                 "Resource": [
                                     "Water"
                                 ],
-                                "R2DJSONFile_Info": "./Example 5_business/Alameda_Exposure_business_sim1.json",
+                                "R2DJSONFile_Info": "./Example 5_business/Alameda_Exposure_business_sim0_final.json",
                                 "SubsystemNameInR2DJSON": "WaterDistributionNetwork",
                                 "AssetTypes": [
                                     "Pipe"
@@ -579,7 +579,7 @@
                                     "Shelter",
                                     "FunctionalHousing"
                                 ],
-                                "R2DJSONFile_Info": "./Example 5_business/Alameda_Exposure_business_sim1.json",
+                                "R2DJSONFile_Info": "./Example 5_business/Alameda_Exposure_business_sim0_final.json",
                                 "SubsystemNameInR2DJSON": "Buildings",
                                 "AssetTypes": [
                                     "Building",
@@ -608,7 +608,7 @@
                                 "Resource": [
                                     "TransportationService"
                                 ],
-                                "R2DJSONFile_Info": "./Example 5_business/Alameda_Exposure_business_sim1.json",
+                                "R2DJSONFile_Info": "./Example 5_business/Alameda_Exposure_business_sim0_final.json",
                                 "SubsystemNameInR2DJSON": "TransportationNetwork",
                                 "AssetTypes": [
                                     "Bridge",
@@ -626,7 +626,7 @@
                                 "Resource": [
                                     "Water"
                                 ],
-                                "R2DJSONFile_Info": "./Example 5_business/Alameda_Exposure_business_sim1.json",
+                                "R2DJSONFile_Info": "./Example 5_business/Alameda_Exposure_business_sim0_final.json",
                                 "SubsystemNameInR2DJSON": "WaterDistributionNetwork",
                                 "AssetTypes": [
                                     "Pipe"
@@ -646,7 +646,7 @@
                                     "Shelter",
                                     "FunctionalHousing"
                                 ],
-                                "R2DJSONFile_Info": "./Example 5_business/Alameda_Exposure_business_sim1.json",
+                                "R2DJSONFile_Info": "./Example 5_business/Alameda_Exposure_business_sim0_final.json",
                                 "SubsystemNameInR2DJSON": "Buildings",
                                 "AssetTypes": [
                                     "Building",
@@ -675,7 +675,7 @@
                                 "Resource": [
                                     "TransportationService"
                                 ],
-                                "R2DJSONFile_Info": "./Example 5_business/Alameda_Exposure_business_sim1.json",
+                                "R2DJSONFile_Info": "./Example 5_business/Alameda_Exposure_business_sim0_final.json",
                                 "SubsystemNameInR2DJSON": "TransportationNetwork",
                                 "AssetTypes": [
                                     "Bridge",
@@ -693,7 +693,7 @@
                                 "Resource": [
                                     "Water"
                                 ],
-                                "R2DJSONFile_Info": "./Example 5_business/Alameda_Exposure_business_sim1.json",
+                                "R2DJSONFile_Info": "./Example 5_business/Alameda_Exposure_business_sim0_final.json",
                                 "SubsystemNameInR2DJSON": "WaterDistributionNetwork",
                                 "AssetTypes": [
                                     "Pipe"
@@ -713,7 +713,7 @@
                                     "Shelter",
                                     "FunctionalHousing"
                                 ],
-                                "R2DJSONFile_Info": "./Example 5_business/Alameda_Exposure_business_sim1.json",
+                                "R2DJSONFile_Info": "./Example 5_business/Alameda_Exposure_business_sim0_final.json",
                                 "SubsystemNameInR2DJSON": "Buildings",
                                 "AssetTypes": [
                                     "Building",
@@ -742,7 +742,7 @@
                                 "Resource": [
                                     "TransportationService"
                                 ],
-                                "R2DJSONFile_Info": "./Example 5_business/Alameda_Exposure_business_sim1.json",
+                                "R2DJSONFile_Info": "./Example 5_business/Alameda_Exposure_business_sim0_final.json",
                                 "SubsystemNameInR2DJSON": "TransportationNetwork",
                                 "AssetTypes": [
                                     "Bridge",
@@ -760,7 +760,7 @@
                                 "Resource": [
                                     "Water"
                                 ],
-                                "R2DJSONFile_Info": "./Example 5_business/Alameda_Exposure_business_sim1.json",
+                                "R2DJSONFile_Info": "./Example 5_business/Alameda_Exposure_business_sim0_final.json",
                                 "SubsystemNameInR2DJSON": "WaterDistributionNetwork",
                                 "AssetTypes": [
                                     "Pipe"
@@ -780,7 +780,7 @@
                                     "Shelter",
                                     "FunctionalHousing"
                                 ],
-                                "R2DJSONFile_Info": "./Example 5_business/Alameda_Exposure_business_sim1.json",
+                                "R2DJSONFile_Info": "./Example 5_business/Alameda_Exposure_business_sim0_final.json",
                                 "SubsystemNameInR2DJSON": "Buildings",
                                 "AssetTypes": [
                                     "Building",
@@ -809,7 +809,7 @@
                                 "Resource": [
                                     "TransportationService"
                                 ],
-                                "R2DJSONFile_Info": "./Example 5_business/Alameda_Exposure_business_sim1.json",
+                                "R2DJSONFile_Info": "./Example 5_business/Alameda_Exposure_business_sim0_final.json",
                                 "SubsystemNameInR2DJSON": "TransportationNetwork",
                                 "AssetTypes": [
                                     "Bridge",
@@ -827,7 +827,7 @@
                                 "Resource": [
                                     "Water"
                                 ],
-                                "R2DJSONFile_Info": "./Example 5_business/Alameda_Exposure_business_sim1.json",
+                                "R2DJSONFile_Info": "./Example 5_business/Alameda_Exposure_business_sim0_final.json",
                                 "SubsystemNameInR2DJSON": "WaterDistributionNetwork",
                                 "AssetTypes": [
                                     "Pipe"
@@ -847,7 +847,7 @@
                                     "Shelter",
                                     "FunctionalHousing"
                                 ],
-                                "R2DJSONFile_Info": "./Example 5_business/Alameda_Exposure_business_sim1.json",
+                                "R2DJSONFile_Info": "./Example 5_business/Alameda_Exposure_business_sim0_final.json",
                                 "SubsystemNameInR2DJSON": "Buildings",
                                 "AssetTypes": [
                                     "Building",
@@ -876,7 +876,7 @@
                                 "Resource": [
                                     "TransportationService"
                                 ],
-                                "R2DJSONFile_Info": "./Example 5_business/Alameda_Exposure_business_sim1.json",
+                                "R2DJSONFile_Info": "./Example 5_business/Alameda_Exposure_business_sim0_final.json",
                                 "SubsystemNameInR2DJSON": "TransportationNetwork",
                                 "AssetTypes": [
                                     "Bridge",
@@ -894,7 +894,7 @@
                                 "Resource": [
                                     "Water"
                                 ],
-                                "R2DJSONFile_Info": "./Example 5_business/Alameda_Exposure_business_sim1.json",
+                                "R2DJSONFile_Info": "./Example 5_business/Alameda_Exposure_business_sim0_final.json",
                                 "SubsystemNameInR2DJSON": "WaterDistributionNetwork",
                                 "AssetTypes": [
                                     "Pipe"
@@ -914,7 +914,7 @@
                                     "Shelter",
                                     "FunctionalHousing"
                                 ],
-                                "R2DJSONFile_Info": "./Example 5_business/Alameda_Exposure_business_sim1.json",
+                                "R2DJSONFile_Info": "./Example 5_business/Alameda_Exposure_business_sim0_final.json",
                                 "SubsystemNameInR2DJSON": "Buildings",
                                 "AssetTypes": [
                                     "Building",
@@ -943,7 +943,7 @@
                                 "Resource": [
                                     "TransportationService"
                                 ],
-                                "R2DJSONFile_Info": "./Example 5_business/Alameda_Exposure_business_sim1.json",
+                                "R2DJSONFile_Info": "./Example 5_business/Alameda_Exposure_business_sim0_final.json",
                                 "SubsystemNameInR2DJSON": "TransportationNetwork",
                                 "AssetTypes": [
                                     "Bridge",
@@ -961,7 +961,7 @@
                                 "Resource": [
                                     "Water"
                                 ],
-                                "R2DJSONFile_Info": "./Example 5_business/Alameda_Exposure_business_sim1.json",
+                                "R2DJSONFile_Info": "./Example 5_business/Alameda_Exposure_business_sim0_final.json",
                                 "SubsystemNameInR2DJSON": "WaterDistributionNetwork",
                                 "AssetTypes": [
                                     "Pipe"
@@ -981,7 +981,7 @@
                                     "Shelter",
                                     "FunctionalHousing"
                                 ],
-                                "R2DJSONFile_Info": "./Example 5_business/Alameda_Exposure_business_sim1.json",
+                                "R2DJSONFile_Info": "./Example 5_business/Alameda_Exposure_business_sim0_final.json",
                                 "SubsystemNameInR2DJSON": "Buildings",
                                 "AssetTypes": [
                                     "Building",
@@ -1010,7 +1010,7 @@
                                 "Resource": [
                                     "TransportationService"
                                 ],
-                                "R2DJSONFile_Info": "./Example 5_business/Alameda_Exposure_business_sim1.json",
+                                "R2DJSONFile_Info": "./Example 5_business/Alameda_Exposure_business_sim0_final.json",
                                 "SubsystemNameInR2DJSON": "TransportationNetwork",
                                 "AssetTypes": [
                                     "Bridge",
@@ -1028,7 +1028,7 @@
                                 "Resource": [
                                     "Water"
                                 ],
-                                "R2DJSONFile_Info": "./Example 5_business/Alameda_Exposure_business_sim1.json",
+                                "R2DJSONFile_Info": "./Example 5_business/Alameda_Exposure_business_sim0_final.json",
                                 "SubsystemNameInR2DJSON": "WaterDistributionNetwork",
                                 "AssetTypes": [
                                     "Pipe"
@@ -1048,11 +1048,40 @@
                                     "Shelter",
                                     "FunctionalHousing"
                                 ],
-                                "R2DJSONFile_Info": "./Example 5_business/Alameda_Exposure_business_sim1.json",
+                                "R2DJSONFile_Info": "./Example 5_business/Alameda_Exposure_business_sim0_final.json",
                                 "SubsystemNameInR2DJSON": "Buildings",
                                 "AssetTypes": [
                                     "Building",
                                     "BuildingWithBusiness"
+                                ],
+                                "MaxNumComponents": 10000
+                            }
+                        }
+                    }
+                ]
+            }
+        },
+	"Locality 999": {
+            "Coordinates": {
+                "GeoJSON": {
+                    "Filename": "./Example 5_business/Alameda TAZ/Alameda_Contra_Costa_outside_island.geojson"
+                }
+            },
+            "Components": {
+                "BuildingStock": [
+                    {
+                        "Buildings": {
+                            "CreatorClassName": "R2DSimpleRecoverySubsystemCreator",
+                            "CreatorFileName": "r2d_subsystem_creator",
+                            "Parameters": {
+                                "Resource": [
+                                    "Shelter",
+                                    "FunctionalHousing"
+                                ],
+                                "R2DJSONFile_Info": "./Example 5_business/Alameda_Exposure_business_sim0_final.json",
+                                "SubsystemNameInR2DJSON": "Buildings",
+                                "AssetTypes": [
+                                    "Building"
                                 ],
                                 "MaxNumComponents": 10000
                             }
@@ -1066,10 +1095,7 @@
         "FileName": "r2d_damage_input",
         "ClassName": "R2DDamageInput",
         "Parameters": {
-            "DamageFile": "./Example 5_business/Alameda_Damage.json",
-            "DistributionModelDamage": [
-                "PotableWater"
-            ]
+            "DamageFile": "./Example 5_business/Alameda_Damage_sim0_final.json"
         }
     },
     "Resources": {
@@ -1331,6 +1357,11 @@
                     "DistributionTimeStepping": [
                         {
                             "start": 0,
+                            "end": 1,
+                            "step": 1
+                        },
+                        {
+                            "start": 1,
                             "end": 50,
                             "step": 5
                         },
@@ -1353,7 +1384,62 @@
                 }
             }
         },
-        "PotableWater": {
+        "InputCommodity": {
+            "Group": "OperationResources",
+            "DistributionModel": {
+                "ClassName": "AccessToCommoditiesDistributionModel",
+                "FileName": "access_to_commodities_distribution_model",
+                "Parameters": {
+                     "DistributionTimeStepping": [
+                        {
+                            "start": 0,
+                            "end": 1,
+                            "step": 1
+                        },
+                        {
+                            "start": 1,
+                            "end": 50,
+                            "step": 5
+                        },
+                        {
+                            "start": 50,
+                            "end": 1000,
+                            "step": 25
+                        }
+                    ],
+                    "TransferService": "TransportationService"
+                }
+            }
+        },
+        "Employee": {
+            "Group": "OperationResources",
+            "DistributionModel": {
+                "ClassName": "EmployeeDistributionModel",
+                "FileName": "employee_distribution_model",
+                "Parameters": {
+                    "DistributionPriority": {
+                        "FileName": "random_priority",
+                        "ClassName": "RandomPriority",
+                        "Parameters": {
+                            "Seed": 42.0,
+                            "DemandType": [
+                                "OperationDemand"
+                            ]
+                        }
+                    },
+                    "TransferService": "TransportationService"
+                }
+            }
+        },
+        "Customers": {
+            "Group": "BusinessResources",
+            "DistributionModel": {
+                "ClassName": "CustomerDistributionModel",
+                "FileName": "customer_distribution_model",
+                "Parameters": {}
+            }
+        },
+         "PotableWater": {
             "Group": "Utilities",
             "DistributionModel": {
                 "ClassName": "REWETDistributionModel",
@@ -1362,6 +1448,11 @@
                     "DistributionTimeStepping": [
                         {
                             "start": 0,
+                            "end": 10,
+                            "step": 1
+                        },
+                        {
+                            "start": 10,
                             "end": 50,
                             "step": 5
                         },
@@ -1401,6 +1492,11 @@
         {
             "ClassName": "R2DComponentRecoveryTimeCalculator",
             "FileName": "r2d_component_recovery_time_calculator",
+            "Parameters": {}
+        },
+        {
+            "ClassName": "BusinessResilienceCalculator",
+            "FileName": "business_resilience_calculator",
             "Parameters": {}
         }
     ]

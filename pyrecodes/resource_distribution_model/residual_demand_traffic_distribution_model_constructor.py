@@ -3,7 +3,6 @@ from pyrecodes.resource_distribution_model.resource_distribution_model import Re
 from pyrecodes.component.component import Component
 from residual_demand_API import transportation
 
-
 class ResidualDemandTrafficDistributionModelConstructor(SimCenterResourceDistributionModelConstructor):
 
     def construct(self, resource_name: str, resource_parameters: dict, components: list[Component], distribution_model: ResourceDistributionModel):
@@ -14,7 +13,7 @@ class ResidualDemandTrafficDistributionModelConstructor(SimCenterResourceDistrib
             resource_parameters['ODFilePre'], resource_parameters['HourList'], 
             resource_parameters['ResultsFolder'],
             resource_parameters['CapacityRuleset'], resource_parameters['DemandRuleset'],
-            # self.r2d_dict,
+            self.r2d_dict,
             resource_parameters['TwoWayEdges'],
         )
         distribution_model.r2d_dict = self.r2d_dict
