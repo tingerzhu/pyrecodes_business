@@ -26,10 +26,14 @@ class CustomerDistributionModel(AbstractResourceDistributionModel):
             current_block_population = 0
             for component in self.components_in_blocks[block]:
                 current_block_population += component.supply['Supply']['Shelter'].current_amount
+<<<<<<< HEAD
             if self.initial_block_population[block] == 0:
                 current_block_population_ratios[block] = 0
             else:
                 current_block_population_ratios[block] = current_block_population / self.initial_block_population[block]
+=======
+            current_block_population_ratios[block] = current_block_population / self.initial_block_population[block]
+>>>>>>> 40bf602194031cc46c5fb961ecf54ccb457adaad
         return current_block_population_ratios
 
     def update_business_customer_base(self, time_step: int, current_block_population_ratios: dict) -> None:

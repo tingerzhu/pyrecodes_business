@@ -1095,7 +1095,11 @@
         "FileName": "r2d_damage_input",
         "ClassName": "R2DDamageInput",
         "Parameters": {
+<<<<<<< HEAD
             "DamageFile": "./Example 5_business/Alameda_Damage_sim0_final.json"
+=======
+            "DamageFile": "./Example 5_business/Alameda_Damage.json"
+>>>>>>> 40bf602194031cc46c5fb961ecf54ccb457adaad
         }
     },
     "Resources": {

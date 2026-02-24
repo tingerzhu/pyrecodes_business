@@ -46,8 +46,11 @@ def find_population(nodes, det):
 
     return updated_nodes_df  # noqa: RET504
 
-
-def update_od(initial_od, nodes_df, initial_r2d_dict, new_r2d_dict):
+def update_od(initial_od, nodes_df, initial_r2d_dict, new_r2d_dict, constant_tour_type: list[str] = ['CONSTANT']):
+    # First, identify all trips with constant tour types that should always be preserved
+    constant_trips_mask = initial_od['tour_category'].isin(constant_tour_type)
+    constant_trips_indices = initial_od[constant_trips_mask].index.tolist()
+    
     trips_starting_at_nodes = initial_od.reset_index()[['origin_nid', 'index']].groupby(
         'origin_nid').agg(list).to_dict()['index']
     trips_ending_at_nodes = initial_od.reset_index()[['destin_nid', 'index']].groupby(
@@ -79,5 +82,8 @@ def update_od(initial_od, nodes_df, initial_r2d_dict, new_r2d_dict):
             destin_trips = trips_ending_at_nodes.get(node_id, [])
             destin_trips = np.random.choice(destin_trips, int(len(destin_trips) * (1+change_percentage)), replace=False)
             trips_index_set = trips_index_set.union(set(origin_trips)).union(set(destin_trips))
+    
+    # Combine the dynamically selected trips with the constant trips
+    trips_index_set = trips_index_set.union(set(constant_trips_indices))
     trips_index_set = sorted(trips_index_set)
     return initial_od.loc[trips_index_set, :]

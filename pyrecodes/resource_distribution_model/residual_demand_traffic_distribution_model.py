@@ -152,8 +152,13 @@ class ODTripChecker:
         agent_id = len(self.od_matrix) + self.BIG_NUMBER # add a large number to avoid duplicates
         new_row = pd.DataFrame({'agent_id': [int(agent_id)], 'origin_nid': [int(origin_node)], 'destin_nid': [int(stop_node)], 'hour': [7], 'quarter': [0], 'tour_category': [tour_category], 'person_id': [int(agent_id)]})
         self.od_matrix = pd.concat([self.od_matrix, new_row], ignore_index=True)
+<<<<<<< HEAD
         self.od_matrix['origin_nid'] = self.od_matrix['origin_nid'].astype('int64')
         self.od_matrix['destin_nid'] = self.od_matrix['destin_nid'].astype('int64')
+=======
+        # self.od_matrix['origin_nid'] = self.od_matrix['origin_nid'].astype('int64')
+        # self.od_matrix['destin_nid'] = self.od_matrix['destin_nid'].astype('int64')
+>>>>>>> 40bf602194031cc46c5fb961ecf54ccb457adaad
         self.od_matrix.to_csv(self.od_matrix_filename, index=False)
 
     def check_trip_in_od_matrix(self, origin_node_id: int, destin_node_id: int) -> bool:

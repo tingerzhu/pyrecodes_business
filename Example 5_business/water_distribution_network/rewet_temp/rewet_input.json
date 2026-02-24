@@ -4,7 +4,11 @@
     "simulation_time_step": 3600,
     "number_of_damages": "multiple",
     "result_directory": "Example 5_business/water_distribution_network/rewet_results",
+<<<<<<< HEAD
     "temp_directory": "C:\\Users\\zhut\\OneDrive - Stanford\\Research\\02 Work\\05 Commercial downtime\\Pyrecodes\\pyrecodes_business\\Example 5_business\\water_distribution_network\\rewet_temp",
+=======
+    "temp_directory": "/Users/nikola/pyrecodes_business/Example 5_business/water_distribution_network/rewet_temp",
+>>>>>>> 40bf602194031cc46c5fb961ecf54ccb457adaad
     "save_time_step": true,
     "last_sequence_termination": true,
     "node_demand_temination": false,
@@ -12,12 +16,21 @@
     "node_demand_termination_ratio": 0.95,
     "record_restoration_agent_logs": true,
     "record_damage_table_logs": true,
+<<<<<<< HEAD
     "WN_INP": "C:\\Users\\zhut\\OneDrive - Stanford\\Research\\02 Work\\05 Commercial downtime\\Pyrecodes\\pyrecodes_business\\Example 5_business\\water_distribution_network\\waterNetwork.inp",
     "demand_ratio": 1,
     "solver": "ModifiedEPANETV2.2",
     "solver_type": "ModifiedEPANETV2.2",
     "pipe_damage_file_list": "C:\\Users\\zhut\\OneDrive - Stanford\\Research\\02 Work\\05 Commercial downtime\\Pyrecodes\\pyrecodes_business\\Example 5_business\\water_distribution_network\\rewet_temp\\list.xlsx",
     "pipe_damage_file_directory": "C:\\Users\\zhut\\OneDrive - Stanford\\Research\\02 Work\\05 Commercial downtime\\Pyrecodes\\pyrecodes_business\\Example 5_business\\water_distribution_network\\rewet_temp",
+=======
+    "WN_INP": "/Users/nikola/pyrecodes_business/Example 5_business/water_distribution_network/waterNetwork.inp",
+    "demand_ratio": 1,
+    "solver": "ModifiedEPANETV2.2",
+    "solver_type": "ModifiedEPANETV2.2",
+    "pipe_damage_file_list": "/Users/nikola/pyrecodes_business/Example 5_business/water_distribution_network/rewet_temp/list.xlsx",
+    "pipe_damage_file_directory": "/Users/nikola/pyrecodes_business/Example 5_business/water_distribution_network/rewet_temp",
+>>>>>>> 40bf602194031cc46c5fb961ecf54ccb457adaad
     "pump_damage_relative_time": true,
     "tank_damage_relative_time": true,
     "Restoration_on": false,
