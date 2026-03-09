@@ -140,6 +140,8 @@ class R2DBuildingWithBusiness(R2DBuilding):
         for business in self.businesses:
             business.update_access_to_suppliers(time_step, transfer_service_distribution_model)
 
-    def update_business_customer_base(self, time_step: int, current_block_population_ratios: dict) -> None:
+    def update_business_customer_base(self, time_step: int, current_block_population_ratios: dict,
+                                       transfer_service_distribution_model=None) -> None:
         for business in self.businesses:
-            business.update_customer_base(time_step, current_block_population_ratios) 
+            business.update_customer_base(time_step, current_block_population_ratios,
+                                          transfer_service_distribution_model)
