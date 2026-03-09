@@ -65,6 +65,7 @@ import geopandas as gpd
 import numpy as np
 import pandana.network as pdna
 import pandas as pd
+import networkx as nx
 from sklearn.feature_extraction.text import TfidfVectorizer
 from scipy.spatial.distance import cdist
 from shapely.wkt import loads
@@ -536,6 +537,10 @@ class TransportationPerformance(ABC):  # noqa: B024
         net.set(pd.Series(net.node_ids))
         # print('net')  # noqa: RUF100, T201
 
+        # Filter out agents whose current or destination node is not in the network
+        valid_nodes = set(net.node_ids)
+        od_ss = od_ss[od_ss['current_nid'].isin(valid_nodes) & od_ss['destin_nid'].isin(valid_nodes)]
+
         nodes_origin = od_ss['origin_nid'].to_numpy()
         nodes_destin = od_ss['destin_nid'].to_numpy()
         nodes_current = od_ss['current_nid'].to_numpy()
@@ -850,6 +855,10 @@ class TransportationPerformance(ABC):  # noqa: B024
                     twoway=two_way_edges,
                 )
         net.set(pd.Series(net.node_ids))
+        valid_nodes = set(net.node_ids)
+        od_all = od_all[od_all['origin_nid'].isin(valid_nodes) & od_all['destin_nid'].isin(valid_nodes)]
+        orig = od_all['origin_nid'].to_numpy()
+        dest = od_all['destin_nid'].to_numpy()
         paths = net.shortest_paths(orig, dest)
         no_path_ind = [i for i in range(len(paths)) if len(paths[i]) == 0]
         od_no_path = od_all.iloc[no_path_ind].copy()
@@ -1472,8 +1481,20 @@ class pyrecodes_residual_demand(TransportationPerformance):
         self.edges_df = edges_gdf
         self.nodes_df = nodes_gdf
 
-        # Nikola: connect buildings to nodes
-        self.connect_buildings_to_nodes(nodes_gdf, r2d_dict)
+        # Remove nodes not in the largest strongly connected component
+        G = nx.DiGraph()
+        G.add_edges_from(zip(edges_gdf['start_nid'], edges_gdf['end_nid']))
+        largest_scc = max(nx.strongly_connected_components(G), key=len)
+        self.isolated_nodes = set(G.nodes) - largest_scc
+        if self.isolated_nodes:
+            print(f"Removing {len(self.isolated_nodes)} isolated node(s) not in the largest strongly connected component: {self.isolated_nodes}")
+            self.nodes_df = self.nodes_df[self.nodes_df['node_id'].isin(largest_scc)]
+            self.edges_df = self.edges_df[
+                self.edges_df['start_nid'].isin(largest_scc) & self.edges_df['end_nid'].isin(largest_scc)
+            ]
+
+        # Nikola: connect buildings to nodes (using filtered nodes so no building maps to an isolated node)
+        self.connect_buildings_to_nodes(self.nodes_df, r2d_dict)
 
         self.od_pre_file = od_pre_file
         self.initial_r2d_dict = None
@@ -1507,7 +1528,8 @@ class pyrecodes_residual_demand(TransportationPerformance):
 
     def connect_buildings_to_nodes(self, nodes_df, r2d_dict):
         building_df = self.extract_building_from_det(r2d_dict)
-        nodes_df['lon'] = nodes_df['x'] 
+        nodes_df = nodes_df.copy()
+        nodes_df['lon'] = nodes_df['x']
         nodes_df['lat'] = nodes_df['y']
         nodes_df = nodes_df.set_index('node_id')
         self.building_df = self.closest_neighbour(building_df, nodes_df)
