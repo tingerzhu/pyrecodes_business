@@ -45,9 +45,8 @@ class BusinessResilienceCalculator(ResilienceCalculator):
     
     def calculate_business_revenue(self):
         for business in self.businesses:
-            for business_functionality in self.business_functionality[business]:                
-                base_revenue = business.parameters['SalesVolume'] / 365     # convert to daily revenue
-                self.business_revenue[business].append(base_revenue * business_functionality)
+            for business_functionality in self.business_functionality[business]:
+                self.business_revenue[business].append(business.pre_disaster_daily_revenue * business_functionality)
     
     def update_customer_base(self, system: System):
         if len(self.components_in_CBG) == 0:
@@ -86,10 +85,7 @@ class BusinessResilienceCalculator(ResilienceCalculator):
                 if CBG == 'Others':
                     business_customer_base_availability += business.parameters['VisitorHomeCBGs'][CBG]
                 else:
-                    CBG_availability = self.current_CBG_population.get(CBG, 10) / self.initial_CBG_population.get(CBG, 1)
-                    if CBG_availability == 10:
-                        print(f"Warning: CBG {CBG} not found in current CBG population.")
-                        CBG_availability = 0
+                    CBG_availability = self.current_CBG_population.get(CBG, 0) / self.initial_CBG_population.get(CBG, 1)
                     business_customer_base_availability += business.parameters['VisitorHomeCBGs'][CBG] * CBG_availability
             self.customer_base[business] = round(business_customer_base_availability, 5)
             business.update_current_business_functionality(self.customer_base[business], 'Customer Base')
