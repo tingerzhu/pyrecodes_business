@@ -24,4 +24,4 @@ GANTT_Y_LABELS = {'Home Component Functionality': 'Building damage',
                   'Infrastructure': 'Infrastructure outage',
                   'Labor': 'Employee availability',
                   'LocalSuppliers': 'Access to local suppliers',
-                  'CustomerBase': 'Customer base'}
+                  'Customer Base': 'Customer base'}
