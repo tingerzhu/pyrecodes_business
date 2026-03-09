@@ -58,16 +58,16 @@ class TestREWETDistributionModel:
         assert rewet_distribution_model.r2d_dict == TEMP_R2D_DICT 
 
     def test_update_component_met_demand(self, rewet_distribution_model):
-        rewet_distribution_model.met_demand_per_building = {"1": 0.7}
-        rewet_distribution_model.update_buildings_met_demand()
-        assert rewet_distribution_model.components[12].supply['Supply']['Shelter'].current_amount == 0.7 * 10.0
-
         rewet_distribution_model.met_demand_per_building = {"1": 0.8}
-        rewet_distribution_model.update_buildings_met_demand()
+        rewet_distribution_model.update_buildings_met_demand(time_step=0)
+        assert rewet_distribution_model.components[12].supply['Supply']['Shelter'].current_amount == 0.8 * 10.0
+
+        rewet_distribution_model.met_demand_per_building = {"1": 0.7}
+        rewet_distribution_model.update_buildings_met_demand(time_step=0)
         assert rewet_distribution_model.components[12].supply['Supply']['Shelter'].current_amount == 0.7 * 10.0
 
         rewet_distribution_model.met_demand_per_building = {"1": 0.6}
-        rewet_distribution_model.update_buildings_met_demand()
+        rewet_distribution_model.update_buildings_met_demand(time_step=0)
         assert rewet_distribution_model.components[12].supply['Supply']['Shelter'].current_amount == 0.6 * 10.0
 
     def test_component_is_a_building(self, rewet_distribution_model):

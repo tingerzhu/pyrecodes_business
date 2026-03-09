@@ -48,7 +48,7 @@ class TestResidualDemandTrafficDistributionModel:
         assert residual_demand_traffic_distribution_model.r2d_dict == TEMP_R2D_DICT 
 
     def test_distribute_traffic_undamaged(self, residual_demand_traffic_distribution_model):
-        residual_demand_traffic_distribution_model.distribute_traffic()
+        residual_demand_traffic_distribution_model.distribute_traffic(0)
         assert len(residual_demand_traffic_distribution_model.travel_times) == 1
         for travel_time_used, target_travel_time in zip(residual_demand_traffic_distribution_model.travel_times[0]['travel_time_used'], UNDAMAGED_TRAVEL_TIMES):
             assert travel_time_used == target_travel_time
@@ -60,7 +60,7 @@ class TestResidualDemandTrafficDistributionModel:
         system.update()
         residual_demand_traffic_distribution_model.components = system.components
         residual_demand_traffic_distribution_model.update_r2d_dict()
-        residual_demand_traffic_distribution_model.distribute_traffic()
+        residual_demand_traffic_distribution_model.distribute_traffic(system.time_step)
         assert len(residual_demand_traffic_distribution_model.travel_times) == 1
         for travel_time_used in residual_demand_traffic_distribution_model.travel_times[0]['travel_time_used']:
             assert travel_time_used == math.inf
@@ -73,9 +73,10 @@ class TestResidualDemandTrafficDistributionModel:
         system.update()
         residual_demand_traffic_distribution_model.components = system.components
         residual_demand_traffic_distribution_model.update_r2d_dict()
-        residual_demand_traffic_distribution_model.distribute_traffic()
-        assert len(residual_demand_traffic_distribution_model.travel_times) == 2
-        for travel_time_used in residual_demand_traffic_distribution_model.travel_times[1]['travel_time_used']:
+        residual_demand_traffic_distribution_model.distribute_traffic(system.time_step)
+        assert len(residual_demand_traffic_distribution_model.travel_times) == 50
+        assert len([travel_times for travel_times in residual_demand_traffic_distribution_model.travel_times if len(travel_times) > 0]) == 2
+        for travel_time_used in residual_demand_traffic_distribution_model.travel_times[-1]['travel_time_used']:
             assert travel_time_used == math.inf
 
         for time_step in range(51, 103):
@@ -86,9 +87,10 @@ class TestResidualDemandTrafficDistributionModel:
         system.update()
         residual_demand_traffic_distribution_model.components = system.components
         residual_demand_traffic_distribution_model.update_r2d_dict()
-        residual_demand_traffic_distribution_model.distribute_traffic()
-        assert len(residual_demand_traffic_distribution_model.travel_times) == 3
-        for travel_time_used, target_travel_time in zip(residual_demand_traffic_distribution_model.travel_times[2]['travel_time_used'], UNDAMAGED_TRAVEL_TIMES):
+        residual_demand_traffic_distribution_model.distribute_traffic(system.time_step)
+        assert len(residual_demand_traffic_distribution_model.travel_times) == 103
+        assert len([travel_times for travel_times in residual_demand_traffic_distribution_model.travel_times if len(travel_times) > 0]) == 3
+        for travel_time_used, target_travel_time in zip(residual_demand_traffic_distribution_model.travel_times[-1]['travel_time_used'], UNDAMAGED_TRAVEL_TIMES):
             assert travel_time_used == target_travel_time
 
     def test_distribute_traffic_partially_damaged_all_roads(self, residual_demand_traffic_distribution_model, system):
@@ -98,8 +100,9 @@ class TestResidualDemandTrafficDistributionModel:
         system.update()
         residual_demand_traffic_distribution_model.components = system.components
         residual_demand_traffic_distribution_model.update_r2d_dict()
-        residual_demand_traffic_distribution_model.distribute_traffic()
+        residual_demand_traffic_distribution_model.distribute_traffic(system.time_step)
         assert len(residual_demand_traffic_distribution_model.travel_times) == 1
+        assert len([travel_times for travel_times in residual_demand_traffic_distribution_model.travel_times if len(travel_times) > 0]) == 1
         for travel_time_used, undamaged_travel_time in zip(residual_demand_traffic_distribution_model.travel_times[0]['travel_time_used'], UNDAMAGED_TRAVEL_TIMES):
             assert math.isclose(travel_time_used, 2 * undamaged_travel_time, rel_tol=1e-2)
 
@@ -111,9 +114,10 @@ class TestResidualDemandTrafficDistributionModel:
         system.update()
         residual_demand_traffic_distribution_model.components = system.components
         residual_demand_traffic_distribution_model.update_r2d_dict()
-        residual_demand_traffic_distribution_model.distribute_traffic()
-        assert len(residual_demand_traffic_distribution_model.travel_times) == 2
-        for travel_time_used, undamaged_travel_time in zip(residual_demand_traffic_distribution_model.travel_times[1]['travel_time_used'], UNDAMAGED_TRAVEL_TIMES):
+        residual_demand_traffic_distribution_model.distribute_traffic(system.time_step)
+        assert len(residual_demand_traffic_distribution_model.travel_times) == 20
+        assert len([travel_times for travel_times in residual_demand_traffic_distribution_model.travel_times if len(travel_times) > 0]) == 2
+        for travel_time_used, undamaged_travel_time in zip(residual_demand_traffic_distribution_model.travel_times[-1]['travel_time_used'], UNDAMAGED_TRAVEL_TIMES):
             assert math.isclose(travel_time_used, 2 * undamaged_travel_time, rel_tol=1e-2)
 
         for time_step in range(21, 43):
@@ -124,9 +128,10 @@ class TestResidualDemandTrafficDistributionModel:
         system.update()
         residual_demand_traffic_distribution_model.components = system.components
         residual_demand_traffic_distribution_model.update_r2d_dict()
-        residual_demand_traffic_distribution_model.distribute_traffic()
-        assert len(residual_demand_traffic_distribution_model.travel_times) == 3
-        for travel_time_used, target_travel_time in zip(residual_demand_traffic_distribution_model.travel_times[2]['travel_time_used'], UNDAMAGED_TRAVEL_TIMES):
+        residual_demand_traffic_distribution_model.distribute_traffic(system.time_step)
+        assert len(residual_demand_traffic_distribution_model.travel_times) == 43
+        assert len([travel_times for travel_times in residual_demand_traffic_distribution_model.travel_times if len(travel_times) > 0]) == 3
+        for travel_time_used, target_travel_time in zip(residual_demand_traffic_distribution_model.travel_times[-1]['travel_time_used'], UNDAMAGED_TRAVEL_TIMES):
             assert travel_time_used == target_travel_time
 
     def test_distribute_traffic_damaged_road_2(self, residual_demand_traffic_distribution_model, system):
@@ -138,8 +143,9 @@ class TestResidualDemandTrafficDistributionModel:
         system.update()
         residual_demand_traffic_distribution_model.components = system.components
         residual_demand_traffic_distribution_model.update_r2d_dict()
-        residual_demand_traffic_distribution_model.distribute_traffic()
+        residual_demand_traffic_distribution_model.distribute_traffic(system.time_step)
         assert len(residual_demand_traffic_distribution_model.travel_times) == 1
+        assert len([travel_times for travel_times in residual_demand_traffic_distribution_model.travel_times if len(travel_times) > 0]) == 1
         for travel_time_used, target_travel_time in zip(residual_demand_traffic_distribution_model.travel_times[0]['travel_time_used'], TARGET_TRAVEL_TIMES):
             assert math.isclose(travel_time_used, target_travel_time, rel_tol=1e-4)
 
@@ -151,9 +157,10 @@ class TestResidualDemandTrafficDistributionModel:
         system.update()
         residual_demand_traffic_distribution_model.components = system.components
         residual_demand_traffic_distribution_model.update_r2d_dict()
-        residual_demand_traffic_distribution_model.distribute_traffic()
-        assert len(residual_demand_traffic_distribution_model.travel_times) == 2
-        for travel_time_used, target_travel_time in zip(residual_demand_traffic_distribution_model.travel_times[1]['travel_time_used'], TARGET_TRAVEL_TIMES):
+        residual_demand_traffic_distribution_model.distribute_traffic(system.time_step)
+        assert len(residual_demand_traffic_distribution_model.travel_times) == 50
+        assert len([travel_times for travel_times in residual_demand_traffic_distribution_model.travel_times if len(travel_times) > 0]) == 2
+        for travel_time_used, target_travel_time in zip(residual_demand_traffic_distribution_model.travel_times[-1]['travel_time_used'], TARGET_TRAVEL_TIMES):
             assert math.isclose(travel_time_used, target_travel_time, rel_tol=1e-4)
 
         for time_step in range(51, 103):
@@ -164,30 +171,36 @@ class TestResidualDemandTrafficDistributionModel:
         system.update()
         residual_demand_traffic_distribution_model.components = system.components
         residual_demand_traffic_distribution_model.update_r2d_dict()
-        residual_demand_traffic_distribution_model.distribute_traffic()
-        assert len(residual_demand_traffic_distribution_model.travel_times) == 3
-        for travel_time_used, target_travel_time in zip(residual_demand_traffic_distribution_model.travel_times[2]['travel_time_used'], UNDAMAGED_TRAVEL_TIMES):
+        residual_demand_traffic_distribution_model.distribute_traffic(system.time_step)
+        assert len(residual_demand_traffic_distribution_model.travel_times) == 103
+        assert len([travel_times for travel_times in residual_demand_traffic_distribution_model.travel_times if len(travel_times) > 0]) == 3
+        for travel_time_used, target_travel_time in zip(residual_demand_traffic_distribution_model.travel_times[-1]['travel_time_used'], UNDAMAGED_TRAVEL_TIMES):
             assert travel_time_used == target_travel_time
 
     def test_distribute_traffic_od_changed(self, residual_demand_traffic_distribution_model, system):
         TARGET_TRAVEL_TIMES = [2660.83, 0, 1874.03, 0]
         system = self.create_damaged_system('./tests/test_inputs/test_inputs_ThreeLocalitiesCommunityResidualDemand_Main_BuildingDamaged.json')
+        system.time_step = 0
         residual_demand_traffic_distribution_model.components = system.components
         residual_demand_traffic_distribution_model.update_r2d_dict()
-        residual_demand_traffic_distribution_model.distribute_traffic()
+        residual_demand_traffic_distribution_model.distribute_traffic(system.time_step)
+        assert len([travel_times for travel_times in residual_demand_traffic_distribution_model.travel_times if len(travel_times) > 0]) == 1
+        assert len(residual_demand_traffic_distribution_model.travel_times) == 1
         for travel_time_used, target_travel_time in zip(residual_demand_traffic_distribution_model.travel_times[0]['travel_time_used'], UNDAMAGED_TRAVEL_TIMES):
             assert travel_time_used == target_travel_time
 
-        system.time_step = 0
+        system.time_step = 1
         system.set_initial_damage()
         system.update()
         residual_demand_traffic_distribution_model.components = system.components
         residual_demand_traffic_distribution_model.update_r2d_dict()
-        residual_demand_traffic_distribution_model.distribute_traffic()
-        for travel_time_used, target_travel_time in zip(residual_demand_traffic_distribution_model.travel_times[1]['travel_time_used'], TARGET_TRAVEL_TIMES):
+        residual_demand_traffic_distribution_model.distribute_traffic(system.time_step)
+        assert len([travel_times for travel_times in residual_demand_traffic_distribution_model.travel_times if len(travel_times) > 0]) == 1
+        assert len(residual_demand_traffic_distribution_model.travel_times) == 2
+        for travel_time_used, target_travel_time in zip(residual_demand_traffic_distribution_model.travel_times[-1]['travel_time_used'], TARGET_TRAVEL_TIMES):
             assert math.isclose(travel_time_used, target_travel_time, rel_tol=1e-4)
 
-        for time_step in range(1, 15):
+        for time_step in range(2, 15):
             system.time_step = time_step
             system.update()
             system.recover()
@@ -195,8 +208,10 @@ class TestResidualDemandTrafficDistributionModel:
         system.update()
         residual_demand_traffic_distribution_model.components = system.components
         residual_demand_traffic_distribution_model.update_r2d_dict()
-        residual_demand_traffic_distribution_model.distribute_traffic()
-        for travel_time_used, target_travel_time in zip(residual_demand_traffic_distribution_model.travel_times[2]['travel_time_used'], TARGET_TRAVEL_TIMES):
+        residual_demand_traffic_distribution_model.distribute_traffic(system.time_step)
+        assert len([travel_times for travel_times in residual_demand_traffic_distribution_model.travel_times if len(travel_times) > 0]) == 1
+        assert len(residual_demand_traffic_distribution_model.travel_times) == 15
+        for travel_time_used, target_travel_time in zip(residual_demand_traffic_distribution_model.travel_times[-1]['travel_time_used'], TARGET_TRAVEL_TIMES):
             assert math.isclose(travel_time_used, target_travel_time, rel_tol=1e-4)
 
         for time_step in range(15, 33):
@@ -207,7 +222,9 @@ class TestResidualDemandTrafficDistributionModel:
         system.update()
         residual_demand_traffic_distribution_model.components = system.components
         residual_demand_traffic_distribution_model.update_r2d_dict()
-        residual_demand_traffic_distribution_model.distribute_traffic()
+        residual_demand_traffic_distribution_model.distribute_traffic(system.time_step)
+        assert len([travel_times for travel_times in residual_demand_traffic_distribution_model.travel_times if len(travel_times) > 0]) == 2
+        assert len(residual_demand_traffic_distribution_model.travel_times) == 33
         for travel_time_used, target_travel_time in zip(residual_demand_traffic_distribution_model.travel_times[-1]['travel_time_used'], UNDAMAGED_TRAVEL_TIMES):
             assert travel_time_used == target_travel_time
 
