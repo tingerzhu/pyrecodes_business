@@ -15,31 +15,39 @@ class CustomerDistributionModel(AbstractResourceDistributionModel):
         self.constructor.construct(resource_name, resource_parameters, components, self)
         self.transfer_service_distribution_model = None
 
+    def set_transfer_service_distribution_model(self, transfer_service_distribution_model) -> None:
+        self.transfer_service_distribution_model = transfer_service_distribution_model
+        self.check_customer_base_outside_island_trips_in_od_matrix()
+
+    def check_customer_base_outside_island_trips_in_od_matrix(self) -> None:
+        for component in self.components:
+            if isinstance(component, R2DBuildingWithBusiness):
+                for business in component.businesses:
+                    business.check_customer_base_outside_island_trips_in_od_matrix(
+                        self.transfer_service_distribution_model)
+
     def distribute(self, time_step: int) -> None:
         if self.distribute_at_this_time_step(time_step):
             current_block_population_ratios = self.update_customer_base_block_population()
             self.update_business_customer_base(time_step, current_block_population_ratios)
-    
+
     def update_customer_base_block_population(self):
         current_block_population_ratios = {}
         for block in self.components_in_blocks.keys():
             current_block_population = 0
             for component in self.components_in_blocks[block]:
                 current_block_population += component.supply['Supply']['Shelter'].current_amount
-<<<<<<< HEAD
             if self.initial_block_population[block] == 0:
                 current_block_population_ratios[block] = 0
             else:
                 current_block_population_ratios[block] = current_block_population / self.initial_block_population[block]
-=======
-            current_block_population_ratios[block] = current_block_population / self.initial_block_population[block]
->>>>>>> 40bf602194031cc46c5fb961ecf54ccb457adaad
         return current_block_population_ratios
 
     def update_business_customer_base(self, time_step: int, current_block_population_ratios: dict) -> None:
         for component in self.components:
             if isinstance(component, R2DBuildingWithBusiness):
-                component.update_business_customer_base(time_step, current_block_population_ratios)                             
+                component.update_business_customer_base(time_step, current_block_population_ratios,
+                                                        self.transfer_service_distribution_model)
     
     def get_total_supply(self, scope='All') -> float:
         components_to_include = self.get_scope(scope)
