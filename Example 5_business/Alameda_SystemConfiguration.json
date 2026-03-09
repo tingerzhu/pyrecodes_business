@@ -1,7 +1,7 @@
 {
     "Constants": {
         "START_TIME_STEP": 0,
-        "MAX_TIME_STEP": 50,
+        "MAX_TIME_STEP": 200,
         "DISASTER_TIME_STEP": 1,
         "MAX_REPAIR_CREW_DEMAND_PER_BUILDING": 50,
         "HOUSING_RESOURCES": [
@@ -83,7 +83,7 @@
                                 "AssetTypes": [
                                     "Pipe"
                                 ],
-                                "MaxNumComponents": 10000
+                                "MaxNumComponents": 20000
                             }
                         }
                     }
@@ -1095,11 +1095,7 @@
         "FileName": "r2d_damage_input",
         "ClassName": "R2DDamageInput",
         "Parameters": {
-<<<<<<< HEAD
             "DamageFile": "./Example 5_business/Alameda_Damage_sim0_final.json"
-=======
-            "DamageFile": "./Example 5_business/Alameda_Damage.json"
->>>>>>> 40bf602194031cc46c5fb961ecf54ccb457adaad
         }
     },
     "Resources": {

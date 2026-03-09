@@ -411784,6 +411784,52 @@
                         }
                     }
                 }
+            },
+            "99001": {
+                "GeneralInformation": {},
+                "Demand": {
+                    "PGA-1-1": 0.0,
+                    "PGD-1-1": 0.0,
+                    "PGD-1-3": 0.0,
+                    "SA_0.3-1-1": 0.0,
+                    "SA_1.0-1-1": 0.0
+                },
+                "Damage": {
+                    "collapse-0": 0
+                },
+                "Loss": {
+                    "Repair": {
+                        "Cost": {
+                            "replacement-collapse": 0.0
+                        },
+                        "Time": {
+                            "replacement-collapse": 0.0
+                        }
+                    }
+                }
+            },
+            "99002": {
+                "GeneralInformation": {},
+                "Demand": {
+                    "PGA-1-1": 0.0,
+                    "PGD-1-1": 0.0,
+                    "PGD-1-3": 0.0,
+                    "SA_0.3-1-1": 0.0,
+                    "SA_1.0-1-1": 0.0
+                },
+                "Damage": {
+                    "collapse-0": 0
+                },
+                "Loss": {
+                    "Repair": {
+                        "Cost": {
+                            "replacement-collapse": 0.0
+                        },
+                        "Time": {
+                            "replacement-collapse": 0.0
+                        }
+                    }
+                }
             }
         },
         "BuildingWithBusiness": {

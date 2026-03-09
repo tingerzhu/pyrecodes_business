@@ -116,7 +116,7 @@
         "FileName": "r2d_damage_input",
         "ClassName": "R2DDamageInput",
         "Parameters": {
-            "DamageFile": "./Example 5_business/Alameda_Damage.json",
+            "DamageFile": "./Example 5_business/Alameda_Damage_sim0_final.json",
             "DistributionModelDamage": [
                 "PotableWater"
             ]

@@ -20,6 +20,8 @@ def update_edges(edges, r2d_dict):
                 ]['GeneralInformation']['RoadID']
                 road_ids = list(road_id_str.split(','))
             for road_id in road_ids:
+                if road_id not in orig_capacity:
+                    continue
                 if asset_id_dict['GeneralInformation']['FunctionalityLevel'] == 0:
                     closed_links_roads_id.append(road_id)
                 new_capacity[road_id].append(

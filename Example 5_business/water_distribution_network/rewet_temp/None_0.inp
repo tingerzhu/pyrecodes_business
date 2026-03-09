@@ -1,12 +1,6 @@
-<<<<<<< HEAD
-; Filename: C:\Users\zhut\OneDrive - Stanford\Research\02 Work\05 Commercial downtime\Pyrecodes\pyrecodes_business\Example 5_business\water_distribution_network\waterNetwork.inp
-; WNTR: 1.1.0.1.2
-; Created: 2025-10-02 21:23:24
-=======
 ; Filename: /Users/nikola/pyrecodes_business/Example 5_business/water_distribution_network/waterNetwork.inp
 ; WNTR: 1.1.0.1.2
-; Created: 2025-07-07 11:29:32
->>>>>>> 40bf602194031cc46c5fb961ecf54ccb457adaad
+; Created: 2026-03-09 07:23:03
 [TITLE]
 
 [JUNCTIONS]
