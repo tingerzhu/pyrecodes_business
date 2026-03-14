@@ -2,3 +2,6 @@
 docs/
 env/
 __pycache__/
+
+# Colab notebooks
+*_Colab.ipynb
