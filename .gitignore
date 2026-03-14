@@ -1,22 +1,4 @@
-./swiss_risk_model
-./pytest_cache
-./docs/.DS_Store
-.DS_Store
-./docs/source/figures/illustrations.pptx
 .vscode/
-dist/
-pyrecodes.egg-info/
-build/
-env_pyrecodes/
+docs/
+env/
 __pycache__/
-<<<<<<< HEAD
-.coverage
-.env
-=======
-temp_convert_to_det_json.ipynb
-.coverage
-.env
-./Example 3/create_exposure.ipynb
->>>>>>> v0.2.0-pre-release
-./.git/objects/pack/pack-b868cb133e17ca05431bfad187490ec7a3d900c2.pack
-./.git/objects/pack/pack-b868cb133e17ca05431bfad187490ec7a3d900c2.pack
