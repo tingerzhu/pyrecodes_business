@@ -1,4 +1,6 @@
 import matplotlib.pyplot as plt
+import matplotlib.colors as mcolors
+import matplotlib.cm as mcm
 import numpy as np
 from pyrecodes.constants import GANTT_BAR_DISTANCE, GANTT_BAR_WIDTH
 
@@ -156,6 +158,45 @@ class BusinessPlotter():
             plt.savefig('total_gantt_chart.png', transparent=True, dpi=300)
         if show_fig:
             plt.show()
+    
+    def plot_total_revenue_reasons_for_drop_lines(self, total_reasons_as_lines: dict,
+                                                  reasons_to_plot: list = REASON_NAMES,
+                                                    save_fig: bool = True, show_fig: bool = True) -> None:
+        plt.figure(figsize=(14, 6))
+        axis_object = plt.gca()
+        plt.xlabel('Days after the earthquake')
+        plt.ylabel('Revenue [$/day]')
+        for reason_name, reason_data in total_reasons_as_lines.items():
+            if reason_name in reasons_to_plot:
+                axis_object.plot(reason_data['TimeStep'], reason_data['Revenue'],
+                                 label=REASON_LABELS[reason_name], linestyle='--', color=REASON_COLOR[reason_name])
+        plt.legend(loc='lower right')
+        plt.grid(True)
+        if save_fig:
+            plt.savefig('total_revenue_reasons.png', transparent=True, dpi=300)
+        if show_fig:
+            plt.show()
+
+    def plot_lost_revenue_to_repair_cost_histogram(self, ratios: dict,
+                                                    bins: int = 20,
+                                                    save_fig: bool = True,
+                                                    show_fig: bool = True) -> None:
+        ratio_values = list(ratios.values())
+        plt.figure(figsize=(14, 6))
+        plt.hist(ratio_values, bins=bins, edgecolor='black', alpha=0.75)
+        plt.axvline(np.median(ratio_values), color='red', linestyle='--',
+                    label=f'Median: {np.median(ratio_values):.2f}')
+        plt.axvline(np.mean(ratio_values), color='orange', linestyle='--',
+                    label=f'Mean: {np.mean(ratio_values):.2f}')
+        plt.axvline(0.1, color='blue', linestyle='--', label='Insurance baseline: 0.1')
+        plt.xlabel('Ratio of lost revenue to repair cost')
+        plt.ylabel('Number of businesses')
+        plt.legend()
+        plt.grid(True, alpha=0.3)
+        if save_fig:
+            plt.savefig('lost_revenue_to_repair_cost_histogram.png', dpi=300, transparent=True)
+        if show_fig:
+            plt.show()
 
     # ------------------------------------------------------------------
     # Data helpers
@@ -217,6 +258,15 @@ class BusinessPlotter():
                         entry['Revenue'] += business_reasons[reason_name][time_step]['Revenue']
                 total_reasons_for_drop[reason_name].append(entry)
         return total_reasons_for_drop
+    
+    def get_total_reasons_for_drop_as_lines(self, total_reasons_for_drop: dict) -> dict:
+        total_reasons_as_lines = {key: {'TimeStep': [], 'Level': [], 'Revenue': []} for key in total_reasons_for_drop}
+        for reason_name, reason_list in total_reasons_for_drop.items():
+            for reason in reason_list:
+                total_reasons_as_lines[reason_name]['TimeStep'].append(reason['Start'])
+                total_reasons_as_lines[reason_name]['Level'].append(reason['Level'])
+                total_reasons_as_lines[reason_name]['Revenue'].append(reason['Revenue'])
+        return total_reasons_as_lines
 
     def calculate_total_revenue(self, business_resilience_calculator) -> np.ndarray:
         total_revenue = np.zeros(len(business_resilience_calculator.business_revenue[

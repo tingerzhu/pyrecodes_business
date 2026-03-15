@@ -1,6 +1,6 @@
 from pyrecodes.damage_input.damage_input import DamageInput
 from pyrecodes.utilities import read_json_file
-from pyrecodes.component.r2d_component import R2DPipe
+from pyrecodes.component.r2d_component import R2DBuilding, R2DBuildingWithBusiness, R2DPipe
 from pyrecodes.component.infrastructure_interface import InfrastructureInterface
 from pyrecodes.component_recovery_model.no_recovery_activity_model import NoRecoveryActivityModel
 from pyrecodes.component.component import Component
@@ -23,6 +23,7 @@ class R2DDamageInput(DamageInput):
         """        
         self.set_damage_in_the_distribution_model()
         self.set_initial_component_damage_level()
+        self.set_building_loss_ratios()
 
     def set_initial_component_damage_level(self) -> None:
         """
@@ -81,3 +82,21 @@ class R2DDamageInput(DamageInput):
             return True
         else:
             return False
+    
+    def set_building_loss_ratios(self) -> None:
+        r2d_damage = read_json_file(self.parameters['DamageFile'])
+        building_losses = (r2d_damage
+                           .get('Buildings', {})
+                           .get('BuildingWithBusiness', {}))
+        for component in self.system.components:
+            if isinstance(component, R2DBuildingWithBusiness):
+                aim_id = str(component.aim_id)
+                entry = building_losses.get(aim_id, {})
+                cost_dict = (entry
+                             .get('Loss', {})
+                             .get('Repair', {})
+                             .get('Cost', {}))
+                if cost_dict:
+                    component.loss_ratio = max(cost_dict.values())
+                else:
+                    component.loss_ratio = 0.0

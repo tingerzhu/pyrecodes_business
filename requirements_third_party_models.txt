@@ -58,7 +58,7 @@ pyogrio==0.10.0
 pyparsing==3.2.1
 pyproj==3.6.1
 # Editable install with no version control (pyrecodes==0.2.0a2)
--e /Users/nikola/pyrecodes_pitch-Nemanja-pitch-prep
+# -e /Users/nikola/pyrecodes_pitch-Nemanja-pitch-prep
 python-dateutil==2.9.0.post0
 python-dotenv==1.2.1
 pytz==2025.1

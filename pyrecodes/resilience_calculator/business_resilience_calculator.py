@@ -32,6 +32,7 @@ class BusinessResilienceCalculator(ResilienceCalculator):
     def calculate_resilience(self):
         self.calculate_business_revenue()
         self.calculate_total_lost_revenue()
+        self.calculate_lost_revenue_to_repair_cost_ratios()
 
     def calculate_total_lost_revenue(self):
         self.total_revenue = np.zeros(len(self.business_revenue[self.businesses[0]]))
@@ -93,3 +94,27 @@ class BusinessResilienceCalculator(ResilienceCalculator):
     def record_business_functionality(self):
         for business in self.businesses:
             self.business_functionality[business].append(business.business_functionality_level)
+
+    def get_repair_cost(self, business) -> float:
+        home = business.home_component
+        loss_ratio = getattr(home, 'loss_ratio', 0.0)
+        replacement_cost = home.general_information.get('ReplacementCost', 0.0)
+        return loss_ratio * replacement_cost
+ 
+    def calculate_business_lost_revenue(self, business) -> float:
+        pre_disaster = business.pre_disaster_daily_revenue
+        revenue_series = self.business_revenue.get(business, [])
+        return sum(max(0, pre_disaster - rev) for rev in revenue_series)
+ 
+    def calculate_lost_revenue_to_repair_cost_ratios(self) -> None:
+        self.lost_revenue = {}
+        self.repair_cost = {}
+        self.lost_revenue_to_repair_cost_ratio = {}
+ 
+        for business in self.businesses:
+            lost = self.calculate_business_lost_revenue(business)
+            cost = self.get_repair_cost(business)
+            self.lost_revenue[business] = lost
+            self.repair_cost[business] = cost
+            if cost > 0:
+                self.lost_revenue_to_repair_cost_ratio[business] = lost / cost

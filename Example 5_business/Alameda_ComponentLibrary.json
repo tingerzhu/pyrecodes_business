@@ -19,7 +19,7 @@
                 "FunctionalityToAmountRelation": "Linear"
             },
             "Contractor": {
-                "Amount": 5000,
+                "Amount": 298,
                 "FunctionalityToAmountRelation": "Linear"
             },
             "Money": {
@@ -27,7 +27,7 @@
                 "FunctionalityToAmountRelation": "Linear"
             },
             "PlanCheckEngineeringTeam": {
-                "Amount": 1000,
+                "Amount": 21,
                 "FunctionalityToAmountRelation": "Linear"
             },
             "SitePreparationCrew": {
@@ -47,7 +47,7 @@
                 "FunctionalityToAmountRelation": "Linear"
             },
             "RepairCrew_Buildings": {
-                "Amount": 20000,
+                "Amount": 298,
                 "FunctionalityToAmountRelation": "Linear"
             },
             "RepairCrew_Transportation": {
@@ -154,7 +154,7 @@
                     "Demand": [
                         {
                             "Resource": "Contractor",
-                            "Amount": 1
+                            "Amount": 0
                         }
                     ],
                     "PrecedingActivities": [
@@ -339,7 +339,7 @@
                     "Demand": [
                         {
                             "Resource": "Contractor",
-                            "Amount": 1
+                            "Amount": 0
                         }
                     ],
                     "PrecedingActivities": [
@@ -358,7 +358,7 @@
                     "Demand": [
                         {
                             "Resource": "PlanCheckEngineeringTeam",
-                            "Amount": 1
+                            "Amount": 0
                         }
                     ],
                     "PrecedingActivities": [
@@ -605,7 +605,7 @@
                     "Demand": [
                         {
                             "Resource": "RepairCrew_Buildings",
-                            "Amount": 0
+                            "Amount": 1
                         }
                     ],
                     "PrecedingActivities": [
@@ -832,7 +832,7 @@
                     "Demand": [
                         {
                             "Resource": "RepairCrew_Buildings",
-                            "Amount": 0
+                            "Amount": 1
                         }
                     ],
                     "PrecedingActivities": [
@@ -999,7 +999,7 @@
                     "Demand": [
                         {
                             "Resource": "Contractor",
-                            "Amount": 1
+                            "Amount": 0
                         }
                     ],
                     "PrecedingActivities": [
@@ -1184,7 +1184,7 @@
                     "Demand": [
                         {
                             "Resource": "Contractor",
-                            "Amount": 1
+                            "Amount": 0
                         }
                     ],
                     "PrecedingActivities": [
@@ -1203,7 +1203,7 @@
                     "Demand": [
                         {
                             "Resource": "PlanCheckEngineeringTeam",
-                            "Amount": 1
+                            "Amount": 0
                         }
                     ],
                     "PrecedingActivities": [
@@ -1450,7 +1450,7 @@
                     "Demand": [
                         {
                             "Resource": "RepairCrew_Buildings",
-                            "Amount": 0
+                            "Amount": 1
                         }
                     ],
                     "PrecedingActivities": [
@@ -1677,7 +1677,7 @@
                     "Demand": [
                         {
                             "Resource": "RepairCrew_Buildings",
-                            "Amount": 0
+                            "Amount": 1
                         }
                     ],
                     "PrecedingActivities": [
