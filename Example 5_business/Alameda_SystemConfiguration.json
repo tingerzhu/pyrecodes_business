@@ -1,7 +1,7 @@
 {
     "Constants": {
         "START_TIME_STEP": 0,
-        "MAX_TIME_STEP": 20,
+        "MAX_TIME_STEP": 300,
         "DISASTER_TIME_STEP": 1,
         "MAX_REPAIR_CREW_DEMAND_PER_BUILDING": 50,
         "HOUSING_RESOURCES": [
@@ -108,13 +108,8 @@
                                 "RecoveryTimeStepping": [
                                     {
                                         "start": 0,
-                                        "end": 100,
-                                        "step": 1
-                                    },
-                                    {
-                                        "start": 100,
                                         "end": 1000,
-                                        "step": 10
+                                        "step": 1
                                     }
                                 ]
                             }
@@ -1108,13 +1103,8 @@
                     "DistributionTimeStepping": [
                         {
                             "start": 0,
-                            "end": 50,
-                            "step": 5
-                        },
-                        {
-                            "start": 50,
-                            "end": 1000,
-                            "step": 50
+                            "end": 10000,
+                            "step": 1
                         }
                     ]
                 }
@@ -1362,13 +1352,13 @@
                         },
                         {
                             "start": 1,
-                            "end": 50,
-                            "step": 5
+                            "end": 200,
+                            "step": 4
                         },
                         {
-                            "start": 50,
+                            "start": 200,
                             "end": 1000,
-                            "step": 25
+                            "step": 10
                         }
                     ],
                     "Directory": "./Example 5_business/transportation_network/",
@@ -1398,13 +1388,13 @@
                         },
                         {
                             "start": 1,
-                            "end": 50,
-                            "step": 5
+                            "end": 200,
+                            "step": 4
                         },
                         {
-                            "start": 50,
+                            "start": 200,
                             "end": 1000,
-                            "step": 25
+                            "step": 10
                         }
                     ],
                     "TransferService": "TransportationService"
