@@ -129,25 +129,10 @@
             "FileName": "component_level_recovery_activities_model",
             "ClassName": "ComponentLevelRecoveryActivitiesModel",
             "Parameters": {
-                "RapidInspection": {
-                    "Duration": {
-                        "Lognormal": {
-                            "Median": 1,
-                            "Dispersion": 0.0
-                        }
-                    },
-                    "Demand": [
-                        {
-                            "Resource": "FirstResponderEngineer",
-                            "Amount": 0.1
-                        }
-                    ],
-                    "PrecedingActivities": []
-                },
                 "ContractorMobilization": {
                     "Duration": {
                         "Lognormal": {
-                            "Median": 7,
+                            "Median": 1,
                             "Dispersion": 0.2
                         }
                     },
@@ -157,14 +142,12 @@
                             "Amount": 1
                         }
                     ],
-                    "PrecedingActivities": [
-                        "RapidInspection"
-                    ]
+                    "PrecedingActivities": []
                 },
                 "Repair": {
                     "Duration": {
                         "Lognormal": {
-                            "Median": 5,
+                            "Median": 1,
                             "Dispersion": 0.2
                         }
                     },
@@ -175,7 +158,6 @@
                         }
                     ],
                     "PrecedingActivities": [
-                        "RapidInspection",
                         "ContractorMobilization"
                     ]
                 }
@@ -244,25 +226,10 @@
             "FileName": "component_level_recovery_activities_model",
             "ClassName": "ComponentLevelRecoveryActivitiesModel",
             "Parameters": {
-                "RapidInspection": {
-                    "Duration": {
-                        "Lognormal": {
-                            "Median": 1,
-                            "Dispersion": 0.0
-                        }
-                    },
-                    "Demand": [
-                        {
-                            "Resource": "FirstResponderEngineer",
-                            "Amount": 0.1
-                        }
-                    ],
-                    "PrecedingActivities": []
-                },
                 "DetailedInspection": {
                     "Duration": {
                         "Lognormal": {
-                            "Median": 7,
+                            "Median": 1,
                             "Dispersion": 0.2
                         }
                     },
@@ -272,14 +239,12 @@
                             "Amount": 2
                         }
                     ],
-                    "PrecedingActivities": [
-                        "RapidInspection"
-                    ]
+                    "PrecedingActivities": []
                 },
                 "CleanUp": {
                     "Duration": {
                         "Lognormal": {
-                            "Median": 3,
+                            "Median": 1,
                             "Dispersion": 0.2
                         }
                     },
@@ -289,14 +254,12 @@
                             "Amount": 1
                         }
                     ],
-                    "PrecedingActivities": [
-                        "RapidInspection"
-                    ]
+                    "PrecedingActivities": []
                 },
                 "Financing": {
                     "Duration": {
                         "Lognormal": {
-                            "Median": 7,
+                            "Median": 1,
                             "Dispersion": 0.2
                         }
                     },
@@ -307,14 +270,13 @@
                         }
                     ],
                     "PrecedingActivities": [
-                        "RapidInspection",
                         "DetailedInspection"
                     ]
                 },
                 "ArchAndEngDesign": {
                     "Duration": {
                         "Lognormal": {
-                            "Median": 21,
+                            "Median": 3,
                             "Dispersion": 0.2
                         }
                     },
@@ -325,14 +287,13 @@
                         }
                     ],
                     "PrecedingActivities": [
-                        "RapidInspection",
                         "DetailedInspection"
                     ]
                 },
                 "ContractorMobilization": {
                     "Duration": {
                         "Lognormal": {
-                            "Median": 7,
+                            "Median": 1,
                             "Dispersion": 0.2
                         }
                     },
@@ -343,7 +304,6 @@
                         }
                     ],
                     "PrecedingActivities": [
-                        "RapidInspection",
                         "DetailedInspection",
                         "ArchAndEngDesign"
                     ]
@@ -351,7 +311,7 @@
                 "Permitting": {
                     "Duration": {
                         "Lognormal": {
-                            "Median": 14,
+                            "Median": 2,
                             "Dispersion": 0.2
                         }
                     },
@@ -362,7 +322,6 @@
                         }
                     ],
                     "PrecedingActivities": [
-                        "RapidInspection",
                         "DetailedInspection",
                         "ArchAndEngDesign"
                     ]
@@ -370,7 +329,7 @@
                 "Repair": {
                     "Duration": {
                         "Lognormal": {
-                            "Median": 30,
+                            "Median": 4,
                             "Dispersion": 0.2
                         }
                     },
@@ -381,7 +340,6 @@
                         }
                     ],
                     "PrecedingActivities": [
-                        "RapidInspection",
                         "DetailedInspection",
                         "CleanUp",
                         "Financing",
@@ -455,25 +413,10 @@
             "FileName": "component_level_recovery_activities_model",
             "ClassName": "ComponentLevelRecoveryActivitiesModel",
             "Parameters": {
-                "RapidInspection": {
-                    "Duration": {
-                        "Lognormal": {
-                            "Median": 1,
-                            "Dispersion": 0.0
-                        }
-                    },
-                    "Demand": [
-                        {
-                            "Resource": "FirstResponderEngineer",
-                            "Amount": 0.1
-                        }
-                    ],
-                    "PrecedingActivities": []
-                },
                 "DetailedInspection": {
                     "Duration": {
                         "Lognormal": {
-                            "Median": 14,
+                            "Median": 2,
                             "Dispersion": 0.2
                         }
                     },
@@ -483,14 +426,12 @@
                             "Amount": 2
                         }
                     ],
-                    "PrecedingActivities": [
-                        "RapidInspection"
-                    ]
+                    "PrecedingActivities": []
                 },
                 "CleanUp": {
                     "Duration": {
                         "Lognormal": {
-                            "Median": 7,
+                            "Median": 1,
                             "Dispersion": 0.2
                         }
                     },
@@ -500,14 +441,12 @@
                             "Amount": 1
                         }
                     ],
-                    "PrecedingActivities": [
-                        "RapidInspection"
-                    ]
+                    "PrecedingActivities": []
                 },
                 "SitePreparation": {
                     "Duration": {
                         "Lognormal": {
-                            "Median": 7,
+                            "Median": 1,
                             "Dispersion": 0.2
                         }
                     },
@@ -517,14 +456,12 @@
                             "Amount": 1
                         }
                     ],
-                    "PrecedingActivities": [
-                        "RapidInspection"
-                    ]
+                    "PrecedingActivities": []
                 },
                 "Financing": {
                     "Duration": {
                         "Lognormal": {
-                            "Median": 42,
+                            "Median": 6,
                             "Dispersion": 0.2
                         }
                     },
@@ -535,14 +472,13 @@
                         }
                     ],
                     "PrecedingActivities": [
-                        "RapidInspection",
                         "DetailedInspection"
                     ]
                 },
                 "ArchAndEngDesign": {
                     "Duration": {
                         "Lognormal": {
-                            "Median": 42,
+                            "Median": 6,
                             "Dispersion": 0.2
                         }
                     },
@@ -553,14 +489,13 @@
                         }
                     ],
                     "PrecedingActivities": [
-                        "RapidInspection",
                         "DetailedInspection"
                     ]
                 },
                 "ContractorMobilization": {
                     "Duration": {
                         "Lognormal": {
-                            "Median": 14,
+                            "Median": 2,
                             "Dispersion": 0.2
                         }
                     },
@@ -571,7 +506,6 @@
                         }
                     ],
                     "PrecedingActivities": [
-                        "RapidInspection",
                         "DetailedInspection",
                         "ArchAndEngDesign"
                     ]
@@ -579,7 +513,7 @@
                 "Permitting": {
                     "Duration": {
                         "Lognormal": {
-                            "Median": 28,
+                            "Median": 4,
                             "Dispersion": 0.2
                         }
                     },
@@ -590,7 +524,6 @@
                         }
                     ],
                     "PrecedingActivities": [
-                        "RapidInspection",
                         "DetailedInspection",
                         "ArchAndEngDesign"
                     ]
@@ -598,7 +531,7 @@
                 "Repair": {
                     "Duration": {
                         "Lognormal": {
-                            "Median": 120,
+                            "Median": 17,
                             "Dispersion": 0.2
                         }
                     },
@@ -609,7 +542,6 @@
                         }
                     ],
                     "PrecedingActivities": [
-                        "RapidInspection",
                         "DetailedInspection",
                         "CleanUp",
                         "SitePreparation",
@@ -684,25 +616,10 @@
             "FileName": "component_level_recovery_activities_model",
             "ClassName": "ComponentLevelRecoveryActivitiesModel",
             "Parameters": {
-                "RapidInspection": {
-                    "Duration": {
-                        "Lognormal": {
-                            "Median": 1,
-                            "Dispersion": 0.0
-                        }
-                    },
-                    "Demand": [
-                        {
-                            "Resource": "FirstResponderEngineer",
-                            "Amount": 0.1
-                        }
-                    ],
-                    "PrecedingActivities": []
-                },
                 "CleanUp": {
                     "Duration": {
                         "Lognormal": {
-                            "Median": 7,
+                            "Median": 1,
                             "Dispersion": 0.2
                         }
                     },
@@ -712,14 +629,12 @@
                             "Amount": 1
                         }
                     ],
-                    "PrecedingActivities": [
-                        "RapidInspection"
-                    ]
+                    "PrecedingActivities": []
                 },
                 "SitePreparation": {
                     "Duration": {
                         "Lognormal": {
-                            "Median": 7,
+                            "Median": 1,
                             "Dispersion": 0.2
                         }
                     },
@@ -729,14 +644,12 @@
                             "Amount": 1
                         }
                     ],
-                    "PrecedingActivities": [
-                        "RapidInspection"
-                    ]
+                    "PrecedingActivities": []
                 },
                 "Demolition": {
                     "Duration": {
                         "Lognormal": {
-                            "Median": 10,
+                            "Median": 2,
                             "Dispersion": 0.2
                         }
                     },
@@ -747,7 +660,6 @@
                         }
                     ],
                     "PrecedingActivities": [
-                        "RapidInspection",
                         "SitePreparation",
                         "CleanUp"
                     ]
@@ -755,7 +667,7 @@
                 "Financing": {
                     "Duration": {
                         "Lognormal": {
-                            "Median": 42,
+                            "Median": 6,
                             "Dispersion": 0.2
                         }
                     },
@@ -765,14 +677,12 @@
                             "Amount": 1.0
                         }
                     ],
-                    "PrecedingActivities": [
-                        "RapidInspection"
-                    ]
+                    "PrecedingActivities": []
                 },
                 "ArchAndEngDesign": {
                     "Duration": {
                         "Lognormal": {
-                            "Median": 42,
+                            "Median": 6,
                             "Dispersion": 0.2
                         }
                     },
@@ -782,14 +692,12 @@
                             "Amount": 1
                         }
                     ],
-                    "PrecedingActivities": [
-                        "RapidInspection"
-                    ]
+                    "PrecedingActivities": []
                 },
                 "ContractorMobilization": {
                     "Duration": {
                         "Lognormal": {
-                            "Median": 14,
+                            "Median": 2,
                             "Dispersion": 0.2
                         }
                     },
@@ -800,14 +708,13 @@
                         }
                     ],
                     "PrecedingActivities": [
-                        "RapidInspection",
                         "ArchAndEngDesign"
                     ]
                 },
                 "Permitting": {
                     "Duration": {
                         "Lognormal": {
-                            "Median": 28,
+                            "Median": 4,
                             "Dispersion": 0.2
                         }
                     },
@@ -818,14 +725,13 @@
                         }
                     ],
                     "PrecedingActivities": [
-                        "RapidInspection",
                         "ArchAndEngDesign"
                     ]
                 },
                 "Repair": {
                     "Duration": {
                         "Lognormal": {
-                            "Median": 240,
+                            "Median": 34,
                             "Dispersion": 0.2
                         }
                     },
@@ -836,7 +742,6 @@
                         }
                     ],
                     "PrecedingActivities": [
-                        "RapidInspection",
                         "CleanUp",
                         "SitePreparation",
                         "Financing",
@@ -974,25 +879,10 @@
             "FileName": "component_level_recovery_activities_model",
             "ClassName": "ComponentLevelRecoveryActivitiesModel",
             "Parameters": {
-                "RapidInspection": {
-                    "Duration": {
-                        "Lognormal": {
-                            "Median": 1,
-                            "Dispersion": 0.0
-                        }
-                    },
-                    "Demand": [
-                        {
-                            "Resource": "FirstResponderEngineer",
-                            "Amount": 0.1
-                        }
-                    ],
-                    "PrecedingActivities": []
-                },
                 "ContractorMobilization": {
                     "Duration": {
                         "Lognormal": {
-                            "Median": 7,
+                            "Median": 1,
                             "Dispersion": 0.2
                         }
                     },
@@ -1002,14 +892,12 @@
                             "Amount": 1
                         }
                     ],
-                    "PrecedingActivities": [
-                        "RapidInspection"
-                    ]
+                    "PrecedingActivities": []
                 },
                 "Repair": {
                     "Duration": {
                         "Lognormal": {
-                            "Median": 5,
+                            "Median": 1,
                             "Dispersion": 0.2
                         }
                     },
@@ -1020,7 +908,6 @@
                         }
                     ],
                     "PrecedingActivities": [
-                        "RapidInspection",
                         "ContractorMobilization"
                     ]
                 }
@@ -1089,25 +976,10 @@
             "FileName": "component_level_recovery_activities_model",
             "ClassName": "ComponentLevelRecoveryActivitiesModel",
             "Parameters": {
-                "RapidInspection": {
-                    "Duration": {
-                        "Lognormal": {
-                            "Median": 1,
-                            "Dispersion": 0.0
-                        }
-                    },
-                    "Demand": [
-                        {
-                            "Resource": "FirstResponderEngineer",
-                            "Amount": 0.1
-                        }
-                    ],
-                    "PrecedingActivities": []
-                },
                 "DetailedInspection": {
                     "Duration": {
                         "Lognormal": {
-                            "Median": 7,
+                            "Median": 1,
                             "Dispersion": 0.2
                         }
                     },
@@ -1117,14 +989,12 @@
                             "Amount": 2
                         }
                     ],
-                    "PrecedingActivities": [
-                        "RapidInspection"
-                    ]
+                    "PrecedingActivities": []
                 },
                 "CleanUp": {
                     "Duration": {
                         "Lognormal": {
-                            "Median": 3,
+                            "Median": 1,
                             "Dispersion": 0.2
                         }
                     },
@@ -1134,14 +1004,12 @@
                             "Amount": 1
                         }
                     ],
-                    "PrecedingActivities": [
-                        "RapidInspection"
-                    ]
+                    "PrecedingActivities": []
                 },
                 "Financing": {
                     "Duration": {
                         "Lognormal": {
-                            "Median": 7,
+                            "Median": 1,
                             "Dispersion": 0.2
                         }
                     },
@@ -1152,14 +1020,13 @@
                         }
                     ],
                     "PrecedingActivities": [
-                        "RapidInspection",
                         "DetailedInspection"
                     ]
                 },
                 "ArchAndEngDesign": {
                     "Duration": {
                         "Lognormal": {
-                            "Median": 21,
+                            "Median": 3,
                             "Dispersion": 0.2
                         }
                     },
@@ -1170,14 +1037,13 @@
                         }
                     ],
                     "PrecedingActivities": [
-                        "RapidInspection",
                         "DetailedInspection"
                     ]
                 },
                 "ContractorMobilization": {
                     "Duration": {
                         "Lognormal": {
-                            "Median": 7,
+                            "Median": 1,
                             "Dispersion": 0.2
                         }
                     },
@@ -1188,7 +1054,6 @@
                         }
                     ],
                     "PrecedingActivities": [
-                        "RapidInspection",
                         "DetailedInspection",
                         "ArchAndEngDesign"
                     ]
@@ -1196,7 +1061,7 @@
                 "Permitting": {
                     "Duration": {
                         "Lognormal": {
-                            "Median": 14,
+                            "Median": 2,
                             "Dispersion": 0.2
                         }
                     },
@@ -1207,7 +1072,6 @@
                         }
                     ],
                     "PrecedingActivities": [
-                        "RapidInspection",
                         "DetailedInspection",
                         "ArchAndEngDesign"
                     ]
@@ -1215,7 +1079,7 @@
                 "Repair": {
                     "Duration": {
                         "Lognormal": {
-                            "Median": 30,
+                            "Median": 4,
                             "Dispersion": 0.2
                         }
                     },
@@ -1226,7 +1090,6 @@
                         }
                     ],
                     "PrecedingActivities": [
-                        "RapidInspection",
                         "DetailedInspection",
                         "CleanUp",
                         "Financing",
@@ -1300,25 +1163,10 @@
             "FileName": "component_level_recovery_activities_model",
             "ClassName": "ComponentLevelRecoveryActivitiesModel",
             "Parameters": {
-                "RapidInspection": {
-                    "Duration": {
-                        "Lognormal": {
-                            "Median": 1,
-                            "Dispersion": 0.0
-                        }
-                    },
-                    "Demand": [
-                        {
-                            "Resource": "FirstResponderEngineer",
-                            "Amount": 0.1
-                        }
-                    ],
-                    "PrecedingActivities": []
-                },
                 "DetailedInspection": {
                     "Duration": {
                         "Lognormal": {
-                            "Median": 14,
+                            "Median": 2,
                             "Dispersion": 0.2
                         }
                     },
@@ -1328,14 +1176,12 @@
                             "Amount": 2
                         }
                     ],
-                    "PrecedingActivities": [
-                        "RapidInspection"
-                    ]
+                    "PrecedingActivities": []
                 },
                 "CleanUp": {
                     "Duration": {
                         "Lognormal": {
-                            "Median": 7,
+                            "Median": 1,
                             "Dispersion": 0.2
                         }
                     },
@@ -1345,14 +1191,12 @@
                             "Amount": 1
                         }
                     ],
-                    "PrecedingActivities": [
-                        "RapidInspection"
-                    ]
+                    "PrecedingActivities": []
                 },
                 "SitePreparation": {
                     "Duration": {
                         "Lognormal": {
-                            "Median": 7,
+                            "Median": 1,
                             "Dispersion": 0.2
                         }
                     },
@@ -1362,14 +1206,12 @@
                             "Amount": 1
                         }
                     ],
-                    "PrecedingActivities": [
-                        "RapidInspection"
-                    ]
+                    "PrecedingActivities": []
                 },
                 "Financing": {
                     "Duration": {
                         "Lognormal": {
-                            "Median": 42,
+                            "Median": 6,
                             "Dispersion": 0.2
                         }
                     },
@@ -1380,14 +1222,13 @@
                         }
                     ],
                     "PrecedingActivities": [
-                        "RapidInspection",
                         "DetailedInspection"
                     ]
                 },
                 "ArchAndEngDesign": {
                     "Duration": {
                         "Lognormal": {
-                            "Median": 42,
+                            "Median": 6,
                             "Dispersion": 0.2
                         }
                     },
@@ -1398,14 +1239,13 @@
                         }
                     ],
                     "PrecedingActivities": [
-                        "RapidInspection",
                         "DetailedInspection"
                     ]
                 },
                 "ContractorMobilization": {
                     "Duration": {
                         "Lognormal": {
-                            "Median": 14,
+                            "Median": 2,
                             "Dispersion": 0.2
                         }
                     },
@@ -1416,7 +1256,6 @@
                         }
                     ],
                     "PrecedingActivities": [
-                        "RapidInspection",
                         "DetailedInspection",
                         "ArchAndEngDesign"
                     ]
@@ -1424,7 +1263,7 @@
                 "Permitting": {
                     "Duration": {
                         "Lognormal": {
-                            "Median": 28,
+                            "Median": 4,
                             "Dispersion": 0.2
                         }
                     },
@@ -1435,7 +1274,6 @@
                         }
                     ],
                     "PrecedingActivities": [
-                        "RapidInspection",
                         "DetailedInspection",
                         "ArchAndEngDesign"
                     ]
@@ -1443,7 +1281,7 @@
                 "Repair": {
                     "Duration": {
                         "Lognormal": {
-                            "Median": 120,
+                            "Median": 17,
                             "Dispersion": 0.2
                         }
                     },
@@ -1454,7 +1292,6 @@
                         }
                     ],
                     "PrecedingActivities": [
-                        "RapidInspection",
                         "DetailedInspection",
                         "CleanUp",
                         "SitePreparation",
@@ -1529,25 +1366,10 @@
             "FileName": "component_level_recovery_activities_model",
             "ClassName": "ComponentLevelRecoveryActivitiesModel",
             "Parameters": {
-                "RapidInspection": {
-                    "Duration": {
-                        "Lognormal": {
-                            "Median": 1,
-                            "Dispersion": 0.0
-                        }
-                    },
-                    "Demand": [
-                        {
-                            "Resource": "FirstResponderEngineer",
-                            "Amount": 0.1
-                        }
-                    ],
-                    "PrecedingActivities": []
-                },
                 "CleanUp": {
                     "Duration": {
                         "Lognormal": {
-                            "Median": 7,
+                            "Median": 1,
                             "Dispersion": 0.2
                         }
                     },
@@ -1557,14 +1379,12 @@
                             "Amount": 1
                         }
                     ],
-                    "PrecedingActivities": [
-                        "RapidInspection"
-                    ]
+                    "PrecedingActivities": []
                 },
                 "SitePreparation": {
                     "Duration": {
                         "Lognormal": {
-                            "Median": 7,
+                            "Median": 1,
                             "Dispersion": 0.2
                         }
                     },
@@ -1574,14 +1394,12 @@
                             "Amount": 1
                         }
                     ],
-                    "PrecedingActivities": [
-                        "RapidInspection"
-                    ]
+                    "PrecedingActivities": []
                 },
                 "Demolition": {
                     "Duration": {
                         "Lognormal": {
-                            "Median": 10,
+                            "Median": 2,
                             "Dispersion": 0.2
                         }
                     },
@@ -1592,7 +1410,6 @@
                         }
                     ],
                     "PrecedingActivities": [
-                        "RapidInspection",
                         "SitePreparation",
                         "CleanUp"
                     ]
@@ -1600,7 +1417,7 @@
                 "Financing": {
                     "Duration": {
                         "Lognormal": {
-                            "Median": 42,
+                            "Median": 6,
                             "Dispersion": 0.2
                         }
                     },
@@ -1610,14 +1427,12 @@
                             "Amount": 1.0
                         }
                     ],
-                    "PrecedingActivities": [
-                        "RapidInspection"
-                    ]
+                    "PrecedingActivities": []
                 },
                 "ArchAndEngDesign": {
                     "Duration": {
                         "Lognormal": {
-                            "Median": 42,
+                            "Median": 6,
                             "Dispersion": 0.2
                         }
                     },
@@ -1627,14 +1442,12 @@
                             "Amount": 1
                         }
                     ],
-                    "PrecedingActivities": [
-                        "RapidInspection"
-                    ]
+                    "PrecedingActivities": []
                 },
                 "ContractorMobilization": {
                     "Duration": {
                         "Lognormal": {
-                            "Median": 14,
+                            "Median": 2,
                             "Dispersion": 0.2
                         }
                     },
@@ -1645,14 +1458,13 @@
                         }
                     ],
                     "PrecedingActivities": [
-                        "RapidInspection",
                         "ArchAndEngDesign"
                     ]
                 },
                 "Permitting": {
                     "Duration": {
                         "Lognormal": {
-                            "Median": 28,
+                            "Median": 4,
                             "Dispersion": 0.2
                         }
                     },
@@ -1663,14 +1475,13 @@
                         }
                     ],
                     "PrecedingActivities": [
-                        "RapidInspection",
                         "ArchAndEngDesign"
                     ]
                 },
                 "Repair": {
                     "Duration": {
                         "Lognormal": {
-                            "Median": 240,
+                            "Median": 34,
                             "Dispersion": 0.2
                         }
                     },
@@ -1681,7 +1492,6 @@
                         }
                     ],
                     "PrecedingActivities": [
-                        "RapidInspection",
                         "CleanUp",
                         "SitePreparation",
                         "Financing",
@@ -1823,7 +1633,7 @@
                 "Repair": {
                     "Duration": {
                         "Lognormal": {
-                            "Median": 5,
+                            "Median": 1,
                             "Dispersion": 0.2
                         }
                     },
@@ -1900,7 +1710,7 @@
                 "Repair": {
                     "Duration": {
                         "Lognormal": {
-                            "Median": 120,
+                            "Median": 17,
                             "Dispersion": 0.2
                         }
                     },
@@ -1977,7 +1787,7 @@
                 "Repair": {
                     "Duration": {
                         "Lognormal": {
-                            "Median": 360,
+                            "Median": 52,
                             "Dispersion": 0.2
                         }
                     },
@@ -2054,7 +1864,7 @@
                 "Repair": {
                     "Duration": {
                         "Lognormal": {
-                            "Median": 720,
+                            "Median": 104,
                             "Dispersion": 0.2
                         }
                     },
@@ -2164,7 +1974,7 @@
                 "Financing": {
                     "Duration": {
                         "Lognormal": {
-                            "Median": 14,
+                            "Median": 2,
                             "Dispersion": 0.2
                         }
                     },
@@ -2230,7 +2040,7 @@
                 "Financing": {
                     "Duration": {
                         "Lognormal": {
-                            "Median": 14,
+                            "Median": 2,
                             "Dispersion": 0.2
                         }
                     },
@@ -2247,7 +2057,7 @@
                 "Repair": {
                     "Duration": {
                         "Lognormal": {
-                            "Median": 2,
+                            "Median": 1,
                             "Dispersion": 0.2
                         }
                     },
@@ -2296,7 +2106,7 @@
                 "Financing": {
                     "Duration": {
                         "Lognormal": {
-                            "Median": 42,
+                            "Median": 6,
                             "Dispersion": 0.2
                         }
                     },
@@ -2313,7 +2123,7 @@
                 "Repair": {
                     "Duration": {
                         "Lognormal": {
-                            "Median": 75,
+                            "Median": 11,
                             "Dispersion": 0.2
                         }
                     },
@@ -2362,7 +2172,7 @@
                 "Financing": {
                     "Duration": {
                         "Lognormal": {
-                            "Median": 42,
+                            "Median": 6,
                             "Dispersion": 0.2
                         }
                     },
@@ -2379,7 +2189,7 @@
                 "Repair": {
                     "Duration": {
                         "Lognormal": {
-                            "Median": 230,
+                            "Median": 32,
                             "Dispersion": 0.2
                         }
                     },
@@ -2446,7 +2256,7 @@
                 "Financing": {
                     "Duration": {
                         "Lognormal": {
-                            "Median": 14,
+                            "Median": 2,
                             "Dispersion": 0.2
                         }
                     },
@@ -2512,7 +2322,7 @@
                 "Financing": {
                     "Duration": {
                         "Lognormal": {
-                            "Median": 21,
+                            "Median": 3,
                             "Dispersion": 0.2
                         }
                     },
@@ -2529,7 +2339,7 @@
                 "Repair": {
                     "Duration": {
                         "Lognormal": {
-                            "Median": 3,
+                            "Median": 1,
                             "Dispersion": 0.2
                         }
                     },
@@ -2578,7 +2388,7 @@
                 "Financing": {
                     "Duration": {
                         "Lognormal": {
-                            "Median": 42,
+                            "Median": 6,
                             "Dispersion": 0.2
                         }
                     },
@@ -2595,7 +2405,7 @@
                 "Repair": {
                     "Duration": {
                         "Lognormal": {
-                            "Median": 45,
+                            "Median": 7,
                             "Dispersion": 0.2
                         }
                     },
@@ -2644,7 +2454,7 @@
                 "Financing": {
                     "Duration": {
                         "Lognormal": {
-                            "Median": 42,
+                            "Median": 6,
                             "Dispersion": 0.2
                         }
                     },
@@ -2661,7 +2471,7 @@
                 "Repair": {
                     "Duration": {
                         "Lognormal": {
-                            "Median": 210,
+                            "Median": 30,
                             "Dispersion": 0.2
                         }
                     },
@@ -2777,7 +2587,7 @@
                 "Repair": {
                     "Duration": {
                         "Lognormal": {
-                            "Median": 2.0,
+                            "Median": 1,
                             "Dispersion": 0.2
                         }
                     },
@@ -2826,7 +2636,7 @@
                 "Repair": {
                     "Duration": {
                         "Lognormal": {
-                            "Median": 21.0,
+                            "Median": 3,
                             "Dispersion": 0.2
                         }
                     },
@@ -2875,7 +2685,7 @@
                 "Repair": {
                     "Duration": {
                         "Lognormal": {
-                            "Median": 21,
+                            "Median": 3,
                             "Dispersion": 0.2
                         }
                     },
@@ -2943,7 +2753,7 @@
                 "Repair": {
                     "Duration": {
                         "Lognormal": {
-                            "Median": 10,
+                            "Median": 2,
                             "Dispersion": 0.2
                         }
                     },
@@ -2994,7 +2804,7 @@
                 "Repair": {
                     "Duration": {
                         "Lognormal": {
-                            "Median": 20,
+                            "Median": 3,
                             "Dispersion": 0.2
                         }
                     },

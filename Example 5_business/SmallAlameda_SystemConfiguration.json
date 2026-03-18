@@ -111,13 +111,8 @@
                     "DistributionTimeStepping": [
                         {
                             "start": 0,
-                            "end": 50,
-                            "step": 5
-                        },
-                        {
-                            "start": 50,
                             "end": 1000,
-                            "step": 50
+                            "step": 1
                         }
                     ]
                 }
@@ -341,14 +336,9 @@
                     "DistributionTimeStepping": [
                         {
                             "start": 0,
-                            "end": 50,
-                            "step": 5
-                        },
-                        {
-                            "start": 50,
-                            "end": 1000,
-                            "step": 25
-                        }
+                            "end": 10000,
+                            "step": 1
+                        }                        
                     ],
                     "Directory": "./Example 5_business/transportation_network/",
                     "EdgeFile": "./Example 5_business/transportation_network/ProcessedRoadNetworkRoads.geojson",
@@ -375,14 +365,9 @@
                     "DistributionTimeStepping": [
                         {
                             "start": 0,
-                            "end": 50,
-                            "step": 5
-                        },
-                        {
-                            "start": 50,
                             "end": 1000,
-                            "step": 25
-                        }
+                            "step": 1
+                        }                        
                     ],
                     "TransferService": "TransportationService"
                 }
