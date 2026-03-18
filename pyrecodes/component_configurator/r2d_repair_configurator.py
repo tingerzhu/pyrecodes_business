@@ -73,8 +73,13 @@ class R2DBuildingRepairConfigurator(R2DRepairConfigurator):
         | Method that calculates the repair crew demand for the building component. 
         | The demand is calculated based on the area of the building and the repair crew demand per square foot for different damage states defined in the system configuration file.
         """
-        repair_crew_demand = math.ceil(self.component.area / self.system_level_data['REPAIR_CREW_DEMAND_PER_SQFT'].get(f'DS{component_damage_state}', math.inf))
-        return min(self.system_level_data['MAX_REPAIR_CREW_DEMAND_PER_BUILDING'], repair_crew_demand)
+        # consider only repair crews for damage states 3 and above, since for lower damage states, the repair activities are not expected to be resource intensive. This is a simplifying assumption that can be modified if needed.
+        if component_damage_state  >= 3:
+            return 1
+        else:
+            return 0
+        # repair_crew_demand = math.ceil(self.component.area / self.system_level_data['REPAIR_CREW_DEMAND_PER_SQFT'].get(f'DS{component_damage_state}', math.inf))
+        # return min(self.system_level_data['MAX_REPAIR_CREW_DEMAND_PER_BUILDING'], repair_crew_demand)
     
 class R2DPipeRepairConfigurator(R2DRepairConfigurator):
     """
