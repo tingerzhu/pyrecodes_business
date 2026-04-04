@@ -51,14 +51,19 @@ class ConcreteRecoveryActivity(RecoveryActivity):
         Args:
             distribution (dict): A dictionary describing the duration distribution.
         """
-        duration = self.sample_duration(distribution)
-        self.duration = duration
-        if duration > 0:            
-            self.rate = 1 / duration
-        elif duration == 0: 
+        max_attempts = 1000                                                                                                                                    
+        for _ in range(max_attempts):                                                                                                                          
+            duration = self.sample_duration(distribution)                                                                                                      
+            if duration >= 0:                                                                                                                                
+                break
+        else:                                                                                                                                                  
+            raise ValueError(f'Failed to sample non-negative duration after {max_attempts} attempts for {self.name}. Check distribution parameters.')
+                                                                                                                                                                
+        self.duration = duration                                                                                                                             
+        if duration > 0:                                                                                                                                       
+            self.rate = 1 / duration                                                                                                                         
+        elif duration == 0:
             self.rate = math.inf
-        else:
-            raise ValueError(f'Duration must be a positive number. Recovery activity: {self.name}.')
 
     def sample_duration(self, distribution: dict) -> float:
         """
