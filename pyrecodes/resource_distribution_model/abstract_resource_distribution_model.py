@@ -11,13 +11,13 @@ class AbstractResourceDistributionModel(ResourceDistributionModel):
     def __init__(self, resource_name: str, resource_parameters: dict, components: list[Component]):
         self.constructor = ConcreteResourceDistributionModelConstructor()
         self.constructor.construct(resource_name, resource_parameters, components, self)
-        self.transfer_service_distribution_model = None
+        self.transfer_service_distribution_models = []
 
     def set_distribution_time_steps(self, distribution_time_steps: list) -> None:
         self.distribution_time_steps = distribution_time_steps
 
     def set_transfer_service_distribution_model(self, transfer_service_distribution_model: ResourceDistributionModel) -> None:
-        self.transfer_service_distribution_model = transfer_service_distribution_model
+        self.transfer_service_distribution_models.append(transfer_service_distribution_model)
     
     @abstractmethod
     def distribute(self, time_step: int) -> None:
