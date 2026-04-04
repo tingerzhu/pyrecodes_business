@@ -264,6 +264,7 @@ class R2DTunnelConfigurator(R2DTransportationComponentConfigurator):
                         'DEFAULT_REPAIR_DURATION_DICT', 'REPAIR_CREW_DEMAND_PER_MILE_TUNNEL']
 
     def set_geometry(self, component, component_data: dict):
+        component.geometry = component_data['Information']['GeneralInformation']['geometry']
         component.length = component_data['Information']['GeneralInformation']['TunnelLength_ft']
 
     def set_repair_configurator(self, component: Component) -> None:

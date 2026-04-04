@@ -29,9 +29,8 @@ class R2DRepairConfigurator(RepairConfigurator):
             repair_time = self.get_repair_time_from_R2D(component_data)
             if repair_time is not None:
                 self.component.recovery_model.recovery_activities['Repair'].set_duration(
-                    {"Deterministic": {"Value": repair_time}})     
-                  
-            
+                    {"Deterministic": {"Value": repair_time}})       
+                        
     def get_repair_time_from_R2D(self, component_data: dict, default_repair_time=30) -> int:   
         """
         | Method that gets the repair duration of the component from the R2D output files. 
