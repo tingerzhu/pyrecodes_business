@@ -2,10 +2,13 @@ from pyrecodes.resource_distribution_model.abstract_resource_distribution_model 
 from pyrecodes.resource_distribution_model.residual_demand_traffic_distribution_model_constructor import ResidualDemandTrafficDistributionModelConstructor
 from pyrecodes.resource_distribution_model.spatial_resource_aggregator import SpatialResourceAggregator
 from pyrecodes.component.component import Component
-from pyrecodes.component.r2d_component import R2DBuildingWithBusiness, R2DBuilding
+from pyrecodes.component.r2d_component import R2DBuilding, R2DComponent
 import math
 import os
 import pandas as pd
+
+TRAVEL_TIME_CUTOFF = 14400  # four hours in seconds
+TRAVEL_TIME_CHANGE_CUTOFF = 4  # max ratio of post/pre disaster travel time
 
 class ResidualDemandTrafficDistributionModel(AbstractResourceDistributionModel):
 
@@ -19,6 +22,10 @@ class ResidualDemandTrafficDistributionModel(AbstractResourceDistributionModel):
         self.trip_index = {}  # static: (origin_nid, destin_nid) -> row index, built once on first simulation
         self.travel_time_change_index = []  # parallel to travel_time_change_factors: agent_id -> change factor, rebuilt each distribution time step
         self.connect_buildings_to_traffic_nodes()
+        self.outside_island_building_ids = {
+            component.aim_id for component in self.components
+            if isinstance(component, R2DComponent) and component.general_information.get('OutsideIsland', False)
+        }
         isolated_nodes = getattr(self.flow_simulator, 'isolated_nodes', set())
         self.od_trip_checker = ODTripChecker(resource_parameters['ODFilePre'], isolated_nodes)
 
@@ -81,6 +88,34 @@ class ResidualDemandTrafficDistributionModel(AbstractResourceDistributionModel):
                 os.dup2(original_stdout_fd, 1)  
                 os.close(original_stdout_fd) 
         self.get_travel_time_change(time_step)
+
+    def is_building_accessible(self, time_step: int, origin_building_id: str, destination_building_id: str):
+        if origin_building_id in self.outside_island_building_ids or destination_building_id in self.outside_island_building_ids:
+            return None
+        origin_node = self.building_to_traffic_node_dict.get(origin_building_id, None)
+        destination_node = self.building_to_traffic_node_dict.get(destination_building_id, None)
+        if origin_node is None or destination_node is None:
+            return False
+        if origin_node in self.od_trip_checker.isolated_nodes or destination_node in self.od_trip_checker.isolated_nodes:
+            return False
+        last_distribution_time_step = self.find_nearest_distribution_time_step(time_step)
+        travel_times = self.travel_times[last_distribution_time_step]
+        trip_index = self.trip_index
+        change_index = self.travel_time_change_index[last_distribution_time_step]
+        return self.check_accessibility(origin_node, destination_node, travel_times, trip_index, change_index)
+
+    def check_accessibility(self, origin_node, destination_node, travel_times: pd.DataFrame, trip_index: dict, change_index: dict) -> bool:
+        if origin_node == destination_node:
+            return True
+        row = trip_index.get((origin_node, destination_node))
+        if row is None:
+            row = trip_index.get((destination_node, origin_node))
+        if row is None:
+            return False
+        record = travel_times.iloc[row]
+        travel_time = record['travel_time_used']
+        travel_time_change_factor = change_index.get(record['agent_id'], float('inf'))
+        return travel_time_change_factor <= TRAVEL_TIME_CHANGE_CUTOFF and travel_time <= TRAVEL_TIME_CUTOFF
 
     def get_travel_time_change(self, time_step: int) -> None:
         for agent_pre_disaster, agent_now in zip(self.travel_times[0].iterrows(), self.travel_times[-1].iterrows()):
