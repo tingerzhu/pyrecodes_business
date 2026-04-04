@@ -1,6 +1,9 @@
 {
     "EmergencyResponseCenter": {
-        "ComponentClass": {"FileName": "standard_irecodes_component", "ClassName": "StandardiReCoDeSComponent"},
+        "ComponentClass": {
+            "FileName": "standard_irecodes_component",
+            "ClassName": "StandardiReCoDeSComponent"
+        },
         "RecoveryModel": {
             "FileName": "no_recovery_activity_model",
             "ClassName": "NoRecoveryActivityModel",
@@ -61,7 +64,10 @@
         }
     },
     "DS0_Building": {
-        "ComponentClass": {"FileName": "r2d_component", "ClassName": "R2DBuilding"},
+        "ComponentClass": {
+            "FileName": "r2d_component",
+            "ClassName": "R2DBuilding"
+        },
         "RecoveryModel": {
             "FileName": "no_recovery_activity_model",
             "ClassName": "NoRecoveryActivityModel",
@@ -79,17 +85,17 @@
             "FunctionalHousing": {
                 "Amount": 0,
                 "FunctionalityToAmountRelation": "Linear",
-                "UnmetDemandToAmountRelation": "Linear"
+                "UnmetDemandToAmountRelation": "Constant"
             },
             "Employee": {
                 "Amount": 0,
                 "FunctionalityToAmountRelation": "Linear",
-                "UnmetDemandToAmountRelation": "Linear"
+                "UnmetDemandToAmountRelation": "Constant"
             },
             "InputCommodity": {
                 "Amount": 0,
                 "FunctionalityToAmountRelation": "Linear",
-                "UnmetDemandToAmountRelation": "Linear"
+                "UnmetDemandToAmountRelation": "Constant"
             }
         },
         "OperationDemand": {
@@ -124,7 +130,10 @@
         }
     },
     "DS1_Building": {
-        "ComponentClass": {"FileName": "r2d_component", "ClassName": "R2DBuilding"},
+        "ComponentClass": {
+            "FileName": "r2d_component",
+            "ClassName": "R2DBuilding"
+        },
         "RecoveryModel": {
             "FileName": "component_level_recovery_activities_model",
             "ClassName": "ComponentLevelRecoveryActivitiesModel",
@@ -175,17 +184,17 @@
             "FunctionalHousing": {
                 "Amount": 0,
                 "FunctionalityToAmountRelation": "Linear",
-                "UnmetDemandToAmountRelation": "Linear"
+                "UnmetDemandToAmountRelation": "Constant"
             },
             "Employee": {
                 "Amount": 0,
                 "FunctionalityToAmountRelation": "Linear",
-                "UnmetDemandToAmountRelation": "Linear"
+                "UnmetDemandToAmountRelation": "Constant"
             },
             "InputCommodity": {
                 "Amount": 0,
                 "FunctionalityToAmountRelation": "Linear",
-                "UnmetDemandToAmountRelation": "Linear"
+                "UnmetDemandToAmountRelation": "Constant"
             }
         },
         "OperationDemand": {
@@ -221,7 +230,10 @@
         }
     },
     "DS2_Building": {
-        "ComponentClass": {"FileName": "r2d_component", "ClassName": "R2DBuilding"},
+        "ComponentClass": {
+            "FileName": "r2d_component",
+            "ClassName": "R2DBuilding"
+        },
         "RecoveryModel": {
             "FileName": "component_level_recovery_activities_model",
             "ClassName": "ComponentLevelRecoveryActivitiesModel",
@@ -362,17 +374,17 @@
             "FunctionalHousing": {
                 "Amount": 0,
                 "FunctionalityToAmountRelation": "Linear",
-                "UnmetDemandToAmountRelation": "Linear"
+                "UnmetDemandToAmountRelation": "Constant"
             },
             "Employee": {
                 "Amount": 0,
                 "FunctionalityToAmountRelation": "Linear",
-                "UnmetDemandToAmountRelation": "Linear"
+                "UnmetDemandToAmountRelation": "Constant"
             },
             "InputCommodity": {
                 "Amount": 0,
                 "FunctionalityToAmountRelation": "Linear",
-                "UnmetDemandToAmountRelation": "Linear"
+                "UnmetDemandToAmountRelation": "Constant"
             }
         },
         "OperationDemand": {
@@ -408,7 +420,10 @@
         }
     },
     "DS3_Building": {
-        "ComponentClass": {"FileName": "r2d_component", "ClassName": "R2DBuilding"},
+        "ComponentClass": {
+            "FileName": "r2d_component",
+            "ClassName": "R2DBuilding"
+        },
         "RecoveryModel": {
             "FileName": "component_level_recovery_activities_model",
             "ClassName": "ComponentLevelRecoveryActivitiesModel",
@@ -565,17 +580,17 @@
             "FunctionalHousing": {
                 "Amount": 0,
                 "FunctionalityToAmountRelation": "Linear",
-                "UnmetDemandToAmountRelation": "Linear"
+                "UnmetDemandToAmountRelation": "Constant"
             },
             "Employee": {
                 "Amount": 0,
                 "FunctionalityToAmountRelation": "Linear",
-                "UnmetDemandToAmountRelation": "Linear"
+                "UnmetDemandToAmountRelation": "Constant"
             },
             "InputCommodity": {
                 "Amount": 0,
                 "FunctionalityToAmountRelation": "Linear",
-                "UnmetDemandToAmountRelation": "Linear"
+                "UnmetDemandToAmountRelation": "Constant"
             }
         },
         "OperationDemand": {
@@ -611,7 +626,10 @@
         }
     },
     "DS4_Building": {
-        "ComponentClass": {"FileName": "r2d_component", "ClassName": "R2DBuilding"},
+        "ComponentClass": {
+            "FileName": "r2d_component",
+            "ClassName": "R2DBuilding"
+        },
         "RecoveryModel": {
             "FileName": "component_level_recovery_activities_model",
             "ClassName": "ComponentLevelRecoveryActivitiesModel",
@@ -765,17 +783,17 @@
             "FunctionalHousing": {
                 "Amount": 0,
                 "FunctionalityToAmountRelation": "Linear",
-                "UnmetDemandToAmountRelation": "Linear"
+                "UnmetDemandToAmountRelation": "Constant"
             },
             "Employee": {
                 "Amount": 0,
                 "FunctionalityToAmountRelation": "Linear",
-                "UnmetDemandToAmountRelation": "Linear"
+                "UnmetDemandToAmountRelation": "Constant"
             },
             "InputCommodity": {
                 "Amount": 0,
                 "FunctionalityToAmountRelation": "Linear",
-                "UnmetDemandToAmountRelation": "Linear"
+                "UnmetDemandToAmountRelation": "Constant"
             }
         },
         "OperationDemand": {
@@ -811,7 +829,10 @@
         }
     },
     "DS0_BuildingWithBusiness": {
-        "ComponentClass": {"FileName": "r2d_component", "ClassName": "R2DBuildingWithBusiness"},
+        "ComponentClass": {
+            "FileName": "r2d_component",
+            "ClassName": "R2DBuildingWithBusiness"
+        },
         "RecoveryModel": {
             "FileName": "no_recovery_activity_model",
             "ClassName": "NoRecoveryActivityModel",
@@ -829,17 +850,17 @@
             "FunctionalHousing": {
                 "Amount": 0,
                 "FunctionalityToAmountRelation": "Linear",
-                "UnmetDemandToAmountRelation": "Linear"
+                "UnmetDemandToAmountRelation": "Constant"
             },
             "Employee": {
                 "Amount": 0,
                 "FunctionalityToAmountRelation": "Linear",
-                "UnmetDemandToAmountRelation": "Linear"
+                "UnmetDemandToAmountRelation": "Constant"
             },
             "InputCommodity": {
                 "Amount": 0,
                 "FunctionalityToAmountRelation": "Linear",
-                "UnmetDemandToAmountRelation": "Linear"
+                "UnmetDemandToAmountRelation": "Constant"
             }
         },
         "OperationDemand": {
@@ -874,7 +895,10 @@
         }
     },
     "DS1_BuildingWithBusiness": {
-        "ComponentClass": {"FileName": "r2d_component", "ClassName": "R2DBuildingWithBusiness"},
+        "ComponentClass": {
+            "FileName": "r2d_component",
+            "ClassName": "R2DBuildingWithBusiness"
+        },
         "RecoveryModel": {
             "FileName": "component_level_recovery_activities_model",
             "ClassName": "ComponentLevelRecoveryActivitiesModel",
@@ -925,17 +949,17 @@
             "FunctionalHousing": {
                 "Amount": 0,
                 "FunctionalityToAmountRelation": "Linear",
-                "UnmetDemandToAmountRelation": "Linear"
+                "UnmetDemandToAmountRelation": "Constant"
             },
             "Employee": {
                 "Amount": 0,
                 "FunctionalityToAmountRelation": "Linear",
-                "UnmetDemandToAmountRelation": "Linear"
+                "UnmetDemandToAmountRelation": "Constant"
             },
             "InputCommodity": {
                 "Amount": 0,
                 "FunctionalityToAmountRelation": "Linear",
-                "UnmetDemandToAmountRelation": "Linear"
+                "UnmetDemandToAmountRelation": "Constant"
             }
         },
         "OperationDemand": {
@@ -971,7 +995,10 @@
         }
     },
     "DS2_BuildingWithBusiness": {
-        "ComponentClass": {"FileName": "r2d_component", "ClassName": "R2DBuildingWithBusiness"},
+        "ComponentClass": {
+            "FileName": "r2d_component",
+            "ClassName": "R2DBuildingWithBusiness"
+        },
         "RecoveryModel": {
             "FileName": "component_level_recovery_activities_model",
             "ClassName": "ComponentLevelRecoveryActivitiesModel",
@@ -1112,17 +1139,17 @@
             "FunctionalHousing": {
                 "Amount": 0,
                 "FunctionalityToAmountRelation": "Linear",
-                "UnmetDemandToAmountRelation": "Linear"
+                "UnmetDemandToAmountRelation": "Constant"
             },
             "Employee": {
                 "Amount": 0,
                 "FunctionalityToAmountRelation": "Linear",
-                "UnmetDemandToAmountRelation": "Linear"
+                "UnmetDemandToAmountRelation": "Constant"
             },
             "InputCommodity": {
                 "Amount": 0,
                 "FunctionalityToAmountRelation": "Linear",
-                "UnmetDemandToAmountRelation": "Linear"
+                "UnmetDemandToAmountRelation": "Constant"
             }
         },
         "OperationDemand": {
@@ -1158,7 +1185,10 @@
         }
     },
     "DS3_BuildingWithBusiness": {
-        "ComponentClass": {"FileName": "r2d_component", "ClassName": "R2DBuildingWithBusiness"},
+        "ComponentClass": {
+            "FileName": "r2d_component",
+            "ClassName": "R2DBuildingWithBusiness"
+        },
         "RecoveryModel": {
             "FileName": "component_level_recovery_activities_model",
             "ClassName": "ComponentLevelRecoveryActivitiesModel",
@@ -1315,17 +1345,17 @@
             "FunctionalHousing": {
                 "Amount": 0,
                 "FunctionalityToAmountRelation": "Linear",
-                "UnmetDemandToAmountRelation": "Linear"
+                "UnmetDemandToAmountRelation": "Constant"
             },
             "Employee": {
                 "Amount": 0,
                 "FunctionalityToAmountRelation": "Linear",
-                "UnmetDemandToAmountRelation": "Linear"
+                "UnmetDemandToAmountRelation": "Constant"
             },
             "InputCommodity": {
                 "Amount": 0,
                 "FunctionalityToAmountRelation": "Linear",
-                "UnmetDemandToAmountRelation": "Linear"
+                "UnmetDemandToAmountRelation": "Constant"
             }
         },
         "OperationDemand": {
@@ -1361,7 +1391,10 @@
         }
     },
     "DS4_BuildingWithBusiness": {
-        "ComponentClass": {"FileName": "r2d_component", "ClassName": "R2DBuildingWithBusiness"},
+        "ComponentClass": {
+            "FileName": "r2d_component",
+            "ClassName": "R2DBuildingWithBusiness"
+        },
         "RecoveryModel": {
             "FileName": "component_level_recovery_activities_model",
             "ClassName": "ComponentLevelRecoveryActivitiesModel",
@@ -1515,17 +1548,17 @@
             "FunctionalHousing": {
                 "Amount": 0,
                 "FunctionalityToAmountRelation": "Linear",
-                "UnmetDemandToAmountRelation": "Linear"
+                "UnmetDemandToAmountRelation": "Constant"
             },
             "Employee": {
                 "Amount": 0,
                 "FunctionalityToAmountRelation": "Linear",
-                "UnmetDemandToAmountRelation": "Linear"
+                "UnmetDemandToAmountRelation": "Constant"
             },
             "InputCommodity": {
                 "Amount": 0,
                 "FunctionalityToAmountRelation": "Linear",
-                "UnmetDemandToAmountRelation": "Linear"
+                "UnmetDemandToAmountRelation": "Constant"
             }
         },
         "OperationDemand": {
@@ -1561,7 +1594,10 @@
         }
     },
     "DS0_BuildingSimplerRecovery": {
-        "ComponentClass": {"FileName": "r2d_component", "ClassName": "R2DBuilding"},
+        "ComponentClass": {
+            "FileName": "r2d_component",
+            "ClassName": "R2DBuilding"
+        },
         "RecoveryModel": {
             "FileName": "no_recovery_activity_model",
             "ClassName": "NoRecoveryActivityModel",
@@ -1579,17 +1615,17 @@
             "FunctionalHousing": {
                 "Amount": 0,
                 "FunctionalityToAmountRelation": "Linear",
-                "UnmetDemandToAmountRelation": "Linear"
+                "UnmetDemandToAmountRelation": "Constant"
             },
             "Employee": {
                 "Amount": 0,
                 "FunctionalityToAmountRelation": "Linear",
-                "UnmetDemandToAmountRelation": "Linear"
+                "UnmetDemandToAmountRelation": "Constant"
             },
             "InputCommodity": {
                 "Amount": 0,
                 "FunctionalityToAmountRelation": "Linear",
-                "UnmetDemandToAmountRelation": "Linear"
+                "UnmetDemandToAmountRelation": "Constant"
             }
         },
         "OperationDemand": {
@@ -1625,7 +1661,10 @@
         }
     },
     "DS1_BuildingSimplerRecovery": {
-        "ComponentClass": {"FileName": "r2d_component", "ClassName": "R2DBuilding"},
+        "ComponentClass": {
+            "FileName": "r2d_component",
+            "ClassName": "R2DBuilding"
+        },
         "RecoveryModel": {
             "FileName": "component_level_recovery_activities_model",
             "ClassName": "ComponentLevelRecoveryActivitiesModel",
@@ -1637,10 +1676,8 @@
                             "Dispersion": 0.2
                         }
                     },
-                    "Demand": [
-                    ],
-                    "PrecedingActivities": [
-                    ]
+                    "Demand": [],
+                    "PrecedingActivities": []
                 }
             },
             "DamageFunctionalityRelation": {
@@ -1656,17 +1693,17 @@
             "FunctionalHousing": {
                 "Amount": 0,
                 "FunctionalityToAmountRelation": "Linear",
-                "UnmetDemandToAmountRelation": "Linear"
+                "UnmetDemandToAmountRelation": "Constant"
             },
             "Employee": {
                 "Amount": 0,
                 "FunctionalityToAmountRelation": "Linear",
-                "UnmetDemandToAmountRelation": "Linear"
+                "UnmetDemandToAmountRelation": "Constant"
             },
             "InputCommodity": {
                 "Amount": 0,
                 "FunctionalityToAmountRelation": "Linear",
-                "UnmetDemandToAmountRelation": "Linear"
+                "UnmetDemandToAmountRelation": "Constant"
             }
         },
         "OperationDemand": {
@@ -1702,7 +1739,10 @@
         }
     },
     "DS2_BuildingSimplerRecovery": {
-        "ComponentClass": {"FileName": "r2d_component", "ClassName": "R2DBuilding"},
+        "ComponentClass": {
+            "FileName": "r2d_component",
+            "ClassName": "R2DBuilding"
+        },
         "RecoveryModel": {
             "FileName": "component_level_recovery_activities_model",
             "ClassName": "ComponentLevelRecoveryActivitiesModel",
@@ -1714,10 +1754,8 @@
                             "Dispersion": 0.2
                         }
                     },
-                    "Demand": [
-                    ],
-                    "PrecedingActivities": [
-                    ]
+                    "Demand": [],
+                    "PrecedingActivities": []
                 }
             },
             "DamageFunctionalityRelation": {
@@ -1733,17 +1771,17 @@
             "FunctionalHousing": {
                 "Amount": 0,
                 "FunctionalityToAmountRelation": "Linear",
-                "UnmetDemandToAmountRelation": "Linear"
+                "UnmetDemandToAmountRelation": "Constant"
             },
             "Employee": {
                 "Amount": 0,
                 "FunctionalityToAmountRelation": "Linear",
-                "UnmetDemandToAmountRelation": "Linear"
+                "UnmetDemandToAmountRelation": "Constant"
             },
             "InputCommodity": {
                 "Amount": 0,
                 "FunctionalityToAmountRelation": "Linear",
-                "UnmetDemandToAmountRelation": "Linear"
+                "UnmetDemandToAmountRelation": "Constant"
             }
         },
         "OperationDemand": {
@@ -1779,7 +1817,10 @@
         }
     },
     "DS3_BuildingSimplerRecovery": {
-        "ComponentClass": {"FileName": "r2d_component", "ClassName": "R2DBuilding"},
+        "ComponentClass": {
+            "FileName": "r2d_component",
+            "ClassName": "R2DBuilding"
+        },
         "RecoveryModel": {
             "FileName": "component_level_recovery_activities_model",
             "ClassName": "ComponentLevelRecoveryActivitiesModel",
@@ -1791,10 +1832,8 @@
                             "Dispersion": 0.2
                         }
                     },
-                    "Demand": [
-                    ],
-                    "PrecedingActivities": [
-                    ]
+                    "Demand": [],
+                    "PrecedingActivities": []
                 }
             },
             "DamageFunctionalityRelation": {
@@ -1810,17 +1849,17 @@
             "FunctionalHousing": {
                 "Amount": 0,
                 "FunctionalityToAmountRelation": "Linear",
-                "UnmetDemandToAmountRelation": "Linear"
+                "UnmetDemandToAmountRelation": "Constant"
             },
             "Employee": {
                 "Amount": 0,
                 "FunctionalityToAmountRelation": "Linear",
-                "UnmetDemandToAmountRelation": "Linear"
+                "UnmetDemandToAmountRelation": "Constant"
             },
             "InputCommodity": {
                 "Amount": 0,
                 "FunctionalityToAmountRelation": "Linear",
-                "UnmetDemandToAmountRelation": "Linear"
+                "UnmetDemandToAmountRelation": "Constant"
             }
         },
         "OperationDemand": {
@@ -1856,7 +1895,10 @@
         }
     },
     "DS4_BuildingSimplerRecovery": {
-        "ComponentClass": {"FileName": "r2d_component", "ClassName": "R2DBuilding"},
+        "ComponentClass": {
+            "FileName": "r2d_component",
+            "ClassName": "R2DBuilding"
+        },
         "RecoveryModel": {
             "FileName": "component_level_recovery_activities_model",
             "ClassName": "ComponentLevelRecoveryActivitiesModel",
@@ -1868,10 +1910,8 @@
                             "Dispersion": 0.2
                         }
                     },
-                    "Demand": [
-                    ],
-                    "PrecedingActivities": [
-                    ]
+                    "Demand": [],
+                    "PrecedingActivities": []
                 }
             },
             "DamageFunctionalityRelation": {
@@ -1887,17 +1927,17 @@
             "FunctionalHousing": {
                 "Amount": 0,
                 "FunctionalityToAmountRelation": "Linear",
-                "UnmetDemandToAmountRelation": "Linear"
+                "UnmetDemandToAmountRelation": "Constant"
             },
             "Employee": {
                 "Amount": 0,
                 "FunctionalityToAmountRelation": "Linear",
-                "UnmetDemandToAmountRelation": "Linear"
+                "UnmetDemandToAmountRelation": "Constant"
             },
             "InputCommodity": {
                 "Amount": 0,
                 "FunctionalityToAmountRelation": "Linear",
-                "UnmetDemandToAmountRelation": "Linear"
+                "UnmetDemandToAmountRelation": "Constant"
             }
         },
         "OperationDemand": {
@@ -1933,7 +1973,10 @@
         }
     },
     "DS0_Bridge": {
-        "ComponentClass": {"FileName": "r2d_component", "ClassName": "R2DBridge"},
+        "ComponentClass": {
+            "FileName": "r2d_component",
+            "ClassName": "R2DBridge"
+        },
         "RecoveryModel": {
             "FileName": "no_recovery_activity_model",
             "ClassName": "NoRecoveryActivityModel",
@@ -1951,48 +1994,19 @@
         }
     },
     "DS1_Bridge": {
-        "ComponentClass": {"FileName": "r2d_component", "ClassName": "R2DBridge"},
+        "ComponentClass": {
+            "FileName": "r2d_component",
+            "ClassName": "R2DBridge"
+        },
         "RecoveryModel": {
             "FileName": "component_level_recovery_activities_model",
             "ClassName": "ComponentLevelRecoveryActivitiesModel",
             "Parameters": {
-                "DetailedInspection": {
-                    "Duration": {
-                        "Lognormal": {
-                            "Median": 1,
-                            "Dispersion": 0.0
-                        }
-                    },
-                    "Demand": [
-                        {
-                            "Resource": "FirstResponderEngineer",
-                            "Amount": 2
-                        }
-                    ],
-                    "PrecedingActivities": []
-                },
-                "Financing": {
-                    "Duration": {
-                        "Lognormal": {
-                            "Median": 2,
-                            "Dispersion": 0.2
-                        }
-                    },
-                    "Demand": [
-                        {
-                            "Resource": "Money",
-                            "Amount": 0.0
-                        }
-                    ],
-                    "PrecedingActivities": [
-                        "DetailedInspection"
-                    ]
-                },
                 "Repair": {
                     "Duration": {
                         "Lognormal": {
                             "Median": 1,
-                            "Dispersion": 0.2
+                            "Dispersion": 0
                         }
                     },
                     "Demand": [
@@ -2001,7 +2015,8 @@
                             "Amount": 0
                         }
                     ],
-                    "PrecedingActivities": ["DetailedInspection", "Financing"]
+                    "PrecedingActivities": [
+                    ]
                 }
             },
             "DamageFunctionalityRelation": {
@@ -2017,48 +2032,19 @@
         }
     },
     "DS2_Bridge": {
-        "ComponentClass": {"FileName": "r2d_component", "ClassName": "R2DBridge"},
+        "ComponentClass": {
+            "FileName": "r2d_component",
+            "ClassName": "R2DBridge"
+        },
         "RecoveryModel": {
             "FileName": "component_level_recovery_activities_model",
             "ClassName": "ComponentLevelRecoveryActivitiesModel",
             "Parameters": {
-                "DetailedInspection": {
-                    "Duration": {
-                        "Lognormal": {
-                            "Median": 1,
-                            "Dispersion": 0.0
-                        }
-                    },
-                    "Demand": [
-                        {
-                            "Resource": "FirstResponderEngineer",
-                            "Amount": 2
-                        }
-                    ],
-                    "PrecedingActivities": []
-                },
-                "Financing": {
-                    "Duration": {
-                        "Lognormal": {
-                            "Median": 2,
-                            "Dispersion": 0.2
-                        }
-                    },
-                    "Demand": [
-                        {
-                            "Resource": "Money",
-                            "Amount": 0.0
-                        }
-                    ],
-                    "PrecedingActivities": [
-                        "DetailedInspection"
-                    ]
-                },
                 "Repair": {
                     "Duration": {
-                        "Lognormal": {
-                            "Median": 1,
-                            "Dispersion": 0.2
+                        "Normal": {
+                            "Mean": 1,
+                            "StandardDeviation": 0
                         }
                     },
                     "Demand": [
@@ -2067,7 +2053,8 @@
                             "Amount": 0
                         }
                     ],
-                    "PrecedingActivities": ["DetailedInspection", "Financing"]
+                    "PrecedingActivities": [
+                    ]
                 }
             },
             "DamageFunctionalityRelation": {
@@ -2083,48 +2070,19 @@
         }
     },
     "DS3_Bridge": {
-        "ComponentClass": {"FileName": "r2d_component", "ClassName": "R2DBridge"},
+        "ComponentClass": {
+            "FileName": "r2d_component",
+            "ClassName": "R2DBridge"
+        },
         "RecoveryModel": {
             "FileName": "component_level_recovery_activities_model",
             "ClassName": "ComponentLevelRecoveryActivitiesModel",
             "Parameters": {
-                "DetailedInspection": {
-                    "Duration": {
-                        "Lognormal": {
-                            "Median": 1,
-                            "Dispersion": 0.0
-                        }
-                    },
-                    "Demand": [
-                        {
-                            "Resource": "FirstResponderEngineer",
-                            "Amount": 2
-                        }
-                    ],
-                    "PrecedingActivities": []
-                },
-                "Financing": {
-                    "Duration": {
-                        "Lognormal": {
-                            "Median": 6,
-                            "Dispersion": 0.2
-                        }
-                    },
-                    "Demand": [
-                        {
-                            "Resource": "Money",
-                            "Amount": 0.0
-                        }
-                    ],
-                    "PrecedingActivities": [
-                        "DetailedInspection"
-                    ]
-                },
                 "Repair": {
                     "Duration": {
-                        "Lognormal": {
-                            "Median": 11,
-                            "Dispersion": 0.2
+                        "Normal": {
+                            "Mean": 11,
+                            "StandardDeviation": 6
                         }
                     },
                     "Demand": [
@@ -2133,7 +2091,8 @@
                             "Amount": 0
                         }
                     ],
-                    "PrecedingActivities": ["DetailedInspection", "Financing"]
+                    "PrecedingActivities": [
+                    ]
                 }
             },
             "DamageFunctionalityRelation": {
@@ -2149,48 +2108,19 @@
         }
     },
     "DS4_Bridge": {
-        "ComponentClass": {"FileName": "r2d_component", "ClassName": "R2DBridge"},
+        "ComponentClass": {
+            "FileName": "r2d_component",
+            "ClassName": "R2DBridge"
+        },
         "RecoveryModel": {
             "FileName": "component_level_recovery_activities_model",
             "ClassName": "ComponentLevelRecoveryActivitiesModel",
             "Parameters": {
-                "DetailedInspection": {
-                    "Duration": {
-                        "Lognormal": {
-                            "Median": 1,
-                            "Dispersion": 0.0
-                        }
-                    },
-                    "Demand": [
-                        {
-                            "Resource": "FirstResponderEngineer",
-                            "Amount": 2
-                        }
-                    ],
-                    "PrecedingActivities": []
-                },
-                "Financing": {
-                    "Duration": {
-                        "Lognormal": {
-                            "Median": 6,
-                            "Dispersion": 0.2
-                        }
-                    },
-                    "Demand": [
-                        {
-                            "Resource": "Money",
-                            "Amount": 0.0
-                        }
-                    ],
-                    "PrecedingActivities": [
-                        "DetailedInspection"
-                    ]
-                },
                 "Repair": {
                     "Duration": {
-                        "Lognormal": {
-                            "Median": 32,
-                            "Dispersion": 0.2
+                        "Normal": {
+                            "Mean": 32,
+                            "StandardDeviation": 16
                         }
                     },
                     "Demand": [
@@ -2199,7 +2129,8 @@
                             "Amount": 0
                         }
                     ],
-                    "PrecedingActivities": ["DetailedInspection", "Financing"]
+                    "PrecedingActivities": [
+                    ]
                 }
             },
             "DamageFunctionalityRelation": {
@@ -2215,7 +2146,10 @@
         }
     },
     "DS0_Tunnel": {
-        "ComponentClass": {"FileName": "r2d_component", "ClassName": "R2DTunnel"},
+        "ComponentClass": {
+            "FileName": "r2d_component",
+            "ClassName": "R2DTunnel"
+        },
         "RecoveryModel": {
             "FileName": "no_recovery_activity_model",
             "ClassName": "NoRecoveryActivityModel",
@@ -2233,48 +2167,19 @@
         }
     },
     "DS1_Tunnel": {
-        "ComponentClass": {"FileName": "r2d_component", "ClassName": "R2DTunnel"},
+        "ComponentClass": {
+            "FileName": "r2d_component",
+            "ClassName": "R2DTunnel"
+        },
         "RecoveryModel": {
             "FileName": "component_level_recovery_activities_model",
             "ClassName": "ComponentLevelRecoveryActivitiesModel",
             "Parameters": {
-                "DetailedInspection": {
-                    "Duration": {
-                        "Lognormal": {
-                            "Median": 1,
-                            "Dispersion": 0.0
-                        }
-                    },
-                    "Demand": [
-                        {
-                            "Resource": "FirstResponderEngineer",
-                            "Amount": 2
-                        }
-                    ],
-                    "PrecedingActivities": []
-                },
-                "Financing": {
-                    "Duration": {
-                        "Lognormal": {
-                            "Median": 2,
-                            "Dispersion": 0.2
-                        }
-                    },
-                    "Demand": [
-                        {
-                            "Resource": "Money",
-                            "Amount": 0.0
-                        }
-                    ],
-                    "PrecedingActivities": [
-                        "DetailedInspection"
-                    ]
-                },
                 "Repair": {
                     "Duration": {
-                        "Lognormal": {
-                            "Median": 1,
-                            "Dispersion": 0.2
+                        "Normal": {
+                            "Mean": 1,
+                            "StandardDeviation": 0
                         }
                     },
                     "Demand": [
@@ -2283,7 +2188,8 @@
                             "Amount": 0
                         }
                     ],
-                    "PrecedingActivities": ["DetailedInspection", "Financing"]
+                    "PrecedingActivities": [
+                    ]
                 }
             },
             "DamageFunctionalityRelation": {
@@ -2299,48 +2205,19 @@
         }
     },
     "DS2_Tunnel": {
-        "ComponentClass": {"FileName": "r2d_component", "ClassName": "R2DTunnel"},
+        "ComponentClass": {
+            "FileName": "r2d_component",
+            "ClassName": "R2DTunnel"
+        },
         "RecoveryModel": {
             "FileName": "component_level_recovery_activities_model",
             "ClassName": "ComponentLevelRecoveryActivitiesModel",
             "Parameters": {
-                "DetailedInspection": {
-                    "Duration": {
-                        "Lognormal": {
-                            "Median": 1,
-                            "Dispersion": 0.0
-                        }
-                    },
-                    "Demand": [
-                        {
-                            "Resource": "FirstResponderEngineer",
-                            "Amount": 2
-                        }
-                    ],
-                    "PrecedingActivities": []
-                },
-                "Financing": {
-                    "Duration": {
-                        "Lognormal": {
-                            "Median": 3,
-                            "Dispersion": 0.2
-                        }
-                    },
-                    "Demand": [
-                        {
-                            "Resource": "Money",
-                            "Amount": 0.0
-                        }
-                    ],
-                    "PrecedingActivities": [
-                        "DetailedInspection"
-                    ]
-                },
                 "Repair": {
                     "Duration": {
-                        "Lognormal": {
-                            "Median": 1,
-                            "Dispersion": 0.2
+                        "Normal": {
+                            "Mean": 1,
+                            "StandardDeviation": 0
                         }
                     },
                     "Demand": [
@@ -2349,7 +2226,8 @@
                             "Amount": 0
                         }
                     ],
-                    "PrecedingActivities": ["DetailedInspection", "Financing"]
+                    "PrecedingActivities": [
+                    ]
                 }
             },
             "DamageFunctionalityRelation": {
@@ -2365,48 +2243,19 @@
         }
     },
     "DS3_Tunnel": {
-        "ComponentClass": {"FileName": "r2d_component", "ClassName": "R2DTunnel"},
+        "ComponentClass": {
+            "FileName": "r2d_component",
+            "ClassName": "R2DTunnel"
+        },
         "RecoveryModel": {
             "FileName": "component_level_recovery_activities_model",
             "ClassName": "ComponentLevelRecoveryActivitiesModel",
             "Parameters": {
-                "DetailedInspection": {
-                    "Duration": {
-                        "Lognormal": {
-                            "Median": 1,
-                            "Dispersion": 0.0
-                        }
-                    },
-                    "Demand": [
-                        {
-                            "Resource": "FirstResponderEngineer",
-                            "Amount": 2
-                        }
-                    ],
-                    "PrecedingActivities": []
-                },
-                "Financing": {
-                    "Duration": {
-                        "Lognormal": {
-                            "Median": 6,
-                            "Dispersion": 0.2
-                        }
-                    },
-                    "Demand": [
-                        {
-                            "Resource": "Money",
-                            "Amount": 0.0
-                        }
-                    ],
-                    "PrecedingActivities": [
-                        "DetailedInspection"
-                    ]
-                },
                 "Repair": {
                     "Duration": {
-                        "Lognormal": {
-                            "Median": 7,
-                            "Dispersion": 0.2
+                        "Normal": {
+                            "Mean": 7,
+                            "StandardDeviation": 4
                         }
                     },
                     "Demand": [
@@ -2415,7 +2264,8 @@
                             "Amount": 0
                         }
                     ],
-                    "PrecedingActivities": ["DetailedInspection", "Financing"]
+                    "PrecedingActivities": [
+                    ]
                 }
             },
             "DamageFunctionalityRelation": {
@@ -2431,48 +2281,19 @@
         }
     },
     "DS4_Tunnel": {
-        "ComponentClass": {"FileName": "r2d_component", "ClassName": "R2DTunnel"},
+        "ComponentClass": {
+            "FileName": "r2d_component",
+            "ClassName": "R2DTunnel"
+        },
         "RecoveryModel": {
             "FileName": "component_level_recovery_activities_model",
             "ClassName": "ComponentLevelRecoveryActivitiesModel",
             "Parameters": {
-                "DetailedInspection": {
-                    "Duration": {
-                        "Lognormal": {
-                            "Median": 1,
-                            "Dispersion": 0.0
-                        }
-                    },
-                    "Demand": [
-                        {
-                            "Resource": "FirstResponderEngineer",
-                            "Amount": 2
-                        }
-                    ],
-                    "PrecedingActivities": []
-                },
-                "Financing": {
-                    "Duration": {
-                        "Lognormal": {
-                            "Median": 6,
-                            "Dispersion": 0.2
-                        }
-                    },
-                    "Demand": [
-                        {
-                            "Resource": "Money",
-                            "Amount": 0.0
-                        }
-                    ],
-                    "PrecedingActivities": [
-                        "DetailedInspection"
-                    ]
-                },
                 "Repair": {
                     "Duration": {
-                        "Lognormal": {
-                            "Median": 30,
-                            "Dispersion": 0.2
+                        "Normal": {
+                            "Mean": 30,
+                            "StandardDeviation": 15
                         }
                     },
                     "Demand": [
@@ -2481,7 +2302,7 @@
                             "Amount": 0
                         }
                     ],
-                    "PrecedingActivities": ["DetailedInspection", "Financing"]
+                    "PrecedingActivities": []
                 }
             },
             "DamageFunctionalityRelation": {
@@ -2497,7 +2318,10 @@
         }
     },
     "DS0_Roadway": {
-        "ComponentClass": {"FileName": "r2d_component", "ClassName": "R2DRoadway"},
+        "ComponentClass": {
+            "FileName": "r2d_component",
+            "ClassName": "R2DRoadway"
+        },
         "RecoveryModel": {
             "FileName": "no_recovery_activity_model",
             "ClassName": "NoRecoveryActivityModel",
@@ -2515,31 +2339,19 @@
         }
     },
     "DS1_Roadway": {
-        "ComponentClass": {"FileName": "r2d_component", "ClassName": "R2DRoadway"},
+        "ComponentClass": {
+            "FileName": "r2d_component",
+            "ClassName": "R2DRoadway"
+        },
         "RecoveryModel": {
             "FileName": "component_level_recovery_activities_model",
             "ClassName": "ComponentLevelRecoveryActivitiesModel",
             "Parameters": {
-                "DetailedInspection": {
-                    "Duration": {
-                        "Lognormal": {
-                            "Median": 1,
-                            "Dispersion": 0.0
-                        }
-                    },
-                    "Demand": [
-                        {
-                            "Resource": "FirstResponderEngineer",
-                            "Amount": 0.5
-                        }
-                    ],
-                    "PrecedingActivities": []
-                },
                 "Repair": {
                     "Duration": {
-                        "Lognormal": {
-                            "Median": 1,
-                            "Dispersion": 0.0
+                        "Normal": {
+                            "Mean": 1,
+                            "StandardDeviation": 0.0
                         }
                     },
                     "Demand": [
@@ -2548,7 +2360,7 @@
                             "Amount": 0
                         }
                     ],
-                    "PrecedingActivities": ["DetailedInspection"]
+                    "PrecedingActivities": []
                 }
             },
             "DamageFunctionalityRelation": {
@@ -2564,31 +2376,19 @@
         }
     },
     "DS2_Roadway": {
-        "ComponentClass": {"FileName": "r2d_component", "ClassName": "R2DRoadway"},
+        "ComponentClass": {
+            "FileName": "r2d_component",
+            "ClassName": "R2DRoadway"
+        },
         "RecoveryModel": {
             "FileName": "component_level_recovery_activities_model",
             "ClassName": "ComponentLevelRecoveryActivitiesModel",
             "Parameters": {
-                "DetailedInspection": {
-                    "Duration": {
-                        "Lognormal": {
-                            "Median": 1,
-                            "Dispersion": 0.0
-                        }
-                    },
-                    "Demand": [
-                        {
-                            "Resource": "FirstResponderEngineer",
-                            "Amount": 0.5
-                        }
-                    ],
-                    "PrecedingActivities": []
-                },
                 "Repair": {
                     "Duration": {
-                        "Lognormal": {
-                            "Median": 1,
-                            "Dispersion": 0.2
+                        "Normal": {
+                            "Mean": 1,
+                            "StandardDeviation": 0
                         }
                     },
                     "Demand": [
@@ -2597,7 +2397,8 @@
                             "Amount": 0
                         }
                     ],
-                    "PrecedingActivities": ["DetailedInspection"]
+                    "PrecedingActivities": [
+                    ]
                 }
             },
             "DamageFunctionalityRelation": {
@@ -2613,31 +2414,19 @@
         }
     },
     "DS3_Roadway": {
-        "ComponentClass": {"FileName": "r2d_component", "ClassName": "R2DRoadway"},
+        "ComponentClass": {
+            "FileName": "r2d_component",
+            "ClassName": "R2DRoadway"
+        },
         "RecoveryModel": {
             "FileName": "component_level_recovery_activities_model",
             "ClassName": "ComponentLevelRecoveryActivitiesModel",
             "Parameters": {
-                "DetailedInspection": {
-                    "Duration": {
-                        "Lognormal": {
-                            "Median": 1,
-                            "Dispersion": 0.0
-                        }
-                    },
-                    "Demand": [
-                        {
-                            "Resource": "FirstResponderEngineer",
-                            "Amount": 0.5
-                        }
-                    ],
-                    "PrecedingActivities": []
-                },
                 "Repair": {
                     "Duration": {
-                        "Lognormal": {
-                            "Median": 3,
-                            "Dispersion": 0.2
+                        "Normal": {
+                            "Mean": 3,
+                            "StandardDeviation": 2
                         }
                     },
                     "Demand": [
@@ -2646,7 +2435,8 @@
                             "Amount": 0
                         }
                     ],
-                    "PrecedingActivities": ["DetailedInspection"]
+                    "PrecedingActivities": [
+                    ]
                 }
             },
             "DamageFunctionalityRelation": {
@@ -2662,31 +2452,19 @@
         }
     },
     "DS4_Roadway": {
-        "ComponentClass": {"FileName": "r2d_component", "ClassName": "R2DRoadway"},
+        "ComponentClass": {
+            "FileName": "r2d_component",
+            "ClassName": "R2DRoadway"
+        },
         "RecoveryModel": {
             "FileName": "component_level_recovery_activities_model",
             "ClassName": "ComponentLevelRecoveryActivitiesModel",
             "Parameters": {
-                "DetailedInspection": {
-                    "Duration": {
-                        "Lognormal": {
-                            "Median": 1,
-                            "Dispersion": 0.0
-                        }
-                    },
-                    "Demand": [
-                        {
-                            "Resource": "FirstResponderEngineer",
-                            "Amount": 0.5
-                        }
-                    ],
-                    "PrecedingActivities": []
-                },
                 "Repair": {
                     "Duration": {
-                        "Lognormal": {
-                            "Median": 3,
-                            "Dispersion": 0.2
+                        "Normal": {
+                            "Mean": 3,
+                            "StandardDeviation": 2
                         }
                     },
                     "Demand": [
@@ -2695,7 +2473,8 @@
                             "Amount": 0.0
                         }
                     ],
-                    "PrecedingActivities": ["DetailedInspection"]
+                    "PrecedingActivities": [
+                    ]
                 }
             },
             "DamageFunctionalityRelation": {
@@ -2711,12 +2490,14 @@
         }
     },
     "DS0_Pipe": {
-        "ComponentClass": {"FileName": "r2d_component", "ClassName": "R2DPipe"},
+        "ComponentClass": {
+            "FileName": "r2d_component",
+            "ClassName": "R2DPipe"
+        },
         "RecoveryModel": {
             "FileName": "no_recovery_activity_model",
             "ClassName": "NoRecoveryActivityModel",
-            "Parameters": {
-            },
+            "Parameters": {},
             "DamageFunctionalityRelation": {
                 "Type": "Constant"
             }
@@ -2730,30 +2511,18 @@
         }
     },
     "DS1_Pipe": {
-        "ComponentClass": {"FileName": "r2d_component", "ClassName": "R2DPipe"},
+        "ComponentClass": {
+            "FileName": "r2d_component",
+            "ClassName": "R2DPipe"
+        },
         "RecoveryModel": {
             "FileName": "component_level_recovery_activities_model",
             "ClassName": "ComponentLevelRecoveryActivitiesModel",
             "Parameters": {
-                "Inspection": {
-                    "Duration": {
-                        "Lognormal": {
-                            "Median": 1,
-                            "Dispersion": 0.0
-                        }
-                    },
-                    "Demand": [
-                        {
-                            "Resource": "FirstResponderEngineer",
-                            "Amount": 0.0
-                        }
-                    ],
-                    "PrecedingActivities": []
-                },
                 "Repair": {
                     "Duration": {
                         "Lognormal": {
-                            "Median": 2,
+                            "Median": 1,
                             "Dispersion": 0.2
                         }
                     },
@@ -2764,7 +2533,6 @@
                         }
                     ],
                     "PrecedingActivities": [
-                        "Inspection"
                     ]
                 }
             },
@@ -2781,30 +2549,18 @@
         }
     },
     "DS2_Pipe": {
-        "ComponentClass": {"FileName": "r2d_component", "ClassName": "R2DPipe"},
+        "ComponentClass": {
+            "FileName": "r2d_component",
+            "ClassName": "R2DPipe"
+        },
         "RecoveryModel": {
             "FileName": "component_level_recovery_activities_model",
             "ClassName": "ComponentLevelRecoveryActivitiesModel",
             "Parameters": {
-                "Inspection": {
-                    "Duration": {
-                        "Lognormal": {
-                            "Median": 1,
-                            "Dispersion": 0.0
-                        }
-                    },
-                    "Demand": [
-                        {
-                            "Resource": "FirstResponderEngineer",
-                            "Amount": 0.0
-                        }
-                    ],
-                    "PrecedingActivities": []
-                },
                 "Repair": {
                     "Duration": {
                         "Lognormal": {
-                            "Median": 3,
+                            "Median": 2,
                             "Dispersion": 0.2
                         }
                     },
@@ -2815,7 +2571,6 @@
                         }
                     ],
                     "PrecedingActivities": [
-                        "Inspection"
                     ]
                 }
             },
