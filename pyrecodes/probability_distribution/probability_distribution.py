@@ -41,3 +41,16 @@ class Lognormal(Distribution):
     def sample(self) -> float:
         mean_normal = math.log(self.median)
         return np.random.lognormal(mean_normal, self.dispersion)
+    
+
+class Normal(Distribution):
+
+    def __init__(self, parameters: dict):
+        self.set_parameters(parameters)
+
+    def set_parameters(self, parameters: dict) -> None:
+        self.mean = parameters['Mean']
+        self.dispersion = parameters['StandardDeviation']
+
+    def sample(self) -> float:
+        return np.random.normal(self.mean, self.dispersion)
