@@ -305,14 +305,3 @@ class BuiltEnvironment(System):
         self.resilience_calculators = data['resilience_calculators']
         return self
     
-
-class BuiltEnvironmentWithBusinesses(BuiltEnvironment):
-
-    def create_system(self):
-        super().create_system()
-        self.map_buildings_to_businesses()
-
-    def map_buildings_to_businesses(self):
-        for component in self.components:
-            if isinstance(component, R2DBuildingWithBusiness):
-                component.map_buildings_to_businesses(self.components)
