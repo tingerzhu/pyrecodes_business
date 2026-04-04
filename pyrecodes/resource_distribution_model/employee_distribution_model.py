@@ -10,28 +10,30 @@ class EmployeeDistributionModel(AbstractResourceDistributionModel):
   
     components: list[Component]
     resource_name: str
-    transfer_service_distribution_model: ResourceDistributionModel
+    transfer_service_distribution_models: list[ResourceDistributionModel]
 
     def __init__(self, resource_name: str, resource_parameters: dict, components: list[Component]):
         self.constructor = EmployeeDistributionModelConstructor()
         self.constructor.construct(resource_name, resource_parameters, components, self)
+        self.transfer_service_distribution_models = []
 
     def set_transfer_service_distribution_model(self, transfer_service_distribution_model: ResidualDemandTrafficDistributionModel) -> None:
-        self.transfer_service_distribution_model = transfer_service_distribution_model
-        self.check_employee_trips_in_od_matrix()
+        super().set_transfer_service_distribution_model(transfer_service_distribution_model)
+        if hasattr(transfer_service_distribution_model, 'od_trip_checker'):
+            self.check_employee_trips_in_od_matrix(transfer_service_distribution_model)
 
-    def check_employee_trips_in_od_matrix(self) -> None:
+    def check_employee_trips_in_od_matrix(self, traffic_model) -> None:
         for component in self.components:
             if isinstance(component, R2DBuildingWithBusiness):
                 for business in component.businesses:
-                    business.check_employee_trips_in_od_matrix(self.transfer_service_distribution_model)
+                    business.check_employee_trips_in_od_matrix(traffic_model)
 
     def distribute(self, time_step: int) -> None:
         if self.distribute_at_this_time_step(time_step):
             for component in self.components:
                 if isinstance(component, R2DBuildingWithBusiness):
                     for business in component.businesses:
-                        business.check_employees(time_step, self.transfer_service_distribution_model)
+                        business.check_employees(time_step, self.transfer_service_distribution_models)
                                     
     def get_total_supply(self, scope='All') -> float:
         components_to_include = self.get_scope(scope)

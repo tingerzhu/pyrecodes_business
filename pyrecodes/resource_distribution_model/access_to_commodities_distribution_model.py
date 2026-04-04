@@ -12,23 +12,23 @@ class AccessToCommoditiesDistributionModel(AbstractResourceDistributionModel):
     """
    
     def set_transfer_service_distribution_model(self, transfer_service_distribution_model: ResidualDemandTrafficDistributionModel) -> None:
-        self.transfer_service_distribution_model = transfer_service_distribution_model
-        self.check_supplier_trips_in_od_matrix()
+        super().set_transfer_service_distribution_model(transfer_service_distribution_model)
+        if hasattr(transfer_service_distribution_model, 'od_trip_checker'):
+            self.check_supplier_trips_in_od_matrix(transfer_service_distribution_model)
 
-    def check_supplier_trips_in_od_matrix(self) -> None:
+    def check_supplier_trips_in_od_matrix(self, traffic_model) -> None:
         for component in self.components:
             if isinstance(component, R2DBuildingWithBusiness):
                 for business in component.businesses:
-                    business.check_supplier_trips_in_od_matrix(self.transfer_service_distribution_model)
+                    business.check_supplier_trips_in_od_matrix(traffic_model)
 
     def distribute(self, time_step: int) -> None:
-        self.update_access_to_suppliers(time_step,
-                                        self.transfer_service_distribution_model)      
+        self.update_access_to_suppliers(time_step, self.transfer_service_distribution_models)
 
-    def update_access_to_suppliers(self, time_step, transfer_service_distribution_model) -> None:
+    def update_access_to_suppliers(self, time_step, transfer_service_models) -> None:
         for component in self.components:
             if isinstance(component, R2DBuildingWithBusiness):
-                component.update_access_of_businesses_to_suppliers(time_step, transfer_service_distribution_model)
+                component.update_access_of_businesses_to_suppliers(time_step, transfer_service_models)
 
     def get_total_supply(self, scope: str) -> float:
         # TODO: implement this

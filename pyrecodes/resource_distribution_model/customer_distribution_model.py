@@ -8,24 +8,13 @@ class CustomerDistributionModel(AbstractResourceDistributionModel):
 
     components: list[Component]
     resource_name: str
-    transfer_service_distribution_model: ResourceDistributionModel
+    transfer_service_distribution_models: list[ResourceDistributionModel]
 
     def __init__(self, resource_name: str, resource_parameters: dict, components: list[Component]):
         self.constructor = CustomerDistributionModelConstructor()
         self.constructor.construct(resource_name, resource_parameters, components, self)
-        self.transfer_service_distribution_model = None
-
-    def set_transfer_service_distribution_model(self, transfer_service_distribution_model) -> None:
-        self.transfer_service_distribution_model = transfer_service_distribution_model
-        self.check_customer_base_outside_island_trips_in_od_matrix()
-
-    def check_customer_base_outside_island_trips_in_od_matrix(self) -> None:
-        for component in self.components:
-            if isinstance(component, R2DBuildingWithBusiness):
-                for business in component.businesses:
-                    business.check_customer_base_outside_island_trips_in_od_matrix(
-                        self.transfer_service_distribution_model)
-
+        self.transfer_service_distribution_models = []
+        
     def distribute(self, time_step: int) -> None:
         if self.distribute_at_this_time_step(time_step):
             current_block_population_ratios = self.update_customer_base_block_population()
@@ -47,7 +36,7 @@ class CustomerDistributionModel(AbstractResourceDistributionModel):
         for component in self.components:
             if isinstance(component, R2DBuildingWithBusiness):
                 component.update_business_customer_base(time_step, current_block_population_ratios,
-                                                        self.transfer_service_distribution_model)
+                                                        self.transfer_service_distribution_models)
     
     def get_total_supply(self, scope='All') -> float:
         components_to_include = self.get_scope(scope)
@@ -55,7 +44,7 @@ class CustomerDistributionModel(AbstractResourceDistributionModel):
         for component in components_to_include:
             if isinstance(component, R2DBuildingWithBusiness):
                 for business in component.businesses:
-                    # TODO: Implement logic to calculate total supply for customers
+                    # TODO: Implement logic to calculate total supply of customers
                     pass
         return total_supply
 
