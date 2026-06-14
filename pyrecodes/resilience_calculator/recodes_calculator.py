@@ -38,7 +38,22 @@ class ReCoDeSCalculator(ResilienceCalculator):
         resources = system.resources
         for resource_name, resource_parameters in resources.items():
             if resource_name in self.resource_names:
-                self.system_supply[resource_name].append(resource_parameters['DistributionModel'].get_total_supply(scope=self.scope))
-                self.system_demand[resource_name].append(resource_parameters['DistributionModel'].get_total_demand(scope=self.scope))
-                self.system_consumption[resource_name].append(
-                    resource_parameters['DistributionModel'].get_total_consumption(scope=self.scope))
+                model = resource_parameters['DistributionModel']
+                # Resources with sparse DistributionTimeStepping (e.g. water distributed every few
+                # steps) only have a meaningful supply/demand/consumption on the steps they are
+                # actually distributed; the getters report the not-distributed state in between.
+                # Hold the last distributed value on those steps so the recorded series reflects the
+                # state since the last distribution instead of zig-zagging to/from zero.
+                distributed = getattr(model, 'distribute_at_this_time_step',
+                                      lambda time_step: True)(system.time_step)
+                self.append_or_hold(self.system_supply[resource_name], model.get_total_supply, distributed)
+                self.append_or_hold(self.system_demand[resource_name], model.get_total_demand, distributed)
+                self.append_or_hold(self.system_consumption[resource_name], model.get_total_consumption, distributed)
+
+    def append_or_hold(self, series: list, getter, distributed: bool) -> None:
+        """Append the freshly queried value when the resource is distributed this step (or when there
+        is no prior value); otherwise carry forward the value from the last distribution."""
+        if distributed or not series:
+            series.append(getter(scope=self.scope))
+        else:
+            series.append(series[-1])
