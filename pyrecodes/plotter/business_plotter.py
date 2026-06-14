@@ -22,6 +22,19 @@ REASON_COLOR = {
 
 REASON_NAMES = ['Home Component Functionality', 'LocalSuppliers', 'Infrastructure', 'Labor', 'Customer Base']
 
+# Revenue is stored per time step ($/time step, i.e. $/week when TIME_STEPS_IN_A_YEAR == 52),
+# so the plots use it directly.
+
+# Larger fonts across all business plots.
+plt.rcParams.update({
+    'font.size': 14,
+    'axes.titlesize': 20,
+    'axes.labelsize': 18,
+    'xtick.labelsize': 14,
+    'ytick.labelsize': 14,
+    'legend.fontsize': 14,
+})
+
 
 class BusinessPlotter():
 
@@ -31,12 +44,18 @@ class BusinessPlotter():
 
     def plot_business_revenue(self, business_revenue: list, business, save_fig: bool = True, show_fig: bool = False) -> None:
         plt.figure(figsize=(14, 6))
+        business_revenue = list(business_revenue)
+        # Mirror the reasons-for-drop correction: the customer base can erroneously suppress
+        # revenue at time step 0. Shift the whole curve up so it starts at the pre-disaster
+        # revenue, matching the reasons-for-drop plot. The lost-revenue area is unchanged.
+        delta_revenue = business.pre_disaster_revenue_per_time_step - business_revenue[0]
+        business_revenue = [r + delta_revenue for r in business_revenue]
         plt.plot(business_revenue)
         constant_revenue = [business_revenue[0]] * len(business_revenue)
         self.fill_unmet_revenue(business_revenue, constant_revenue, plt.gca())
         plt.title(f'{business.parameters["CompanyName"]} | Revenue')
-        plt.xlabel('Days after the earthquake')
-        plt.ylabel('Revenue [$/day]')
+        plt.xlabel('Weeks after earthquake')
+        plt.ylabel('Revenue [$/week]')
         plt.grid(True)
         if save_fig:
             plt.savefig(f'business_{business.parameters["CompanyName"]}_revenue.png', dpi=300)
@@ -45,16 +64,16 @@ class BusinessPlotter():
 
     def plot_business_revenue_reasons_for_drop_lines(self, business, reasons_as_lines: dict,
                                                      reasons_to_plot: list = REASON_NAMES,
-                                                     show_fig: bool = True, save_fig: bool = False) -> None:
+                                                     show_fig: bool = True, save_fig: bool = False, linestyle: str = '--') -> None:
         plt.figure(figsize=(14, 6))
         axis_object = plt.gca()
-        plt.xlabel('Days after the earthquake')
-        plt.ylabel('Revenue [$/day]')
+        plt.xlabel('Weeks after earthquake')
+        plt.ylabel('Revenue [$/week]')
         plt.ylim(bottom=0, top=max(max(data['Revenue']) for data in reasons_as_lines.values()) * 1.1)
         for reason_name, reason_data in reasons_as_lines.items():
             if reason_name in reasons_to_plot:
                 axis_object.plot(reason_data['TimeStep'], reason_data['Revenue'],
-                                 label=REASON_LABELS[reason_name], linestyle='--', color=REASON_COLOR[reason_name])
+                                 label=REASON_LABELS[reason_name], linestyle=linestyle, color=REASON_COLOR[reason_name])
         plt.title(f'{business.parameters["CompanyName"]} | Reasons for Revenue Drop')
         plt.legend(loc='lower right')
         plt.grid(True)
@@ -70,7 +89,7 @@ class BusinessPlotter():
             axis_object.plot(reason_data['TimeStep'], reason_data['Revenue'],
                              label=reason_name, linestyle='--', color=REASON_COLOR[reason_name])
 
-    def plot_business_gantt_chart(self, business, x_axis_label: str = 'Days after the earthquake',
+    def plot_business_gantt_chart(self, business, x_axis_label: str = 'Weeks after earthquake',
                                   save_fig: bool = True, show_fig: bool = False) -> None:
         reasons_for_drop = self.get_reasons_for_drop(business)
         plt.figure()
@@ -100,35 +119,47 @@ class BusinessPlotter():
 
     def plot_total_revenue(self, total_revenue: list, save_fig: bool = True, show_fig: bool = True) -> None:
         plt.figure(figsize=(14, 6))
+        total_revenue = list(total_revenue)
         plt.plot(total_revenue)
         upper_revenue_bound = [max(total_revenue)] * len(total_revenue)
         self.fill_unmet_revenue(total_revenue, upper_revenue_bound, plt.gca())
         plt.title('Total Business Revenue')
-        plt.xlabel('Days after the earthquake')
-        plt.ylabel('Revenue [$/day]')
+        plt.xlabel('Weeks after earthquake')
+        plt.ylabel('Revenue [$/week]')
         plt.grid(True)
         if save_fig:
             plt.savefig('total_revenue.png', transparent=True, dpi=300)
         if show_fig:
             plt.show()
 
-    def plot_total_revenue_BI_CBI(self, total_revenue: list, total_revenue_no_building_damage: list,
-                                   save_fig: bool = True, show_fig: bool = True) -> None:
+    def plot_total_revenue_BI_CBI(self, total_revenue: list, total_BI: list, total_CBI: list,
+                                   save_fig: bool = True, show_fig: bool = True,
+                                   BI_label: str = 'BI - lost revenue from building damage: ',
+                                   CBI_label: str = 'CBI - lost revenue from other causes: ') -> None:
+        """
+        Stack the per-time-step BI and CBI lost-revenue series (from BusinessResilienceCalculator)
+        on top of the realised revenue. The BI band (building damage) sits directly above realised
+        revenue; the CBI band (every other reason) stacks on top up to pre-disaster revenue.
+        BI_t + CBI_t = pre-disaster revenue - realised revenue at each step.
+        """
         plt.figure(figsize=(14, 6))
-        plt.plot(total_revenue)
-        upper_CBI_bound = [max(total_revenue)] * len(total_revenue)
-        lower_CBI_bound = [
-            total_revenue_no_building_damage[i] + (upper_CBI_bound[i] - max(total_revenue_no_building_damage))
-            for i in range(len(total_revenue))
-        ]
-        self.fill_unmet_revenue(lower_CBI_bound, upper_CBI_bound, plt.gca(),
-                                lost_revenue_label='Lost revenue with no building damage (CBI): ')
-        self.fill_unmet_revenue(total_revenue, lower_CBI_bound, plt.gca(),
-                                lost_revenue_label='Lost revenue with building damage (BI): ',
+        total_revenue = np.asarray(total_revenue, dtype=float)
+        total_BI = np.asarray(total_BI, dtype=float)
+        total_CBI = np.asarray(total_CBI, dtype=float)
+        plt.plot(total_revenue, color='black', linewidth=1.5, label='Realised revenue')
+        bi_upper = total_revenue + total_BI
+        cbi_upper = bi_upper + total_CBI  # = pre-disaster (potential) revenue
+        self.fill_unmet_revenue(total_revenue, bi_upper, plt.gca(),
+                                label='BI (building damage)', lost_revenue_label=BI_label,
+                                text_position=(0.95, 0.05))
+        self.fill_unmet_revenue(bi_upper, cbi_upper, plt.gca(),
+                                label='CBI (other causes)', lost_revenue_label=CBI_label,
                                 text_position=(0.95, 0.15))
+        plt.plot(cbi_upper, color='gray', linestyle='--', linewidth=1, label='Pre-disaster revenue')
         plt.title('Total Business Revenue | BI vs CBI')
-        plt.xlabel('Days after the earthquake')
-        plt.ylabel('Revenue [$/day]')
+        plt.xlabel('Weeks after earthquake')
+        plt.ylabel('Revenue [$/week]')
+        plt.legend(loc='lower right')
         plt.grid(True)
         if save_fig:
             plt.savefig('total_revenue_BI_CBI.png', transparent=True, dpi=300)
@@ -136,7 +167,7 @@ class BusinessPlotter():
             plt.show()
 
     def plot_total_reasons_for_drop_gantt(self, total_reasons_for_drop: dict,
-                                          x_axis_label: str = 'Days after the earthquake',
+                                          x_axis_label: str = 'Weeks after earthquake',
                                           save_fig: bool = True, show_fig: bool = False) -> None:
         plt.figure(figsize=(14, 6))
         axis_object = plt.gca()
@@ -161,15 +192,16 @@ class BusinessPlotter():
     
     def plot_total_revenue_reasons_for_drop_lines(self, total_reasons_as_lines: dict,
                                                   reasons_to_plot: list = REASON_NAMES,
-                                                    save_fig: bool = True, show_fig: bool = True) -> None:
+                                                    save_fig: bool = True, show_fig: bool = True,
+                                                    linestyle: str = '--') -> None:
         plt.figure(figsize=(14, 6))
         axis_object = plt.gca()
-        plt.xlabel('Days after the earthquake')
-        plt.ylabel('Revenue [$/day]')
+        plt.xlabel('Weeks after earthquake')
+        plt.ylabel('Revenue [$/week]')
         for reason_name, reason_data in total_reasons_as_lines.items():
             if reason_name in reasons_to_plot:
                 axis_object.plot(reason_data['TimeStep'], reason_data['Revenue'],
-                                 label=REASON_LABELS[reason_name], linestyle='--', color=REASON_COLOR[reason_name])
+                                 label=REASON_LABELS[reason_name], linestyle=linestyle, color=REASON_COLOR[reason_name])
         plt.legend(loc='lower right')
         plt.grid(True)
         if save_fig:
@@ -210,31 +242,21 @@ class BusinessPlotter():
                 reason_dict = {
                     'Start': time_step, 'Duration': 1,
                     'Level': reason['Level'],
-                    'Revenue': business.pre_disaster_daily_revenue * reason['Level'],
+                    'Revenue': business.pre_disaster_revenue_per_time_step * reason['Level'],
                 }
                 reasons_for_drop[reason['Name']].append(reason_dict)
             for reason_name in reasons_for_drop_names:
-                if reason_name not in [r['Name'] for r in reason_list] and reason_name != 'Infrastructure':
+                if reason_name not in [r['Name'] for r in reason_list]:
                     reasons_for_drop[reason_name].append({
-                        'Start': time_step, 'Duration': 1, 'Level': 1.0, 'Revenue': business.pre_disaster_daily_revenue,
+                        'Start': time_step, 'Duration': 1, 'Level': 1.0, 'Revenue': business.pre_disaster_revenue_per_time_step,
                     })
-        # Reconstruct Infrastructure from contiguous outage windows (handles sparse time steps)
-        outage_start = None
-        outage_end = 1
-        reasons_for_drop['Infrastructure'] = []
-        for time_step, reason_list in zip(all_time_steps, business.reason_for_drop.values()):
-            reasons_for_drop['Infrastructure'].append({
-                'Start': time_step, 'Duration': 1, 'Level': 1.0, 'Revenue': business.pre_disaster_daily_revenue,
-            })
-            if 'Infrastructure' in [r['Name'] for r in reason_list]:
-                outage_end = time_step
-                if outage_start is None:
-                    outage_start = time_step
-        if outage_start is not None:
-            for time_step in range(outage_start, outage_end + 1):
-                reasons_for_drop['Infrastructure'][time_step] = {
-                    'Start': time_step, 'Duration': 1, 'Level': 0.0, 'Revenue': 0.0,
-                }
+        # The customer base can erroneously suppress revenue at time step 0, when no disaster
+        # impact should yet be felt. Shift the entire customer base curve up by the time-step-0
+        # deficit so it starts at the pre-disaster revenue, matching every other reason line.
+        if reasons_for_drop.get('Customer Base'):
+            delta_revenue = business.pre_disaster_revenue_per_time_step - reasons_for_drop['Customer Base'][0]['Revenue']
+            for reason_dict in reasons_for_drop['Customer Base']:
+                reason_dict['Revenue'] += delta_revenue
         return reasons_for_drop
 
     def get_reasons_for_drop_as_lines(self, reasons_for_drop: dict) -> dict:
@@ -295,12 +317,13 @@ class BusinessPlotter():
                            text_position: tuple = (0.95, 0.05)) -> None:
         time_steps = range(len(lower_bound))
         axis.fill_between(time_steps, lower_bound, upper_bound, label=label, alpha=alpha)
+        # Bounds are already passed in per-week ($/week), so summing them gives the weekly loss directly.
         lost_revenue = sum(max(0, abs(upper_bound[i] - lower_bound[i])) for i in time_steps)
         axis.text(
             text_position[0], text_position[1],
             lost_revenue_label + f'{lost_revenue:,.0f}$',
             transform=axis.transAxes,
-            fontsize=10,
+            fontsize=14,
             va='bottom', ha='right',
             bbox=dict(boxstyle='round', facecolor='lightyellow', edgecolor='gray', alpha=0.8),
         )
