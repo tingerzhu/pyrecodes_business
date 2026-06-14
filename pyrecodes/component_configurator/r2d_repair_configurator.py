@@ -70,18 +70,41 @@ class R2DBuildingRepairConfigurator(R2DRepairConfigurator):
     Class that configures repair activities of R2D buildings.
     """
 
-    def get_repair_demand(self, component_damage_state: int) -> int:
+    def get_repair_demand_area_based(self, component_damage_state: int) -> int:
         """
         | Method that calculates the repair crew demand for the building component. 
         | The demand is calculated based on the area of the building and the repair crew demand per square foot for different damage states defined in the system configuration file.
         """
-        # consider only repair crews for damage states 3 and above, since for lower damage states, the repair activities are not expected to be resource intensive. This is a simplifying assumption that can be modified if needed.
-        if component_damage_state  >= 3:
+        repair_crew_demand = math.ceil(self.component.area / self.system_level_data['REPAIR_CREW_DEMAND_PER_SQFT'].get(f'DS{component_damage_state}', math.inf))
+        return min(self.system_level_data['MAX_REPAIR_CREW_DEMAND_PER_BUILDING'], repair_crew_demand)
+
+    def get_repair_demand_damage_state_threshold(self, component_damage_state: int, damage_state_threshold=3) -> int:
+        """
+        | Method that calculates the repair crew demand for the building component. 
+        | Consider only repair crews for damage states 3 and above, since for lower damage states, the repair activities are not expected to be resource intensive. This is a simplifying assumption that can be modified if needed.
+        """
+        if component_damage_state >= damage_state_threshold:
             return 1
         else:
             return 0
-        # repair_crew_demand = math.ceil(self.component.area / self.system_level_data['REPAIR_CREW_DEMAND_PER_SQFT'].get(f'DS{component_damage_state}', math.inf))
-        # return min(self.system_level_data['MAX_REPAIR_CREW_DEMAND_PER_BUILDING'], repair_crew_demand)
+        
+    def get_repair_demand(self, component_damage_state: int, calculation_type='damage_state_threshold') -> int:
+        if calculation_type == 'damage_state_threshold':
+            return self.get_repair_demand_damage_state_threshold(component_damage_state)
+        elif calculation_type == 'area_based':
+            return self.get_repair_demand_area_based(component_damage_state)
+        else:
+            raise ValueError(f"Unknown repair demand type: {calculation_type}. Please choose either 'damage_state_threshold' or 'area_based'.")
+        
+    def set_repair_demand(self, component_DS: int, recovery_demand_setter: callable, calculation_type='damage_state_threshold') -> None:
+        """
+        | Method that sets the repair resource demand of the component. 
+
+        | At the moment, it only works if there is a single resource needed for repair. Modify if multiple resources are needed.
+        """
+        repair_resource_name = list(self.component.recovery_model.recovery_activities['Repair'].demand.keys())[0]
+        repair_demand = self.get_repair_demand(component_DS, calculation_type=calculation_type)            
+        recovery_demand_setter(self.component, 'Repair', repair_resource_name, repair_demand)
     
 class R2DPipeRepairConfigurator(R2DRepairConfigurator):
     """
