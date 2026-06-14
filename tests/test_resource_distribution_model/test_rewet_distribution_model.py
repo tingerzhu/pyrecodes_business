@@ -234,7 +234,7 @@ class TestREWETDistributionModel:
         system.time_step = 2
         system.recover()
         system.update()
-        assert math.isclose(rewet_distribution_model.get_total_demand(), 1.5 * 1/30)
+        assert math.isclose(rewet_distribution_model.get_total_demand(), 1.5 * 1/15)
 
         # recover system and then check demand
         system.start_resilience_assessment()

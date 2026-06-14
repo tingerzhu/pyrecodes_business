@@ -223,7 +223,7 @@ class TestResidualDemandTrafficDistributionModel:
         residual_demand_traffic_distribution_model.components = system.components
         residual_demand_traffic_distribution_model.update_r2d_dict()
         residual_demand_traffic_distribution_model.distribute_traffic(system.time_step)
-        assert len([travel_times for travel_times in residual_demand_traffic_distribution_model.travel_times if len(travel_times) > 0]) == 2
+        assert len([travel_times for travel_times in residual_demand_traffic_distribution_model.travel_times if len(travel_times) > 0]) == 1
         assert len(residual_demand_traffic_distribution_model.travel_times) == 33
         for travel_time_used, target_travel_time in zip(residual_demand_traffic_distribution_model.travel_times[-1]['travel_time_used'], UNDAMAGED_TRAVEL_TIMES):
             assert travel_time_used == target_travel_time

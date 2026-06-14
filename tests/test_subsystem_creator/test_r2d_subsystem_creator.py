@@ -84,8 +84,8 @@ class TestR2DSubsystemCreator:
         asset_subtype = 'Building'
         component = r2d_subsystem_creator_alameda.create_component(component_info, damage_info, asset_type, asset_subtype)
         assert component[0].name == 'DS2_Building'
-        assert component[0].recovery_model.recovery_activities['Repair'].duration == 30
-        assert component[0].recovery_model.recovery_activities['Repair'].demand['RepairCrew_Buildings'].current_amount == 2
+        assert component[0].recovery_model.recovery_activities['Repair'].duration != 30 # sampled from the dist, tno taken from R2D output
+        assert component[0].recovery_model.recovery_activities['Repair'].demand['RepairCrew_Buildings'].current_amount == 0
 
     def test_get_component_geometry(self, r2d_subsystem_creator_alameda):
         component_info = {'GeneralInformation': {'location': {'latitude': 37.771004, 'longitude': -122.293878}}}

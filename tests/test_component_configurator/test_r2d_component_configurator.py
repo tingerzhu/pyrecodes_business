@@ -86,8 +86,11 @@ class TestR2DBuildingConfigurator:
         assert building_component.demand['OperationDemand']['PotableWater'].initial_amount == R2D_COMPONENT_DATA['Information']['GeneralInformation']['Population'] * SYSTEM_LEVEL_DATA_DICT['DEMAND_PER_PERSON']['PotableWater']
         assert building_component.demand['OperationDemand']['CellularCommunication'].initial_amount == R2D_COMPONENT_DATA['Information']['GeneralInformation']['Population'] * SYSTEM_LEVEL_DATA_DICT['DEMAND_PER_PERSON']['CellularCommunication']
         assert building_component.demand['OperationDemand']['CellularCommunication'].current_amount == R2D_COMPONENT_DATA['Information']['GeneralInformation']['Population'] * SYSTEM_LEVEL_DATA_DICT['DEMAND_PER_PERSON']['CellularCommunication']
-        assert building_component.recovery_model.recovery_activities['Repair'].demand['RepairCrew_Buildings'].current_amount == math.ceil(building_component.area/component_configurator.system_level_data['REPAIR_CREW_DEMAND_PER_SQFT'][f'DS{DAMAGE_STATE}'])
-        assert building_component.recovery_model.recovery_activities['Repair'].demand['RepairCrew_Buildings'].initial_amount == math.ceil(building_component.area/component_configurator.system_level_data['REPAIR_CREW_DEMAND_PER_SQFT'][f'DS{DAMAGE_STATE}'])
+        # this tests the repair crew demand calculation based on area - we do not use that for the business case study
+        # assert building_component.recovery_model.recovery_activities['Repair'].demand['RepairCrew_Buildings'].current_amount == math.ceil(building_component.area/component_configurator.system_level_data['REPAIR_CREW_DEMAND_PER_SQFT'][f'DS{DAMAGE_STATE}'])
+        # assert building_component.recovery_model.recovery_activities['Repair'].demand['RepairCrew_Buildings'].initial_amount == math.ceil(building_component.area/component_configurator.system_level_data['REPAIR_CREW_DEMAND_PER_SQFT'][f'DS{DAMAGE_STATE}'])
+        assert building_component.recovery_model.recovery_activities['Repair'].demand['RepairCrew_Buildings'].current_amount == [0 if DAMAGE_STATE < 3 else 1][0]
+        assert building_component.recovery_model.recovery_activities['Repair'].demand['RepairCrew_Buildings'].initial_amount == [0 if DAMAGE_STATE < 3 else 1][0]
         assert building_component.locality == [format_locality_id(LOCALITY_STRING[0])]
 
     def test_set_repair_configurator(self, building_component: StandardiReCoDeSComponent, 

@@ -41,13 +41,16 @@ class TestR2DRepairConfigurator:
         pass
 
     def test_set_repair_time(self, repair_configurator: R2DRepairConfigurator):
-        repair_configurator.set_repair_time(R2D_COMPONENT_DATA)
+        repair_configurator.set_repair_time(R2D_COMPONENT_DATA, use_R2D=True)
         assert repair_configurator.component.recovery_model.recovery_activities['Repair'].duration == R2D_COMPONENT_DATA['Loss']['Repair']['Time']['LF.IND2-LF.W1.MC']
+
+        repair_configurator.set_repair_time(R2D_COMPONENT_DATA, use_R2D=False)
+        assert repair_configurator.component.recovery_model.recovery_activities['Repair'].duration == 30.0
 
     def test_get_repair_time(self, repair_configurator: R2DRepairConfigurator):
         component_data_no_repair_time = {'Loss': {}}
-        assert repair_configurator.get_repair_time(component_data_no_repair_time) == None
-        assert repair_configurator.get_repair_time(R2D_COMPONENT_DAMAGE_DATA) == 30.0
+        assert repair_configurator.get_repair_time_from_R2D(component_data_no_repair_time) == None
+        assert repair_configurator.get_repair_time_from_R2D(R2D_COMPONENT_DAMAGE_DATA) == 30.0
 
     def test_get_repair_cost(self, repair_configurator: R2DRepairConfigurator):
         assert repair_configurator.get_repair_cost(R2D_COMPONENT_DATA) == R2D_COMPONENT_DATA['Loss']['Repair']['Cost']['LF.IND2-LF.W1.MC'] * R2D_COMPONENT_DATA['Information']['GeneralInformation']['ReplacementCost']
@@ -65,36 +68,52 @@ class TestR2DBuildingRepairConfigurator:
     def test_get_repair_demand(self, repair_configurator, building_component):
         building_component.area = 10000
         component_damage_state = 0
-        assert repair_configurator.get_repair_demand(component_damage_state) == 0
+        assert repair_configurator.get_repair_demand(component_damage_state, calculation_type='area_based') == 0
+        assert repair_configurator.get_repair_demand(component_damage_state, calculation_type='damage_state_threshold') == 0
 
         component_damage_state = 2
-        assert repair_configurator.get_repair_demand(component_damage_state) == 5
+        assert repair_configurator.get_repair_demand(component_damage_state, calculation_type='area_based') == 5
+        assert repair_configurator.get_repair_demand(component_damage_state, calculation_type='damage_state_threshold') == 0
 
         component_damage_state = 3
-        assert repair_configurator.get_repair_demand(component_damage_state) == 10
+        assert repair_configurator.get_repair_demand(component_damage_state, calculation_type='area_based') == 10
+        assert repair_configurator.get_repair_demand(component_damage_state, calculation_type='damage_state_threshold') == 1
 
         building_component.area = 10000000
-        assert repair_configurator.get_repair_demand(component_damage_state) == 100
+        assert repair_configurator.get_repair_demand(component_damage_state, calculation_type='area_based') == 100
+        assert repair_configurator.get_repair_demand(component_damage_state, calculation_type='damage_state_threshold') == 1
 
     def test_set_repair_demand(self, repair_configurator: R2DRepairConfigurator):
         component_damage_state = 0
         repair_configurator.component.area = 10000
-        repair_configurator.set_repair_demand(component_damage_state, ComponentConfigurator.set_component_recovery_demand)
+        repair_configurator.set_repair_demand(component_damage_state, ComponentConfigurator.set_component_recovery_demand, calculation_type='area_based')
+        assert repair_configurator.component.recovery_model.recovery_activities['Repair'].demand['RepairCrew_Buildings'].current_amount == 0
+        assert repair_configurator.component.recovery_model.recovery_activities['Repair'].demand['RepairCrew_Buildings'].initial_amount == 0
+
+        repair_configurator.set_repair_demand(component_damage_state, ComponentConfigurator.set_component_recovery_demand, calculation_type='damage_state_threshold')
         assert repair_configurator.component.recovery_model.recovery_activities['Repair'].demand['RepairCrew_Buildings'].current_amount == 0
         assert repair_configurator.component.recovery_model.recovery_activities['Repair'].demand['RepairCrew_Buildings'].initial_amount == 0
 
         component_damage_state = 2
-        repair_configurator.set_repair_demand(component_damage_state, ComponentConfigurator.set_component_recovery_demand)
+        repair_configurator.set_repair_demand(component_damage_state, ComponentConfigurator.set_component_recovery_demand, calculation_type='area_based')
         assert repair_configurator.component.recovery_model.recovery_activities['Repair'].demand['RepairCrew_Buildings'].current_amount == 5
         assert repair_configurator.component.recovery_model.recovery_activities['Repair'].demand['RepairCrew_Buildings'].initial_amount == 5
 
+        repair_configurator.set_repair_demand(component_damage_state, ComponentConfigurator.set_component_recovery_demand, calculation_type='damage_state_threshold')
+        assert repair_configurator.component.recovery_model.recovery_activities['Repair'].demand['RepairCrew_Buildings'].current_amount == 0
+        assert repair_configurator.component.recovery_model.recovery_activities['Repair'].demand['RepairCrew_Buildings'].initial_amount == 0
+
         component_damage_state = 4
-        repair_configurator.set_repair_demand(component_damage_state, ComponentConfigurator.set_component_recovery_demand)
+        repair_configurator.set_repair_demand(component_damage_state, ComponentConfigurator.set_component_recovery_demand, calculation_type='area_based')
         assert repair_configurator.component.recovery_model.recovery_activities['Repair'].demand['RepairCrew_Buildings'].current_amount == 10
         assert repair_configurator.component.recovery_model.recovery_activities['Repair'].demand['RepairCrew_Buildings'].initial_amount == 10
 
+        repair_configurator.set_repair_demand(component_damage_state, ComponentConfigurator.set_component_recovery_demand, calculation_type='damage_state_threshold')
+        assert repair_configurator.component.recovery_model.recovery_activities['Repair'].demand['RepairCrew_Buildings'].current_amount == 1
+        assert repair_configurator.component.recovery_model.recovery_activities['Repair'].demand['RepairCrew_Buildings'].initial_amount == 1
+
         repair_configurator.component.area = 10000000
-        repair_configurator.set_repair_demand(component_damage_state, ComponentConfigurator.set_component_recovery_demand)
+        repair_configurator.set_repair_demand(component_damage_state, ComponentConfigurator.set_component_recovery_demand, calculation_type='area_based')
         assert repair_configurator.component.recovery_model.recovery_activities['Repair'].demand['RepairCrew_Buildings'].current_amount == 100
         assert repair_configurator.component.recovery_model.recovery_activities['Repair'].demand['RepairCrew_Buildings'].initial_amount == 100
 
