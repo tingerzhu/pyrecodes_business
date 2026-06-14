@@ -216,14 +216,17 @@ class TransportationPerformance(ABC):  # noqa: B024
         self.tmp_dir = tmp_dir
 
     def closest_neighbour(self, building_df, nodes_df):
-        # Find the nearest road network node to each building
+        # Find the nearest road network node to each building. nodes_df is indexed by node_id and
+        # cdist(...).argmin() returns a row POSITION, so map it back to the actual node_id instead
+        # of assuming node_id == row position.
         nodes_xy = np.array(
             [nodes_df['lat'].to_numpy(), nodes_df['lon'].to_numpy()]
         ).transpose()
+        node_ids = nodes_df.index.to_numpy()
         building_df['closest_node'] = building_df.apply(
-            lambda x: cdist(
+            lambda x: int(node_ids[cdist(
                 [(x['Latitude'], x['Longitude'])], nodes_xy
-            ).argmin(),
+            ).argmin()]),
             axis=1,
         )
         return building_df
@@ -246,16 +249,40 @@ class TransportationPerformance(ABC):  # noqa: B024
         for building_type, building_list in json_data['Buildings'].items():
             for aim_id, info in building_list.items():
                 general_info = info.get('GeneralInformation', {})
+                latitude = general_info.get('Latitude')
+                longitude = general_info.get('Longitude')
+                # Snap on the footprint centroid when a footprint is available: the footprint is the
+                # authoritative building geometry, and some exposure records carry a
+                # Latitude/Longitude that disagrees with it (which would snap the building to the
+                # wrong road node). Fall back to the Latitude/Longitude fields otherwise.
+                centroid = self.footprint_centroid(general_info.get('Footprint'))
+                if centroid is not None:
+                    latitude, longitude = centroid
                 extracted_data.append(
                     {
                         'AIM_id': aim_id,
-                        'Latitude': general_info.get('Latitude'),
-                        'Longitude': general_info.get('Longitude'),
+                        'Latitude': latitude,
+                        'Longitude': longitude,
                         'Population': general_info.get('Population'),
                     }
                 )
 
         return pd.DataFrame(extracted_data)
+
+    @staticmethod
+    def footprint_centroid(footprint):
+        """Return (latitude, longitude) of a building footprint's centroid, or None when the
+        footprint is missing or unparseable. The footprint is a GeoJSON-style Feature (or geometry)
+        with a Polygon, stored as a JSON string or dict in GeneralInformation['Footprint']."""
+        if not footprint:
+            return None
+        try:
+            geometry = footprint if isinstance(footprint, dict) else json.loads(footprint)
+            coordinates = geometry.get('geometry', geometry).get('coordinates')
+            centroid = Polygon(coordinates[0]).centroid
+            return (centroid.y, centroid.x)
+        except Exception:  # noqa: BLE001 - any malformed footprint falls back to Latitude/Longitude
+            return None
 
     # @abstractmethod
     def system_state(
@@ -809,6 +836,14 @@ class TransportationPerformance(ABC):  # noqa: B024
         if closure_hours is None:
             closure_hours = []
 
+        # Use node_id VALUES as the pandana node ids. The edges (start_nid/end_nid), the OD pairs,
+        # and the edge keys ('start_nid-end_nid') all reference node_id, so index the nodes by
+        # node_id here (and for the substep network, which receives this same nodes_df) rather than
+        # relying on node_id == row position. This makes the network robust to non-contiguous node
+        # ids (added/removed nodes) instead of silently mis-mapping shortest paths.
+        if nodes_df.index.name != 'node_id':
+            nodes_df = nodes_df.set_index('node_id')
+
         # Check if all od pairs has path. If not,
         orig = od_all['origin_nid'].to_numpy()
         dest = od_all['destin_nid'].to_numpy()
@@ -1117,6 +1152,9 @@ class TransportationPerformance(ABC):  # noqa: B024
         trip_info_df = pd.concat(
             [trip_info_df, trip_info_no_path], ignore_index=True
         )
+        # Deterministic, order-independent output: unroutable/no-path trips are appended above,
+        # which reorders rows, so sort by agent_id so no downstream consumer can depend on position.
+        trip_info_df = trip_info_df.sort_values('agent_id').reset_index(drop=True)
         if save_edge_vol:
             trip_info_df.to_csv(
                 simulation_outputs / 'trip_info' / f'trip_info_{scen_nm}.csv',
@@ -1462,6 +1500,7 @@ class pyrecodes_residual_demand(TransportationPerformance):
 
         nodes_gdf = gpd.read_file(nodes_file)
         nodes_gdf = nodes_gdf.rename(columns={'nodeID': 'node_id'})
+        nodes_gdf['node_id'] = nodes_gdf['node_id'].astype(int)  # pandana needs integer node ids
         nodes_gdf['y'] = nodes_gdf['geometry'].apply(lambda x: x.y)
         nodes_gdf['x'] = nodes_gdf['geometry'].apply(lambda x: x.x)
 
@@ -1536,20 +1575,25 @@ class pyrecodes_residual_demand(TransportationPerformance):
 
     def simulate(
         self,
-        r2d_dict
+        r2d_dict,
+        od_matrix=None
     ):
         """
         Simulate the transportation network performance.
 
         Args:
             r2d_dict (dict): Dictionary containing the status of all asset at a certain time step.
+            od_matrix (pd.DataFrame, optional): Pre-disaster OD demand to use on the first call,
+                e.g. the in-memory matrix that already includes registered employee/supplier/
+                customer trips. If None, it is read from od_pre_file (kept for backward compatibility).
 
         Returns
         -------
             pd.DataFrame: DataFrame containing trip information.
         """
         if self.initial_r2d_dict is None:
-            od_matrix = pd.read_csv(self.od_pre_file)
+            if od_matrix is None:
+                od_matrix = pd.read_csv(self.od_pre_file)
             self.initial_od = copy.deepcopy(od_matrix)
             self.initial_r2d_dict = copy.deepcopy(r2d_dict)
         else:
@@ -1568,7 +1612,15 @@ class pyrecodes_residual_demand(TransportationPerformance):
         )
         edges_df['t_avg'] = edges_df['fft']
 
-        edges_df = edges_df.sort_values(by='fft', ascending=False).drop_duplicates(
+        # Drop closed edges BEFORE collapsing parallels. update_edges() does not remove closed
+        # roads, it sets their maxspeed to ~0 so their fft is astronomically large. If they are
+        # left in, the sort-by-fft step below ranks them first and drop_duplicates keeps the
+        # closed edge while discarding the open parallel edge for that node pair; the closed edge
+        # is then removed in assignment(), leaving the pair with no edge and falsely disconnecting
+        # trips that actually have a route. Remove closed edges first, then keep the FASTEST
+        # remaining (open) edge per node pair.
+        edges_df = edges_df[~edges_df['uniqueid'].isin(closed_links['uniqueid'])]
+        edges_df = edges_df.sort_values(by='fft', ascending=True).drop_duplicates(
             subset=['start_nid', 'end_nid'], keep='first'
         )
 
