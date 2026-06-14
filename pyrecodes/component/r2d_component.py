@@ -96,6 +96,18 @@ class R2DBuilding(R2DComponent):
         super().update_r2d_dict()
         self.general_information['PopulationRatio'] = self.functionality_level
 
+    def add_employee_supply(self, amount: float) -> None:
+        """
+        Accumulate residual Employee supply on this building (an employee home).
+        Called by Business.register_residual_employee_supply when the employee's
+        workplace cannot operate and they are freed for redistribution. A no-op if the
+        building has no Employee supply slot (e.g. a non-residential component library
+        that omits Employee).
+        """
+        resource = self.supply[self.SupplyTypes.SUPPLY.value].get('Employee')
+        if resource is not None:
+            resource.current_amount += amount
+
 class R2DBuildingWithBusiness(R2DBuilding):
     """
     Class used to represent buildings with businesses in a system when using the R2D files as inputs.
@@ -133,7 +145,44 @@ class R2DBuildingWithBusiness(R2DBuilding):
             business.update_access_to_suppliers(time_step, transfer_service_models)
 
     def update_business_customer_base(self, time_step: int, current_block_population_ratios: dict,
-                                       transfer_service_models: list = None) -> None:
+                                       transfer_service_models: list = None,
+                                       on_island_cbgs: set = None,
+                                       off_island_origin_id: str = None) -> None:
         for business in self.businesses:
             business.update_customer_base(time_step, current_block_population_ratios,
-                                          transfer_service_models)
+                                          transfer_service_models, on_island_cbgs,
+                                          off_island_origin_id)
+
+    def add_employee_demand(self, amount: float) -> None:
+        """Accumulate Employee operation demand across businesses in this building."""
+        resource = self.demand[self.DemandTypes.OPERATION_DEMAND.value].get('Employee')
+        if resource is not None:
+            resource.current_amount += amount
+
+    def distribute_received_employees(self, time_step: int, n_extra: float) -> None:
+        """
+        Route the n_extra employees the building just received from the redistribution
+        pool to the businesses that asked for them. A business asked iff at the
+        previous time step it was short on labor but could still operate (so it
+        contributed Employee demand on the building); a reduced customer base does not
+        disqualify it. Routing is proportional to each demander's outstanding need
+        (NumEmployees - employees assigned at the previous time step). Businesses that
+        did NOT contribute demand are skipped.
+        """
+        if n_extra <= 0 or not self.businesses:
+            return
+        prev = time_step - 1
+        # Use the OWN-home count (not post-receiving employees_available[prev]); see
+        # Business.get_own_assigned_employees for the rationale. The post-receiving
+        # series would make a business that was filled at prev look like need=0 every
+        # other step, throwing the inflow on the floor and producing a 4/0/4/0
+        # delivery oscillation for businesses that depend on the pool every step.
+        needs = [(b, max(0, b.parameters['NumEmployees'] - b.get_own_assigned_employees(prev)))
+                 for b in self.businesses
+                 if b.is_short_on_labor_but_can_operate(prev)]
+        total_need = sum(n for _, n in needs)
+        if total_need <= 0:
+            return
+        for business, need in needs:
+            if need > 0:
+                business.apply_received_employees(time_step, n_extra * need / total_need)
