@@ -84,9 +84,20 @@ class ConcreteSystemCreator(SystemCreator):
         resources = dict()
         for resource_name, resource_parameters in all_resources_parameters.items():
             if resource_parameters['Group'] == 'TransferService':
-                resources[resource_name] = dict()        
+                resources[resource_name] = dict()
                 resources[resource_name]['Group'] = resource_parameters['Group']
-                resources[resource_name]['DistributionModel'] = self.get_resource_distribution_model(resource_name, resource_parameters, components)                
+                resources[resource_name]['DistributionModel'] = self.get_resource_distribution_model(resource_name, resource_parameters, components)
+        # Second pass: wire transfer services that themselves depend on another transfer service
+        # (e.g. IslandConnectivity wraps the residual-demand TransportationService). Done after all
+        # transfer services are built so dependency order does not matter.
+        for resource_name, resource_parameters in all_resources_parameters.items():
+            if resource_parameters['Group'] == 'TransferService':
+                required_transfer_service = resource_parameters['DistributionModel']['Parameters'].get('TransferService', None)
+                if required_transfer_service is not None:
+                    if isinstance(required_transfer_service, str):
+                        required_transfer_service = [required_transfer_service]
+                    for service_name in required_transfer_service:
+                        resources[resource_name]['DistributionModel'].set_transfer_service_distribution_model(resources[service_name]['DistributionModel'])
         return resources
     
     def get_non_transfer_services(self, components: list[Component], all_resources_parameters: dict, transfer_services: dict) -> dict:
