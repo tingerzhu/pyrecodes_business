@@ -58,7 +58,7 @@
                 "FunctionalityToAmountRelation": "Linear"
             },
             "RepairCrew_Water": {
-                "Amount": 1500,
+                "Amount": 6,
                 "FunctionalityToAmountRelation": "Linear"
             }
         }
@@ -2523,13 +2523,13 @@
                     "Duration": {
                         "Lognormal": {
                             "Median": 1,
-                            "Dispersion": 0.2
+                            "Dispersion": 0.0
                         }
                     },
                     "Demand": [
                         {
                             "Resource": "RepairCrew_Water",
-                            "Amount": 1.0
+                            "Amount": 0.024
                         }
                     ],
                     "PrecedingActivities": [
@@ -2560,14 +2560,14 @@
                 "Repair": {
                     "Duration": {
                         "Lognormal": {
-                            "Median": 2,
-                            "Dispersion": 0.2
+                            "Median": 1,
+                            "Dispersion": 0.0
                         }
                     },
                     "Demand": [
                         {
                             "Resource": "RepairCrew_Water",
-                            "Amount": 1.0
+                            "Amount": 0.036
                         }
                     ],
                     "PrecedingActivities": [
