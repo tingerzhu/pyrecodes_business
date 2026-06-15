@@ -203,7 +203,7 @@ class R2DPipeConfigurator(R2DComponentConfigurator):
     """
 
     SYSTEM_LEVEL_DATA = ['START_TIME_STEP', 'MAX_TIME_STEP',                       
-                        'DEFAULT_REPAIR_DURATION_DICT', 'REPAIR_CREW_DEMAND_PER_MILE_PIPE']
+                        'DEFAULT_REPAIR_DURATION_DICT', 'REPAIR_CREW_DEMAND_PIPE']
     
     def __init__(self, system_level_data: dict, recovery_time_stepping: list) -> None:
         super().__init__(system_level_data, recovery_time_stepping)
@@ -278,12 +278,31 @@ class R2DBuildingWithBusinessConfigurator(R2DBuildingConfigurator):
     Class that sets parameters of a Building with Businesses as provided in the R2D output files.
     """
 
-    def set_parameters(self, component: Component, locality: list, component_data: dict, component_DS: int): 
+    def set_parameters(self, component: Component, locality: list, component_data: dict, component_DS: int):
         super().set_parameters(component, locality, component_data, component_DS)
         self.set_business_parameters(component, component_data)
+        self.set_workforce_infrastructure_demand(component, component_data)
         return component
 
     def set_business_parameters(self, component: Component, component_data: dict) -> None:
         component.businesses = []
         for business_id, business_info_per_id in component_data['Information']['BusinessInformation'].items():
             component.businesses.append(Business(business_id, business_info_per_id, component))
+
+    def set_workforce_infrastructure_demand(self, component: Component, component_data: dict) -> None:
+        """
+        Include the business workforce in the building's per-person infrastructure demand (water,
+        power, ...). Most commercial buildings have a residential Population of 0, so the
+        population-based demand set by R2DBuildingConfigurator is 0 - the building would demand no
+        water and the business would never register an infrastructure outage. Occupancy for the
+        demand is therefore residential population + total employees across the building's
+        businesses, which is always positive when a business is present. Any explicit per-building
+        Demand override is re-applied afterwards so it still takes precedence.
+        """
+        if self.system_level_data.get('DEMAND_PER_PERSON') is None:
+            return
+        occupancy = self.get_building_housing_capacity(component_data) + sum(
+            business.parameters.get('NumEmployees', 0) for business in component.businesses)
+        for resource_name, demand_per_person in self.system_level_data['DEMAND_PER_PERSON'].items():
+            self.set_component_operation_demand(component, resource_name, occupancy * demand_per_person)
+        self.set_infrastructure_demand_parameters_directly_based_on_building_data(component, component_data)
