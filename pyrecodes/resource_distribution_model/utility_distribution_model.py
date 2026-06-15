@@ -25,22 +25,38 @@ class UtilityDistributionModel(AbstractResourceDistributionModel):
         self.constructor = UtilityDistributionModelConstructor()
         self.constructor.construct(resource_name, resource_parameters, components, self)
         self.transfer_service_distribution_model = None
+        self.last_met_demand = {}  # {component: met_fraction} applied by the last distribution
+
+    def set_transfer_service_distribution_model(self, transfer_service_distribution_model: ResourceDistributionModel) -> None:
+        """
+        A utility resource uses a single transfer service to drive locality-path
+        functionality (see get_optimal_path). The plural-list setter on the abstract
+        base is for accessibility-style models (e.g. employee distribution) that consult
+        several transfer services; overriding it here keeps the single-model semantics
+        this class's get_optimal_path relies on.
+        """
+        self.transfer_service_distribution_model = transfer_service_distribution_model
 
     def distribute(self, time_step: int) -> None:
         if self.distribute_at_this_time_step(time_step):
+            self.last_met_demand = {}
             self.fill_system_matrix()
 
-            component_priorities_by_row, component_demand_types = self.get_component_priorities()    
+            component_priorities_by_row, component_demand_types = self.get_component_priorities()
 
             suppliers = []
             for component_row_id, component_demand_type in zip(component_priorities_by_row, component_demand_types):
                 suppliers, component_is_supplier = self.add_supplier(component_row_id, suppliers)
                 suppliers = self.meet_component_demand(suppliers, component_row_id, component_demand_type)
 
-                if component_is_supplier:                
+                if component_is_supplier:
                     self.reset_supplier_order(suppliers)
-            
+
             self.update_suppliers_based_on_consumption(suppliers)
+        else:
+            # Resource not re-distributed this step (sparse stepping): hold the last met demand so
+            # component supply / interdependencies reflect the most recent distribution.
+            self.reapply_last_distribution(time_step)
 
     def fill_system_matrix(self):
         self.system_matrix.update_components(self.components)
@@ -142,7 +158,11 @@ class UtilityDistributionModel(AbstractResourceDistributionModel):
         self.system_matrix.set_demand_met_indicator(component_row_id, percent_of_met_demand)
 
     def reduce_component_supply(self, component_row_id: int, percent_of_met_demand: float):
-        self.components[component_row_id].update_supply_based_on_unmet_demand(percent_of_met_demand)
+        component = self.components[component_row_id]
+        component.update_supply_based_on_unmet_demand(percent_of_met_demand)
+        # Record the applied met demand so it can be re-applied (held) on steps where this resource
+        # is not re-distributed (see reapply_last_distribution).
+        self.last_met_demand[component] = percent_of_met_demand
 
     def set_met_demand_for_recovery_activities(self, component_row_id: int, percent_of_met_demand: float):
         self.components[
