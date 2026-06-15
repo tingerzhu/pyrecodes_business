@@ -159,7 +159,9 @@ class BusinessPlotter():
         plt.title('Total Business Revenue | BI vs CBI')
         plt.xlabel('Weeks after earthquake')
         plt.ylabel('Revenue [$/week]')
-        plt.legend(loc='lower right')
+        # Keep the legend in the upper-right so it does not overlap the BI/CBI total-loss text boxes,
+        # which are anchored in the lower-right corner (see fill_unmet_revenue text_position).
+        plt.legend(loc='upper right')
         plt.grid(True)
         if save_fig:
             plt.savefig('total_revenue_BI_CBI.png', transparent=True, dpi=300)
