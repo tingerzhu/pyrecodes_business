@@ -30,7 +30,7 @@
         },
         "DEMAND_PER_PERSON": {
             "ElectricPower": 0.02,
-            "PotableWater": 150,
+            "PotableWater": 1300,
             "CellularCommunication": 0.033
         }
     },
