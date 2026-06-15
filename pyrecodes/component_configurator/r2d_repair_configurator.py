@@ -111,7 +111,26 @@ class R2DPipeRepairConfigurator(R2DRepairConfigurator):
     Class that configures repair activities of R2D pipes.
     """
 
-    def get_repair_demand(self, component_damage_state: int) -> int:
+    def get_repair_demand(self, component_damage_state: int, method:str='component_library') -> int:
+        """
+        | Method that calculates the repair crew demand for the pipe component.
+        | The demand is calculated based on the length of the pipe and the repair crew demand per mile defined in the system configuration file.
+        | It is assumed that pipe length is defined in meters in the component object.
+        """
+        if method == 'component_library':
+            if component_damage_state == 1:
+                return self.system_level_data['REPAIR_CREW_DEMAND_PIPE']['per_leak']
+            elif component_damage_state == 2:
+                return self.system_level_data['REPAIR_CREW_DEMAND_PIPE']['per_break']
+            else:
+                return 0
+        elif method == 'length_based':
+            if component_damage_state > 0:
+                return math.ceil((self.component.length/METER_TO_MILE) * self.system_level_data['REPAIR_CREW_DEMAND_PIPE']['per_mile'])
+        else:
+            raise ValueError(f"Unknown repair demand calculation method for pipes: {method}. Please choose either 'component_library' or 'length_based'.")
+
+    def get_repair_demand_per_mile(self, component_damage_state: int) -> int:
         """
         | Method that calculates the repair crew demand for the pipe component.
         | The demand is calculated based on the length of the pipe and the repair crew demand per mile defined in the system configuration file.
