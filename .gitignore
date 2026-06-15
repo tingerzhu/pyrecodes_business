@@ -9,14 +9,17 @@ pyrecodes.egg-info/
 build/
 env_pyrecodes/
 __pycache__/
-<<<<<<< HEAD
-.coverage
-.env
-=======
 temp_convert_to_det_json.ipynb
 .coverage
 .env
 ./Example 3/create_exposure.ipynb
->>>>>>> v0.2.0-pre-release
 ./.git/objects/pack/pack-b868cb133e17ca05431bfad187490ec7a3d900c2.pack
 ./.git/objects/pack/pack-b868cb133e17ca05431bfad187490ec7a3d900c2.pack
+
+# generated caches / scratch (not source)
+env_pyrecodes.x86_64.bak/
+./Example 5_business/Alameda_Main_system.pkl
+./Example 5_business/cache/
+./Example 5_business/water_distribution_network/rewet_temp/None_*
+pipe_damage_analysis.ipynb
+
