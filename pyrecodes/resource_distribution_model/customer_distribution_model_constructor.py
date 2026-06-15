@@ -1,5 +1,6 @@
 from pyrecodes.resource_distribution_model.concrete_resource_distribution_model_constructor import ConcreteResourceDistributionModelConstructor
 from pyrecodes.component.r2d_component import R2DBuilding
+from pyrecodes.utilities import read_json_file
 
 class CustomerDistributionModelConstructor(ConcreteResourceDistributionModelConstructor):
 
@@ -8,6 +9,21 @@ class CustomerDistributionModelConstructor(ConcreteResourceDistributionModelCons
         components_in_blocks = self.map_buildings_to_blocks(components)
         distribution_model.initial_block_population = self.get_initial_block_population(components_in_blocks)
         distribution_model.components_in_blocks = components_in_blocks
+        distribution_model.external_customer_base_recovery = self.load_external_customer_base_recovery(resource_parameters)
+
+    def load_external_customer_base_recovery(self, resource_parameters: dict) -> dict:
+        """
+        Load customer-base recovery ratios for blocks (CBGs) whose recovery is simulated
+        outside this model and supplied as input (e.g. blocks with no building components
+        here). Maps block -> {time_step: ratio}. Returns an empty dict when no file is
+        given, so existing configs are unaffected.
+        """
+        file_name = resource_parameters.get('ExternalCustomerBaseRecoveryFile', None)
+        if file_name is None:
+            return {}
+        recovery_data = read_json_file(file_name)
+        return {block: {int(time_step): ratio for time_step, ratio in series.items()}
+                for block, series in recovery_data.items()}
 
     def map_buildings_to_blocks(self, components: list) -> None:
         components_in_blocks = {}
