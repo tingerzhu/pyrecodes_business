@@ -19,7 +19,7 @@ class ResidualDemandTrafficDistributionModel(AbstractResourceDistributionModel):
         self.spatial_resource_aggregator = SpatialResourceAggregator()
         self.travel_times = []
         self.travel_time_change_factors = []
-        self.trip_index = {}  # static: (origin_nid, destin_nid) -> row index, built once on first simulation
+        self.trip_index = []  # parallel to travel_times: (origin_nid, destin_nid) -> row index, rebuilt each distribution time step
         self.travel_time_change_index = []  # parallel to travel_time_change_factors: agent_id -> change factor, rebuilt each distribution time step
         self.connect_buildings_to_traffic_nodes()
         self.outside_island_building_ids = {
@@ -48,7 +48,7 @@ class ResidualDemandTrafficDistributionModel(AbstractResourceDistributionModel):
         | Calculate travel times if the model is supposed to distribute traffic at this time step.
         | If not, append an empty list to the travel_times list to keep the length of the list consistent with the number of time steps.
         """
-        self.add_to_time_step_list(time_step, [self.travel_times, self.travel_time_change_factors, self.travel_time_change_index])
+        self.add_to_time_step_list(time_step, [self.travel_times, self.travel_time_change_factors, self.travel_time_change_index, self.trip_index])
         if self.distribute_at_this_time_step(time_step):
             self.update_r2d_dict()
             self.distribute_traffic(time_step)
@@ -78,12 +78,13 @@ class ResidualDemandTrafficDistributionModel(AbstractResourceDistributionModel):
         | Run the traffic simulator to calculate travel times.
         | Supress output to the console from low-level libraries.
         """
-        self.add_to_time_step_list(time_step, [self.travel_times, self.travel_time_change_factors, self.travel_time_change_index])
+        self.add_to_time_step_list(time_step, [self.travel_times, self.travel_time_change_factors, self.travel_time_change_index, self.trip_index])
         with open(os.devnull, 'w') as devnull:
             original_stdout_fd = os.dup(1) 
             try:
                 os.dup2(devnull.fileno(), 1) 
-                self.travel_times[time_step] = self.flow_simulator.simulate(self.r2d_dict)
+                self.travel_times[time_step] = self.flow_simulator.simulate(
+                    self.r2d_dict, od_matrix=self.od_trip_checker.od_matrix)
             finally:
                 os.dup2(original_stdout_fd, 1)  
                 os.close(original_stdout_fd) 
@@ -94,15 +95,25 @@ class ResidualDemandTrafficDistributionModel(AbstractResourceDistributionModel):
             return None
         origin_node = self.building_to_traffic_node_dict.get(origin_building_id, None)
         destination_node = self.building_to_traffic_node_dict.get(destination_building_id, None)
+        return self.path_accessible(time_step, origin_node, destination_node)
+
+    def path_accessible(self, time_step: int, origin_node, destination_node) -> bool:
+        """
+        | Check whether a functional path exists between two traffic nodes at the given time step,
+          reusing the precomputed travel times.
+        | origin_node/destination_node are traffic node ids (as stored in building_to_traffic_node_dict).
+        | Returns False if either node is missing or isolated. Exposed so other models (e.g. the
+          island connectivity model) can score node-to-node paths without going through buildings.
+        """
         if origin_node is None or destination_node is None:
             return False
         if origin_node in self.od_trip_checker.isolated_nodes or destination_node in self.od_trip_checker.isolated_nodes:
             return False
         last_distribution_time_step = self.find_nearest_distribution_time_step(time_step)
         travel_times = self.travel_times[last_distribution_time_step]
-        trip_index = self.trip_index
         change_index = self.travel_time_change_index[last_distribution_time_step]
-        return self.check_accessibility(origin_node, destination_node, travel_times, trip_index, change_index)
+        return self.check_accessibility(origin_node, destination_node, travel_times,
+                                        self.trip_index[last_distribution_time_step], change_index)
 
     def check_accessibility(self, origin_node, destination_node, travel_times: pd.DataFrame, trip_index: dict, change_index: dict) -> bool:
         if origin_node == destination_node:
@@ -118,19 +129,23 @@ class ResidualDemandTrafficDistributionModel(AbstractResourceDistributionModel):
         return travel_time_change_factor <= TRAVEL_TIME_CHANGE_CUTOFF and travel_time <= TRAVEL_TIME_CUTOFF
 
     def get_travel_time_change(self, time_step: int) -> None:
-        for agent_pre_disaster, agent_now in zip(self.travel_times[0].iterrows(), self.travel_times[-1].iterrows()):
-            pre_disaster_time = agent_pre_disaster[1]['travel_time_used']
+        # Pair pre-disaster and current travel times by agent_id, NOT by row position: unroutable
+        # trips are appended at the end of the results, so the row order differs between steps and a
+        # positional zip would divide one trip's current time by a different trip's pre-disaster time.
+        current = self.travel_times[time_step]
+        pre_disaster_time_by_agent = dict(zip(self.travel_times[0]['agent_id'],
+                                              self.travel_times[0]['travel_time_used']))
+        for now in current.itertuples():
+            pre_disaster_time = pre_disaster_time_by_agent.get(now.agent_id, float('inf'))
             if not math.isfinite(pre_disaster_time) or pre_disaster_time == 0:
-                # TODO: if the trip was unroutable pre-disaster, should the change factor be inf (always inaccessible) or 1.0 (no change)?
-                # Currently set to inf since an unroutable pre-disaster trip implies the destination is always inaccessible.
+                # An unroutable pre-disaster trip implies the destination is always inaccessible.
                 travel_time_change_factor = float('inf')
             else:
-                travel_time_change_factor = agent_now[1]['travel_time_used'] / pre_disaster_time
-            self.travel_time_change_factors[time_step].append({'agent_id': agent_pre_disaster[1]['agent_id'], 'origin_nid': agent_pre_disaster[1]['origin_nid'],
-                                            'stop_nid': agent_pre_disaster[1]['stop_nid'], 'travel_time_change': travel_time_change_factor})
-        if not self.trip_index:
-            records = self.travel_times[time_step].to_dict(orient='records')
-            self.trip_index = {(r['origin_nid'], r['destin_nid']): i for i, r in enumerate(records)}
+                travel_time_change_factor = now.travel_time_used / pre_disaster_time
+            self.travel_time_change_factors[time_step].append({'agent_id': now.agent_id, 'origin_nid': now.origin_nid,
+                                            'stop_nid': now.stop_nid, 'travel_time_change': travel_time_change_factor})
+        records = current.to_dict(orient='records')
+        self.trip_index[time_step] = {(r['origin_nid'], r['destin_nid']): i for i, r in enumerate(records)}
         self.travel_time_change_index[time_step] = {e['agent_id']: e['travel_time_change'] for e in self.travel_time_change_factors[time_step]}
 
     # def update_buildings_traffic_situation(self) -> None:
@@ -211,12 +226,16 @@ class ODTripChecker:
             return
         if origin_node in self.isolated_nodes or stop_node in self.isolated_nodes:
             return
-        agent_id = len(self.od_matrix) + self.BIG_NUMBER # add a large number to avoid duplicates
+        # Unique id robust to re-registration: continue past the current max agent_id, but stay in
+        # the BIG_NUMBER range so registered trips remain distinguishable from real demand.
+        # (len(od_matrix) + BIG_NUMBER was not unique once the OD matrix is re-registered, which
+        # produced colliding agent_ids and corrupted the per-agent travel-time-change lookup.)
+        max_existing = int(self.od_matrix['agent_id'].max()) if len(self.od_matrix) else 0
+        agent_id = max(max_existing + 1, int(self.BIG_NUMBER))
         new_row = pd.DataFrame({'agent_id': [int(agent_id)], 'origin_nid': [int(origin_node)], 'destin_nid': [int(stop_node)], 'hour': [7], 'quarter': [0], 'tour_category': [tour_category], 'person_id': [int(agent_id)]})
         self.od_matrix = pd.concat([self.od_matrix, new_row], ignore_index=True)
-        # self.od_matrix['origin_nid'] = self.od_matrix['origin_nid'].astype('int64')
-        # self.od_matrix['destin_nid'] = self.od_matrix['destin_nid'].astype('int64')
-        self.od_matrix.to_csv(self.od_matrix_filename, index=False)
+        # Registered trips are kept in memory and passed to the flow simulator at simulate() time;
+        # the input OD file is intentionally NOT mutated.
 
     def check_trip_in_od_matrix(self, origin_node_id: int, destin_node_id: int) -> bool:
         """
