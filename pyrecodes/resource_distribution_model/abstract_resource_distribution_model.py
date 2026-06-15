@@ -30,6 +30,20 @@ class AbstractResourceDistributionModel(ResourceDistributionModel):
         | True if time step is in the distribution_time_steps list or if the list is empty - this implies that it was not specified by the user and the resource is distributed at each time step by default.
         """
         return time_step in self.distribution_time_steps or len(self.distribution_time_steps) == 0
+
+    def reapply_last_distribution(self, time_step: int) -> None:
+        """
+        | Re-apply the most recent distribution's per-component met demand on a time step where the
+          resource is not re-distributed (sparse DistributionTimeStepping).
+        | component.update() recomputes each component's supply from its functionality every step,
+          which would otherwise drop the interdependency / met-demand effect to full between
+          distributions and make supply/demand series zig-zag. Re-applying the held met demand keeps
+          the component state consistent with the last actual distribution.
+        | Models that mutate component met demand populate self.last_met_demand = {component:
+          met_fraction} during their distribution; models that do not leave it empty (no-op here).
+        """
+        for component, met_fraction in getattr(self, 'last_met_demand', {}).items():
+            component.update_supply_based_on_unmet_demand(met_fraction, time_step)
     
     def get_scope(self, scope='All') -> list:
         """
