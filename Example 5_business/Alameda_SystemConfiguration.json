@@ -1,7 +1,7 @@
 {
     "Constants": {
         "START_TIME_STEP": 0,
-        "MAX_TIME_STEP": 150,
+        "MAX_TIME_STEP": 200,
         "DISASTER_TIME_STEP": 1,
         "MAX_REPAIR_CREW_DEMAND_PER_BUILDING": 50,
         "HOUSING_RESOURCES": [
@@ -17,7 +17,11 @@
         "REPAIR_CREW_DEMAND_PER_MILE_ROADWAY": 2,
         "REPAIR_CREW_DEMAND_PER_MILE_TUNNEL": 5,
         "REPAIR_CREW_DEMAND_PER_MILE_BRIDGE": 5,
-        "REPAIR_CREW_DEMAND_PER_MILE_PIPE": 2,
+        "REPAIR_CREW_DEMAND_PIPE": {
+            "per_leak": 0.024,
+            "per_break": 0.036,
+            "per_mile": 3
+        },
         "DEFAULT_REPAIR_DURATION_DICT": {
             "Lognormal": {
                 "Median": 0,
