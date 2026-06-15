@@ -17,12 +17,18 @@ class REWETDistributionModel(AbstractResourceDistributionModel):
         self.constructor.construct(resource_name, resource_parameters, components, self)
         self.transfer_service_distribution_model = None
         self.spatial_resource_aggregator = SpatialResourceAggregator()
+        self.met_demand_per_building = {}
+        self.last_met_demand = {}  # {building component: met_fraction} applied by the last distribution
 
     def distribute(self, time_step: int) -> None:
         if self.distribute_at_this_time_step(time_step):
             self.update_r2d_dict()
             self.met_demand_per_building = self.distribute_water(time_step)
             self.update_buildings_met_demand(time_step)
+        else:
+            # Water not re-run this step (sparse stepping): hold the last met demand so building
+            # supply / business infrastructure reflect the most recent REWET distribution.
+            self.reapply_last_distribution(time_step)
 
     def update_r2d_dict(self):
         """
@@ -45,12 +51,17 @@ class REWETDistributionModel(AbstractResourceDistributionModel):
     def update_buildings_met_demand(self, time_step: int) -> None:
         """
         | Update supply of buildings based on their met demand for water.
-        | At the moment, updates only R2DBuilding components
+        | At the moment, updates only R2DBuilding components.
+        | Also records the applied met demand per component in self.last_met_demand so it can be
+          re-applied (held) on steps where water is not re-distributed.
         """
-        for component in self.components:            
+        self.last_met_demand = {}
+        for component in self.components:
             if self.component_is_a_building(component) and self.component_has_demand_for_water(component):
                 # TODO: Some components are not in the met_demand_per_building dictionary, this is a problem. Fix this. For now, these buildings get 1.0 demand met.
-                component.update_supply_based_on_unmet_demand(self.met_demand_per_building.get(component.aim_id, 1.0), time_step)
+                met_demand = self.met_demand_per_building.get(component.aim_id, 1.0)
+                component.update_supply_based_on_unmet_demand(met_demand, time_step)
+                self.last_met_demand[component] = met_demand
 
     def component_is_a_building(self, component) -> bool:
         """
